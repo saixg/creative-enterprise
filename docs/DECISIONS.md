@@ -77,18 +77,21 @@ pricing before the owner confirms them.
 
 ---
 
-## D-004 — Catalogue extras are deferred, not rejected
+## D-004 — Catalogue extras: partly reinstated
 
-**Date:** 2026-11-04
-**Status:** Deferred
+**Date:** 2026-11-04 (revised the same day)
+**Status:** Partly superseded by D-011
 **Overrides:** nothing
 
 Image 2 shows global search (⌘K), a wishlist control, a compare control and product
 carousels. None of these appear in the project briefs, and a wishlist is
 e-commerce-shaped against an explicitly inquiry-first scope.
 
-**Decision:** Out of scope for now. Recorded here so they are understood as a
-deliberate deferral rather than rediscovered later as missing features.
+**Original decision:** all deferred.
+
+**Revised:** the master design brief reinstated several of them. Brands, Offers
+and New Arrivals are now in scope — see **D-011**. Global search, the wishlist
+and the compare control remain deferred.
 
 ---
 
@@ -158,6 +161,95 @@ product imagery.
 the real owner's likeness must be preserved — no generated person, no material
 alteration of identity, and no reconstructing assets from the reference screenshots
 and presenting them as final artwork.
+
+---
+
+## D-009 — One homepage: light hero into dark catalogue
+
+**Date:** 2026-11-04
+**Status:** Confirmed
+**Supersedes:** part of D-001 and D-005
+
+The master design brief requires one coherent homepage rather than two separate
+designs. The homepage now carries both references:
+
+- **Upper** — reference 02 (owner hero), light `landing` theme. The primary
+  brand and identity direction.
+- **Lower** — reference 01 (product storefront), dark `app` theme. The product
+  discovery, catalogue and promotional direction.
+
+The transition between them must read as one art-directed page, not two
+templates stitched together.
+
+**Interior pages are unchanged:** `/products` and other interior routes keep the
+dark `app` theme. D-005's token contract is untouched — this decision changes
+only _where_ each value set is applied, never how theming works. Theme scoping
+therefore moves from the route-group layout down to the section level on the
+homepage.
+
+---
+
+## D-010 — D-002 reaffirmed: the reference still governs
+
+**Date:** 2026-11-04
+**Status:** Confirmed
+**Overrides:** the master brief's restatement of doc 02 §4
+
+The master design brief restated doc 02's avoid-list, including "do not add
+decorative glowing rings around the owner". That conflicts with D-002, where the
+owner decided the approved reference governs.
+
+**Decision: D-002 stands.** The glow and glass treatments visible in the
+references are permitted, including around the hero composition, implemented as
+reusable token-driven utilities rather than invented per component.
+
+The parts of the avoid-list that do not conflict with the references still
+apply: no unrelated logo-like symbols, no random floating blobs or circles, no
+generic template layouts, no animation competing with the message.
+
+---
+
+## D-011 — Brands, Offers and New Arrivals are in scope
+
+**Date:** 2026-11-04
+**Status:** Confirmed — Offers and Brands need owner content
+**Revises:** D-004
+
+Navigation and homepage sections for **Brands**, **Offers** and **New Arrivals**
+are in scope.
+
+**Content gaps that must not be invented:**
+
+- **Offers** — no promotion, discount or campaign has been supplied. The section
+  renders an honest empty state until the owner provides real offers. Doc 03 §3
+  lists discounts as something never to invent.
+- **Brands** — only the four brand names attached to placeholder products exist
+  (HP, Lenovo, ASUS, Apple). No authorised-dealer, partnership or reseller claim
+  may be made, since none has been confirmed.
+
+Global search and the wishlist remain deferred.
+
+---
+
+## D-012 — Owner portrait cropped from the reference
+
+**Date:** 2026-11-04
+**Status:** Interim — the original file is still wanted
+**Relates to:** D-008
+
+No standalone photograph of the owner has been supplied. The owner's likeness
+exists only inside `design-references/reference-02-owner-hero.jpg` (1600×900).
+
+**Decision:** crop the real person from that reference and use it as the hero
+portrait. This preserves the actual owner's likeness, which doc 02 §4 and doc 03
+§9 require, and avoids substituting a generated person.
+
+**Constraints:** the crop is low resolution and is recorded as such in
+`docs/KNOWN-ISSUES.md`. Identity, body and clothing must not be altered. The
+original photograph is still needed before production.
+
+Product photography and the logo artwork remain unavailable and stay as
+clearly-marked placeholders.
 
 ---
 

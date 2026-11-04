@@ -11,6 +11,9 @@ import { buttonClasses } from "@/components/ui/button";
 
 const items = [
   { key: "products", href: "/products" },
+  { key: "brands", href: "/#brands" },
+  { key: "offers", href: "/#offers" },
+  { key: "newArrivals", href: "/#new-arrivals" },
   { key: "services", href: "/services" },
   { key: "about", href: "/about" },
   { key: "contact", href: "/contact" },

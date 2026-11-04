@@ -30,6 +30,11 @@ export async function SiteChrome({
   return (
     <div
       data-theme={theme}
+      // `data-page-theme` is what the root `:has()` rule in globals.css looks
+      // for, so the overscroll colour follows the PAGE, not whichever themed
+      // section happens to be nested inside it. The homepage carries dark
+      // sections (D-009) while staying a light page.
+      data-page-theme={theme}
       className="bg-background text-foreground flex min-h-full flex-1 flex-col"
     >
       <a

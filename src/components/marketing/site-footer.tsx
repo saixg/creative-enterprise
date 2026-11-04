@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Logo } from "@/components/marketing/logo";
 import { WhatsAppCta } from "@/components/ui/whatsapp-cta";
-import { navItems } from "@/components/marketing/site-header";
+import { footerNavItems } from "@/components/marketing/site-header";
 
 export async function SiteFooter() {
   const [t, nav] = await Promise.all([
@@ -24,7 +24,7 @@ export async function SiteFooter() {
           <nav aria-label="Footer">
             <h2 className="text-sm font-semibold">{t("sections.explore")}</h2>
             <ul className="mt-4 space-y-2">
-              {navItems.map((item) => (
+              {footerNavItems.map((item) => (
                 <li key={item.key}>
                   <Link
                     href={item.href}

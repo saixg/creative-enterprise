@@ -1,28 +1,77 @@
 import { setRequestLocale } from "next-intl/server";
 
+import type { Locale } from "@/i18n/routing";
+import {
+  ThemeSection,
+  TransitionBand,
+} from "@/components/layout/theme-section";
 import { Hero } from "@/components/marketing/hero";
 import { CapabilityStrip } from "@/components/marketing/capability-strip";
 import { EntryPoints } from "@/components/marketing/entry-points";
+import { LocalStrip } from "@/components/marketing/local-strip";
 import { StoreStrip } from "@/components/marketing/store-strip";
+import { FeaturedBand } from "@/components/marketing/featured-band";
+import { CategoryTiles } from "@/components/marketing/category-tiles";
+import { NewArrivals } from "@/components/marketing/new-arrivals";
+import {
+  BrandStrip,
+  OffersSection,
+} from "@/components/marketing/offers-and-brands";
+import {
+  CtaSection,
+  PromoPair,
+  ServiceShowcase,
+  WhyChooseUs,
+} from "@/components/marketing/promo-sections";
 
 /**
- * Landing page — theme `landing` (light), per docs/DECISIONS.md D-001/D-005.
+ * Homepage — one page, two themed halves (docs/DECISIONS.md D-009).
  *
- * Section order follows doc 02 §4: hero, two equal entry points, capabilities,
- * store information. Featured products and the services showcase arrive with
- * the catalogue milestone, once there is real data behind them.
+ * Upper half, light `landing` theme (reference 02): who the business is.
+ * Lower half, dark `app` theme (reference 01): what it sells and services.
+ *
+ * The ordering is the design argument: trust, then desire, then utility.
+ * `TransitionBand` carries the eye between them so the two halves read as one
+ * art-directed page rather than two templates stitched together.
  */
-export default async function LandingPage({ params }: PageProps<"/[locale]">) {
+export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
-  // Enables static rendering for this locale.
   setRequestLocale(locale);
 
   return (
     <>
+      {/* ---- Light half: brand and identity ---- */}
       <Hero />
       <CapabilityStrip />
       <EntryPoints />
+      <LocalStrip />
       <StoreStrip />
+
+      <TransitionBand />
+
+      {/* ---- Dark half: products, promotions and services ---- */}
+      <ThemeSection theme="app" aria-label="Products and services">
+        <FeaturedBand />
+        <CategoryTiles />
+
+        <div id="new-arrivals" className="scroll-mt-24">
+          <NewArrivals locale={locale as Locale} />
+        </div>
+
+        <div id="offers" className="scroll-mt-24">
+          <OffersSection />
+        </div>
+
+        <PromoPair />
+        <ServiceShowcase />
+
+        <div id="brands" className="scroll-mt-24">
+          <BrandStrip />
+        </div>
+
+        <WhyChooseUs />
+        <CtaSection />
+      </ThemeSection>
     </>
   );
 }

@@ -13,8 +13,16 @@ import { buttonClasses } from "@/components/ui/button";
  */
 export const navItems = [
   { key: "products", href: "/products" },
+  { key: "brands", href: "/#brands" },
+  { key: "offers", href: "/#offers" },
+  { key: "newArrivals", href: "/#new-arrivals" },
   { key: "services", href: "/services" },
   { key: "about", href: "/about" },
+] as const;
+
+/** Footer keeps Contact; the header dropped it for the Get a Quote button. */
+export const footerNavItems = [
+  ...navItems.filter((item) => !item.href.startsWith("/#")),
   { key: "contact", href: "/contact" },
 ] as const;
 

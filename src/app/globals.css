@@ -151,8 +151,7 @@
    *
    * Themes are scoped to a wrapper inside <body> (see SiteChrome), so the
    * overscroll area outside that wrapper would otherwise keep the default
-   * light background and flash white on a dark page. `:has()` lifts the
-   * active theme's base colour up to the root element.
+   * light background and flash white on a dark page. `:has()` lifts the page theme's base colour up to the root element.
    */
   html {
     scroll-behavior: smooth;
@@ -160,7 +159,7 @@
     color-scheme: light;
   }
 
-  html:has([data-theme="app"]) {
+  html:has([data-page-theme="app"]) {
     background-color: var(--theme-app-bg);
     color-scheme: dark;
   }

@@ -8,7 +8,10 @@
     "getQuote": "Get a Quote",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "language": "Language"
+    "language": "Language",
+    "brands": "Brands",
+    "offers": "Offers",
+    "newArrivals": "New Arrivals"
   },
   "hero": {
     "badge": "Rajkot's Trusted IT Partner",
@@ -18,7 +21,8 @@
     "primaryCta": "Explore Products",
     "secondaryCta": "Book a Service",
     "portraitAlt": "Placeholder for the owner portrait — awaiting the supplied photograph",
-    "localTagline": "રાજકોટનું વિશ્વાસુ IT સેવા કેન્દ્ર"
+    "localTagline": "રાજકોટનું વિશ્વાસુ IT સેવા કેન્દ્ર",
+    "panelsLabel": "Products sold and serviced here: laptops, desktops, components, CCTV, printers and accessories."
   },
   "capabilities": {
     "heading": "What we do",
@@ -100,6 +104,107 @@
     "backToProducts": "Back to products",
     "inquiryLead": "Enquire for current pricing and availability.",
     "inquiryMessage": "Hello, I would like a quote for the {product}.",
-    "inquiryUnavailable": "The enquiry channel is not configured yet — no WhatsApp number has been supplied. This button will work once contact details are added."
+    "inquiryUnavailable": "The enquiry channel is not configured yet — no WhatsApp number has been supplied. This button will work once contact details are added.",
+    "viewAll": "View all",
+    "panels": {
+      "cctv": "CCTV",
+      "printer": "Printers",
+      "repair": "Repair"
+    }
+  },
+  "featured": {
+    "badge": "New Arrivals",
+    "headline": "Next-Gen Laptops Now at Creative Enterprise",
+    "subheadline": "Latest laptops, desktops and computer components with genuine products, expert support and after-sales service.",
+    "primaryCta": "Explore Laptops",
+    "secondaryCta": "Get IT Services",
+    "imagePending": "Product image pending",
+    "trust": {
+      "genuine": "Genuine products",
+      "warranty": "Warranty support",
+      "expert": "Expert service",
+      "response": "Quick response"
+    }
+  },
+  "offers": {
+    "heading": "Offers",
+    "subtitle": "Current promotions from the store.",
+    "emptyTitle": "No offers published yet",
+    "emptyBody": "Offers appear here once the business publishes them. Nothing is shown in the meantime — we do not advertise discounts that have not been confirmed."
+  },
+  "brands": {
+    "heading": "Brands we work with",
+    "subtitle": "Brands appearing in the current catalogue. Ask us about availability for any brand you need.",
+    "notice": "Brand names are listed from catalogue data only. No authorised-dealer or partnership relationship is claimed."
+  },
+  "promo": {
+    "builds": {
+      "title": "Custom PC Builds",
+      "body": "Build your setup with guidance on parts, compatibility and budget. Tell us what you need it for and we will put a configuration together.",
+      "cta": "Enquire about a build"
+    },
+    "repair": {
+      "title": "Laptop & Desktop Repair",
+      "body": "Diagnostics, hardware replacement and upgrades for laptops and desktops. Bring the machine in or ask about on-site support.",
+      "cta": "Book a service"
+    }
+  },
+  "services": {
+    "eyebrow": "Services",
+    "heading": "Technical services and support",
+    "subtitle": "Repair, installation and maintenance handled in Rajkot — the other half of what we do.",
+    "cta": "Browse all services",
+    "notice": "Service availability, pricing and turnaround are confirmed with you directly. Nothing is quoted here until the business has published it.",
+    "items": {
+      "repair": {
+        "title": "Laptop & desktop repair",
+        "body": "Fault diagnosis, component replacement and screen replacement."
+      },
+      "upgrades": {
+        "title": "Hardware upgrades",
+        "body": "Memory, storage and component upgrades, with compatibility checked first."
+      },
+      "cctv": {
+        "title": "CCTV installation & repair",
+        "body": "Camera installation, cabling, configuration and fault-finding."
+      },
+      "printer": {
+        "title": "Printer support",
+        "body": "Printer servicing, repair and setup for home and office."
+      },
+      "amc": {
+        "title": "Maintenance & AMC",
+        "body": "Ongoing maintenance arrangements for businesses. Ask us what a contract would cover."
+      }
+    }
+  },
+  "why": {
+    "heading": "Why choose Creative Enterprise",
+    "subtitle": "Sales and service under one roof, from a shop you can walk into.",
+    "location": "Rajkot, Gujarat",
+    "reasons": {
+      "genuine": {
+        "title": "Genuine products",
+        "body": "We supply genuine hardware and tell you plainly what you are buying."
+      },
+      "expert": {
+        "title": "Expert technical support",
+        "body": "The same people who sell the hardware also service it."
+      },
+      "guidance": {
+        "title": "Honest guidance",
+        "body": "Advice on what actually suits your use and budget, not the biggest sale."
+      },
+      "local": {
+        "title": "Local presence",
+        "body": "A physical store in Rajkot, so support does not mean a courier and a wait."
+      }
+    }
+  },
+  "finalCta": {
+    "heading": "Tell us what you need and we will help you choose",
+    "subtitle": "Enquire about a product, or book a repair. We will get back to you with real availability and pricing.",
+    "productCta": "Explore products",
+    "serviceCta": "Book a service"
   }
 }

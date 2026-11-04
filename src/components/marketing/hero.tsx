@@ -4,21 +4,32 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { buttonClasses } from "@/components/ui/button";
 import { businessInfo } from "@/lib/business-info";
+import { FloatingPanels } from "@/components/marketing/floating-panels";
+import { OwnerPortrait } from "@/components/marketing/owner-portrait";
+import { HeroReveal } from "@/components/marketing/hero-reveal";
 
+/**
+ * Hero — reference 02, the brand-first half of the homepage.
+ *
+ * Composition: copy left, owner centred in a stage of floating product panels
+ * right. The owner sits IN FRONT of the panels (higher z-index), which is what
+ * makes the cluster read as his stock rather than as decoration.
+ */
 export async function Hero() {
   const t = await getTranslations("hero");
 
   return (
     <section className="relative overflow-hidden">
-      {/* Ambient wash. Permitted by D-002 (the reference governs), kept to one
-          soft field rather than glow on every element. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(90%_70%_at_75%_10%,var(--background-subtle),transparent_70%)]"
+        // Cool wash in the upper right, as in reference 02. It is what gives
+        // the product panels something to sit against instead of floating on
+        // flat white.
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(80%_65%_at_78%_6%,color-mix(in_oklab,var(--accent)_16%,transparent),transparent_68%),radial-gradient(95%_75%_at_72%_22%,var(--background-subtle),transparent_72%)]"
       />
 
-      <div className="mx-auto grid w-full max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-8 lg:px-8 lg:py-24">
-        <div>
+      <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 pt-12 pb-16 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-8 lg:px-8 lg:pt-16 lg:pb-24">
+        <HeroReveal className="order-2 lg:order-1">
           <p className="border-border bg-surface shadow-card inline-flex flex-wrap items-center gap-x-3 gap-y-2 rounded-full border px-4 py-2 text-sm">
             <span className="inline-flex items-center gap-2 font-medium">
               <ShieldCheck aria-hidden className="text-primary size-4" />
@@ -37,18 +48,37 @@ export async function Hero() {
             )}
           </p>
 
-          <h1 className="mt-8 text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
+          <h1 className="mt-7 text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
             {t("headlineLead")}{" "}
-            <span className="text-primary block italic">
-              {t("headlineEmphasis")}
+            <span className="relative inline-block">
+              <span className="text-primary italic">
+                {t("headlineEmphasis")}
+              </span>
+              {/* The hand-drawn swoosh from the reference — part of the
+                  brand's character, so it is rebuilt as SVG rather than
+                  dropped. */}
+              <svg
+                aria-hidden
+                viewBox="0 0 320 18"
+                preserveAspectRatio="none"
+                className="text-primary/60 absolute -bottom-2 left-0 h-3 w-full"
+              >
+                <path
+                  d="M4 13C64 4 150 2 232 6c34 2 60 5 84 8"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3.5"
+                  strokeLinecap="round"
+                />
+              </svg>
             </span>
           </h1>
 
-          <p className="text-muted mt-6 max-w-xl text-lg text-pretty">
+          <p className="text-muted mt-8 max-w-xl text-lg text-pretty">
             {t("subheadline")}
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-3">
+          <div className="mt-9 flex flex-wrap gap-3">
             <Link href="/products" className={buttonClasses({ size: "lg" })}>
               {t("primaryCta")}
               <ArrowRight aria-hidden className="size-4" />
@@ -61,27 +91,12 @@ export async function Hero() {
               {t("secondaryCta")}
             </Link>
           </div>
+        </HeroReveal>
 
-          <p lang="gu" className="text-muted mt-10 text-lg font-medium">
-            {t("localTagline")}
-          </p>
-        </div>
-
-        {/*
-          Owner portrait slot — PLACEHOLDER.
-          The real photograph is pending (docs/DECISIONS.md D-008). Doc 02 §4
-          and doc 03 §9 forbid substituting a generated person, so this stays an
-          empty labelled frame until the supplied asset arrives.
-        */}
-        <div className="relative">
-          <div className="border-border-strong bg-surface-muted shadow-card aspect-4/3 w-full rounded-3xl border border-dashed p-6">
-            <div className="flex h-full flex-col items-center justify-center gap-3 text-center">
-              <span className="bg-warm/15 text-warm rounded-full px-3 py-1 text-xs font-semibold tracking-wider uppercase">
-                Placeholder
-              </span>
-              <p className="text-muted max-w-xs text-sm">{t("portraitAlt")}</p>
-            </div>
-          </div>
+        {/* Hero stage: panels behind, owner in front. */}
+        <div className="relative order-1 mx-auto flex aspect-square w-full max-w-md items-center justify-center lg:order-2 lg:max-w-xl">
+          <FloatingPanels label={t("panelsLabel")} />
+          <OwnerPortrait alt={t("portraitAlt")} className="relative z-10" />
         </div>
       </div>
     </section>
