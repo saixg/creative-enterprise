@@ -211,3 +211,15 @@ Structure _was_ verified: cards sit inside an 1100px perspective with
   `docs/ASSET-CREDITS.md`). The Laptops tile uses the real ASUS photo instead,
   because the reference laptop lost its keyboard base when cut out.
 - **"Warranty support"** in the trust row still needs owner confirmation.
+
+## Services pages (2026-11-04, D-017)
+
+- **Service list unconfirmed.** Seven candidate services from doc 01, labelled
+  "being confirmed" on every page. The owner must confirm the list and scope.
+- **Requests are disabled.** No contact details exist, so the request button
+  explains why instead of submitting. `/contact` still does not exist.
+- **Motion not seen on screen.** The check pane was hidden (animation frames
+  paused), so the scroll timeline, reveals and band parallax were verified by
+  structure and geometry only. One look in a visible browser is needed.
+- **Interim imagery** reuses reference crops; the Software card has no image
+  and shows its icon.

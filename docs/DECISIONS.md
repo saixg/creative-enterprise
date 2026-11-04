@@ -401,3 +401,24 @@ the catalogue in the inner header, with the reference's ⌘K shortcut.
 Category tiles, the featured visual and promo images are cut from the
 reference (interim, like D-013); crop boxes are recorded in
 `docs/ASSET-CREDITS.md`.
+
+---
+
+## D-017 — Services pages before the admin panel
+
+**Date:** 2026-11-04
+**Status:** Confirmed
+
+The owner redirected from the admin panel to the services pages. The admin
+panel is deferred, not dropped; it still needs the backend decision (where
+Supabase runs) before it can be built with real authentication.
+
+**Built:** `/services` and seven `/services/[slug]` pages in the storefront
+language of D-016, so the two business pillars read as equals (doc 01 §2).
+The list is doc 01 §2.2's _candidate_ categories, labelled "being confirmed";
+no record has a price, turnaround, warranty or guarantee field (doc 03 §3).
+
+**Motion, each with a reason:** a scroll-drawn timeline for the request
+process (it is a sequence), reveal-on-scroll for the bento (paces a dense
+grid), pointer parallax in the band and tilt on cards (depth, D-014). All
+static under `prefers-reduced-motion`.

@@ -25,6 +25,14 @@ const productExtras = [
 
 const serviceLinks = ["repair", "upgrades", "cctv", "printer", "amc"] as const;
 
+const serviceSlugs: Record<(typeof serviceLinks)[number], string> = {
+  repair: "laptop-desktop-repair",
+  upgrades: "hardware-upgrades",
+  cctv: "cctv-installation",
+  printer: "printer-repair",
+  amc: "maintenance-amc",
+};
+
 const itemBase =
   "inline-flex h-10 items-center rounded-full px-4 text-[0.95rem] font-semibold transition-colors";
 
@@ -102,7 +110,11 @@ export function DesktopNav() {
         panelClassName="min-w-64"
       >
         {serviceLinks.map((key) => (
-          <Link key={key} href="/services" className={menuItemClasses}>
+          <Link
+            key={key}
+            href={`/services/${serviceSlugs[key]}`}
+            className={menuItemClasses}
+          >
             {services(`items.${key}.title`)}
           </Link>
         ))}

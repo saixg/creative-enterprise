@@ -25,7 +25,7 @@ import { Tilt, TiltLayer } from "@/components/motion/tilt";
  * rail can sit across the seam exactly as it does in the reference.
  */
 
-function BandShell({
+export function BandShell({
   children,
   className,
 }: {

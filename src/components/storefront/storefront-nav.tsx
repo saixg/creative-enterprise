@@ -18,6 +18,14 @@ const productLinks = [
 ] as const;
 const serviceLinks = ["repair", "upgrades", "cctv", "printer", "amc"] as const;
 
+const serviceSlugs: Record<(typeof serviceLinks)[number], string> = {
+  repair: "laptop-desktop-repair",
+  upgrades: "hardware-upgrades",
+  cctv: "cctv-installation",
+  printer: "printer-repair",
+  amc: "maintenance-amc",
+};
+
 const item =
   "inline-flex h-10 items-center rounded-full px-3.5 text-sm font-medium transition-colors";
 
@@ -81,7 +89,11 @@ export function StorefrontNav() {
         panelClassName="min-w-64"
       >
         {serviceLinks.map((key) => (
-          <Link key={key} href="/services" className={menuItemClasses}>
+          <Link
+            key={key}
+            href={`/services/${serviceSlugs[key]}`}
+            className={menuItemClasses}
+          >
             {services(`items.${key}.title`)}
           </Link>
         ))}

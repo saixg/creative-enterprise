@@ -257,5 +257,172 @@
     "label": "Search products",
     "placeholder": "Search laptops, components, accessories...",
     "noResults": "No products match \"{query}\". Ask us, as not everything we stock is listed."
+  },
+  "servicePages": {
+    "title": "Services",
+    "metaDescription": "Laptop, desktop, CCTV and printer repair, upgrades and maintenance from Creative Enterprise in Rajkot.",
+    "badge": "Sales and service under one roof",
+    "headline": "Repairs, upgrades and support, handled in Rajkot",
+    "subhead": "From a laptop that will not boot to a CCTV system for your shop. Tell us the problem and we take it from there.",
+    "primaryCta": "Request a service",
+    "secondaryCta": "Browse products",
+    "candidateNotice": "This service list is being confirmed with the business. Pricing, turnaround and warranty are agreed with you directly; nothing is quoted on this site.",
+    "gridHeading": "What we can help with",
+    "gridSubtitle": "Pick a service to see what it covers and how a request works.",
+    "learnMore": "See what is covered",
+    "processHeading": "How a service request works",
+    "processSubtitle": "The same four steps, whatever the job.",
+    "steps": {
+      "tell": {
+        "title": "Tell us what is wrong",
+        "body": "Describe the problem or what you need set up. A rough description is enough."
+      },
+      "assess": {
+        "title": "We take a look",
+        "body": "Bring the device in, or ask about an on-site visit for installations and office equipment."
+      },
+      "agree": {
+        "title": "We agree the next step",
+        "body": "We explain what we found and agree the work with you before going ahead."
+      },
+      "done": {
+        "title": "Collect it or we come to you",
+        "body": "Pick it up from the store in Rajkot, or we finish the job on site."
+      }
+    },
+    "productsBridge": {
+      "title": "Need new hardware instead?",
+      "body": "Sometimes replacing beats repairing. Browse laptops, desktops and components, sold by the same team that services them.",
+      "cta": "Browse products"
+    },
+    "breadcrumb": "Breadcrumb",
+    "covers": "What it covers",
+    "signs": "Signs you need it",
+    "problem": "The problem it solves",
+    "requestHeading": "Request this service",
+    "requestUnavailable": "Requests are not set up yet because no contact details have been supplied. This will work once the business adds them.",
+    "related": "Other services",
+    "candidateBadge": "Being confirmed"
+  },
+  "serviceCatalogue": {
+    "repair": {
+      "title": "Laptop & desktop repair",
+      "summary": "Diagnosis and repair for laptops and desktops that will not start, overheat, crash or run slowly.",
+      "problem": "A machine you rely on stops working, and you need to know whether it can be fixed and what it involves.",
+      "covers": [
+        "Fault diagnosis",
+        "Component replacement",
+        "Power and charging faults",
+        "Overheating and fan issues"
+      ],
+      "signs": [
+        "Will not power on or boot",
+        "Shuts down or overheats",
+        "Random crashes or blue screens",
+        "Unusual noises"
+      ]
+    },
+    "screen": {
+      "title": "Laptop screen replacement",
+      "summary": "Replacement of cracked, flickering or dead laptop displays.",
+      "problem": "A damaged screen makes a working laptop unusable.",
+      "covers": [
+        "Cracked or broken panels",
+        "Flickering or lines on screen",
+        "Backlight faults",
+        "Hinge and bezel issues"
+      ],
+      "signs": [
+        "Cracks or dark patches",
+        "Flicker or coloured lines",
+        "Screen stays black",
+        "Loose or stiff hinge"
+      ]
+    },
+    "upgrades": {
+      "title": "Hardware upgrades",
+      "summary": "Memory, storage and component upgrades, with compatibility checked first.",
+      "problem": "A computer that is too slow for the work it now has to do.",
+      "covers": [
+        "RAM upgrades",
+        "SSD upgrades and data move",
+        "Graphics and component swaps",
+        "Compatibility check before any purchase"
+      ],
+      "signs": [
+        "Slow start-up and loading",
+        "Running out of storage",
+        "Struggles with newer software",
+        "Games or design tools lag"
+      ]
+    },
+    "software": {
+      "title": "Software troubleshooting",
+      "summary": "Help with operating system problems, setup, updates and unwanted software.",
+      "problem": "The hardware is fine, but the software stops you working.",
+      "covers": [
+        "Operating system issues",
+        "Setup and configuration",
+        "Update problems",
+        "Removing unwanted software"
+      ],
+      "signs": [
+        "Errors at start-up",
+        "Programs will not open",
+        "Pop-ups or unexpected behaviour",
+        "Updates fail"
+      ]
+    },
+    "cctv": {
+      "title": "CCTV installation & repair",
+      "summary": "Camera installation, cabling, configuration and fault-finding for homes and shops.",
+      "problem": "You need to see what happens at your home or business, reliably.",
+      "covers": [
+        "Site assessment",
+        "Camera and recorder installation",
+        "Cabling and configuration",
+        "Fault-finding on existing systems"
+      ],
+      "signs": [
+        "New premises or no cameras yet",
+        "Cameras offline or blurry",
+        "Recorder not saving footage",
+        "Gaps in coverage"
+      ]
+    },
+    "printer": {
+      "title": "Printer repair & setup",
+      "summary": "Servicing, repair and setup for home and office printers.",
+      "problem": "A printer that jams, will not connect or prints badly holds up the whole office.",
+      "covers": [
+        "Paper jams and feed faults",
+        "Print quality problems",
+        "Network and Wi-Fi setup",
+        "Routine servicing"
+      ],
+      "signs": [
+        "Frequent jams",
+        "Streaks or faded prints",
+        "Will not connect",
+        "Error lights"
+      ]
+    },
+    "amc": {
+      "title": "Maintenance & AMC",
+      "summary": "Ongoing maintenance arrangements for businesses. Ask what a contract would cover.",
+      "problem": "Keeping several machines healthy without waiting for each one to fail.",
+      "covers": [
+        "Planned maintenance visits",
+        "Multiple devices under one arrangement",
+        "Ongoing technical support",
+        "Scope agreed with you"
+      ],
+      "signs": [
+        "Several computers in an office",
+        "Repeated small faults",
+        "No one in-house for IT",
+        "Equipment you cannot afford to lose"
+      ]
+    }
   }
 }
