@@ -110,7 +110,50 @@
     "inquiryLead": "Enquire for current pricing and availability.",
     "inquiryMessage": "Hello, I would like a quote for the {product}.",
     "inquiryUnavailable": "The enquiry channel is not configured yet — no WhatsApp number has been supplied. This button will work once contact details are added.",
-    "viewAll": "View all"
+    "viewAll": "View all",
+    "breadcrumb": "Breadcrumb",
+    "categoryMeta": "{category} at Creative Enterprise, Rajkot. Enquire for current pricing and availability.",
+    "categoryIntro": "Browse {category} from Creative Enterprise. Don't see what you need? Ask us — we can often source it.",
+    "filters": {
+      "category": "Filter by category",
+      "brand": "Filter by brand",
+      "all": "All",
+      "allBrands": "All brands",
+      "sort": "Sort",
+      "sortFeatured": "Featured",
+      "sortPriceAsc": "Price: low to high",
+      "sortPriceDesc": "Price: high to low",
+      "sortName": "Name: A to Z",
+      "results": "{count, plural, =0 {No products} one {# product} other {# products}}",
+      "noMatchTitle": "Nothing matches these filters",
+      "noMatchBody": "Try another brand or category — or ask us directly, since not everything we stock is listed online.",
+      "clear": "Clear filters"
+    },
+    "emptyCategory": {
+      "title": "{category} are not listed online yet",
+      "body": "We have not added {category} to the website so far. Ask us what is available — the store may well have what you are looking for.",
+      "enquire": "Ask what's available"
+    },
+    "enquirySteps": {
+      "heading": "How enquiring works",
+      "ask": {
+        "title": "Ask",
+        "body": "Send us the product you are interested in, or what you need it for."
+      },
+      "confirm": {
+        "title": "We confirm",
+        "body": "We come back with current availability and pricing for your configuration."
+      },
+      "collect": {
+        "title": "Visit or arrange",
+        "body": "Collect it from the store in Rajkot, or ask about setup and support."
+      }
+    },
+    "serviceCrossLink": {
+      "title": "Need it set up, upgraded or repaired?",
+      "body": "Sales and service sit under one roof. The same team that supplies the hardware can install, upgrade and maintain it.",
+      "cta": "Explore our services"
+    }
   },
   "featured": {
     "badge": "New Arrivals",

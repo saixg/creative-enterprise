@@ -54,3 +54,27 @@ describe("price formatting", () => {
     expect(formatPrice(null, "gu")).not.toBe("₹0");
   });
 });
+
+describe("categories", () => {
+  it("recognises only the data model's categories", async () => {
+    const { isCategorySlug } = await import("./catalog");
+    expect(isCategorySlug("laptops")).toBe(true);
+    expect(isCategorySlug("services")).toBe(false);
+    expect(isCategorySlug("Laptops")).toBe(false);
+  });
+
+  it("returns an empty list, not invented products, for an unstocked category", async () => {
+    // D-014: empty categories show an empty state; nothing is padded in.
+    const { listProductsByCategory } = await import("./catalog");
+    expect(await listProductsByCategory("accessories")).toEqual([]);
+  });
+
+  it("never lists a product as related to itself", async () => {
+    const { listProducts, listRelatedProducts } = await import("./catalog");
+    for (const product of await listProducts()) {
+      const related = await listRelatedProducts(product);
+      expect(related.map((p) => p.slug)).not.toContain(product.slug);
+      expect(related.length).toBeLessThanOrEqual(4);
+    }
+  });
+});

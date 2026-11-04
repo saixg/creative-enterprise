@@ -172,3 +172,29 @@ change.
 - The search button and light/dark toggle in the header — search is deferred
   (D-004), and themes are per-area (D-005), not a user toggle.
 - "Solutions" in the nav — no brief defines it.
+
+## Depth motion and catalogue structure (2026-11-04, D-014)
+
+### Not visually verified
+
+The browser pane used for checks was hidden, which pauses
+`requestAnimationFrame` (measured: 0 frames in 1 s). Everything driven by
+animation frames is therefore **unverified on screen**:
+
+- the pointer tilt on cards and tiles, and the hero's pointer parallax
+- filter/sort transitions — while frames were paused, filtered-out cards stayed
+  in the DOM waiting for their exit animation; the filter logic itself was
+  verified (the results count and the order were correct)
+
+Structure _was_ verified: cards sit inside an 1100px perspective with
+`preserve-3d` down the chain, and the lifted media plane carries a real
+`matrix3d` transform. These need one look in a normal, visible browser.
+
+### Known limitations
+
+- Filtered and sorted views have no shareable URL. Filtering runs in the
+  browser so the catalogue stays statically prerendered; moving it to the URL
+  would make the route dynamic under Cache Components.
+- Sorting by price sorts **placeholder** prices (D-003).
+- Desktops, Components and Accessories have no products and show an empty
+  state. No products were invented to fill them.

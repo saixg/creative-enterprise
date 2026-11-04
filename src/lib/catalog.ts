@@ -1,4 +1,4 @@
-import type { Product } from "@/types/catalog";
+import type { CategorySlug, Product } from "@/types/catalog";
 import {
   findPlaceholderProduct,
   placeholderProducts,
@@ -28,4 +28,37 @@ export async function listProductSlugs(): Promise<string[]> {
 export async function catalogueIsPlaceholder(): Promise<boolean> {
   const products = await listProducts();
   return products.some((product) => product.isPlaceholder);
+}
+
+/**
+ * Product categories, in display order. The set is fixed by the data model
+ * (`CategorySlug`); a category can exist with no products yet, and its page
+ * then shows an honest empty state rather than being hidden (D-014).
+ */
+export const categorySlugs = [
+  "laptops",
+  "desktops",
+  "components",
+  "accessories",
+] as const satisfies readonly CategorySlug[];
+
+export function isCategorySlug(value: string): value is CategorySlug {
+  return (categorySlugs as readonly string[]).includes(value);
+}
+
+export async function listProductsByCategory(
+  category: CategorySlug,
+): Promise<Product[]> {
+  return (await listProducts()).filter((p) => p.category === category);
+}
+
+/** Related products: same category first, then the rest, never the product itself. */
+export async function listRelatedProducts(
+  product: Product,
+  limit = 4,
+): Promise<Product[]> {
+  const others = (await listProducts()).filter((p) => p.slug !== product.slug);
+  const same = others.filter((p) => p.category === product.category);
+  const rest = others.filter((p) => p.category !== product.category);
+  return [...same, ...rest].slice(0, limit);
 }

@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
 import { cn } from "@/lib/utils";
+import { ParallaxStage, useParallax } from "@/components/motion/tilt";
 
 /**
  * The right-hand stage of the hero: the owner, standing among glass product
@@ -30,6 +31,8 @@ type Panel = {
   delay: number;
   /** Product size inside its glass frame. */
   inset: string;
+  /** Parallax travel in px; nearer panels move further (D-014). */
+  depth: number;
   /**
    * Render as the reference's solid navy tile instead of glass. Only the tools
    * panel uses this: it is an icon tile in reference 02, not a product.
@@ -40,6 +43,7 @@ type Panel = {
 const panels: Panel[] = [
   {
     key: "laptop",
+    depth: 16,
     src: "/images/hero/laptop.png",
     alt: "Laptop",
     box: "left-[0%] top-[4%] w-[25%] aspect-[6/5]",
@@ -49,6 +53,7 @@ const panels: Panel[] = [
   },
   {
     key: "tower",
+    depth: 16,
     src: "/images/hero/tower.png",
     alt: "Gaming desktop",
     box: "right-[19%] top-[1%] w-[23%] aspect-[1/1.08]",
@@ -58,6 +63,7 @@ const panels: Panel[] = [
   },
   {
     key: "cctv",
+    depth: 10,
     src: "/images/hero/cctv.png",
     alt: "CCTV camera",
     box: "right-[0%] top-[8%] w-[16%] aspect-square",
@@ -67,6 +73,7 @@ const panels: Panel[] = [
   },
   {
     key: "tools",
+    depth: 13,
     src: "/images/hero/tools.png",
     alt: "Repair tools",
     box: "left-[-1%] top-[37%] w-[18%] aspect-square",
@@ -77,6 +84,7 @@ const panels: Panel[] = [
   },
   {
     key: "printer",
+    depth: 11,
     src: "/images/hero/printer.png",
     alt: "Printer",
     box: "right-[2%] top-[36%] w-[23%] aspect-[4/3]",
@@ -87,6 +95,24 @@ const panels: Panel[] = [
 ];
 
 const ease = [0.22, 1, 0.36, 1] as const;
+
+/** Drifts its children with the stage's pointer parallax. */
+function ParallaxLayer({
+  depth,
+  className,
+  children,
+}: {
+  depth: number;
+  className?: string;
+  children: ReactNode;
+}) {
+  const { x, y } = useParallax(depth);
+  return (
+    <motion.div style={{ x, y }} className={className}>
+      {children}
+    </motion.div>
+  );
+}
 
 export function HeroStage({
   ownerAlt,
@@ -99,7 +125,10 @@ export function HeroStage({
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="relative mx-auto h-[25rem] w-full max-w-xl sm:h-[30rem] lg:h-[38rem] lg:max-w-none">
+    // Pointer parallax across the whole stage: panels drift by their own
+    // depth, the owner slightly against them, so the cluster separates into
+    // planes as the pointer moves.
+    <ParallaxStage className="relative mx-auto h-[25rem] w-full max-w-xl sm:h-[30rem] lg:h-[38rem] lg:max-w-none">
       {panels.map((panel, index) => (
         <motion.div
           key={panel.key}
@@ -112,31 +141,33 @@ export function HeroStage({
           animate={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.6, delay: panel.delay, ease }}
         >
-          {/* Ambient drift: small, slow and out of phase per panel. */}
-          <motion.div
-            className={cn(
-              "relative h-full w-full rounded-[1.6rem]",
-              panel.tile
-                ? "from-primary-deep-2 to-primary-deep border-primary-foreground/15 border bg-linear-to-br shadow-[0_24px_44px_-20px_var(--primary-deep)]"
-                : "glass-panel",
-            )}
-            animate={reduceMotion ? undefined : { y: [0, -5, 0] }}
-            transition={{
-              duration: 6.5 + index * 0.8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <div className={cn("relative h-full w-full", panel.inset)}>
-              <Image
-                src={panel.src}
-                alt={panel.alt}
-                fill
-                sizes="(min-width: 1024px) 220px, 140px"
-                className="object-contain drop-shadow-[0_14px_18px_color-mix(in_oklab,var(--primary-deep)_35%,transparent)]"
-              />
-            </div>
-          </motion.div>
+          <ParallaxLayer depth={panel.depth} className="h-full w-full">
+            {/* Ambient drift: small, slow and out of phase per panel. */}
+            <motion.div
+              className={cn(
+                "relative h-full w-full rounded-[1.6rem]",
+                panel.tile
+                  ? "from-primary-deep-2 to-primary-deep border-primary-foreground/15 border bg-linear-to-br shadow-[0_24px_44px_-20px_var(--primary-deep)]"
+                  : "glass-panel",
+              )}
+              animate={reduceMotion ? undefined : { y: [0, -5, 0] }}
+              transition={{
+                duration: 6.5 + index * 0.8,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <div className={cn("relative h-full w-full", panel.inset)}>
+                <Image
+                  src={panel.src}
+                  alt={panel.alt}
+                  fill
+                  sizes="(min-width: 1024px) 220px, 140px"
+                  className="object-contain drop-shadow-[0_14px_18px_color-mix(in_oklab,var(--primary-deep)_35%,transparent)]"
+                />
+              </div>
+            </motion.div>
+          </ParallaxLayer>
         </motion.div>
       ))}
 
@@ -148,17 +179,19 @@ export function HeroStage({
         animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.1, ease }}
       >
-        <Image
-          src="/images/hero/owner.png"
-          alt={ownerAlt}
-          width={866}
-          height={896}
-          priority
-          sizes="(min-width: 1024px) 520px, 70vw"
-          // The crop ends at the waist. Desktop hides that edge behind the entry
-          // cards; on narrow screens a fade stops it reading as a hard cut.
-          className="h-auto w-full [mask-image:linear-gradient(to_bottom,black_82%,transparent)] lg:[mask-image:none]"
-        />
+        <ParallaxLayer depth={-6}>
+          <Image
+            src="/images/hero/owner.png"
+            alt={ownerAlt}
+            width={866}
+            height={896}
+            priority
+            sizes="(min-width: 1024px) 520px, 70vw"
+            // The crop ends at the waist. Desktop hides that edge behind the entry
+            // cards; on narrow screens a fade stops it reading as a hard cut.
+            className="h-auto w-full [mask-image:linear-gradient(to_bottom,black_82%,transparent)] lg:[mask-image:none]"
+          />
+        </ParallaxLayer>
       </motion.div>
 
       {/* Entry cards overlap the owner at lg and above. Below lg they render
@@ -166,6 +199,6 @@ export function HeroStage({
       <div className="absolute inset-x-[7%] bottom-0 z-20 hidden lg:inset-x-[5%] lg:right-0 lg:block">
         {cards}
       </div>
-    </div>
+    </ParallaxStage>
   );
 }

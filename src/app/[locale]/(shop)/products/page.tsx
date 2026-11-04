@@ -12,8 +12,10 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { buttonClasses } from "@/components/ui/button";
-import { ProductCard } from "@/components/products/product-card";
-import { listProducts } from "@/lib/catalog";
+import { CatalogueBrowser } from "@/components/products/catalogue-browser";
+import { toCatalogueItems } from "@/components/products/catalogue-items";
+import { Tilt } from "@/components/motion/tilt";
+import { categorySlugs, listProducts } from "@/lib/catalog";
 
 export async function generateMetadata({
   params,
@@ -31,10 +33,14 @@ export async function generateMetadata({
  * about.
  */
 const categories = [
-  { key: "laptops", href: "/products", Icon: Laptop },
-  { key: "desktops", href: "/products", Icon: Monitor },
-  { key: "components", href: "/products", Icon: Cpu },
-  { key: "accessories", href: "/products", Icon: Headphones },
+  { key: "laptops", href: "/products/category/laptops", Icon: Laptop },
+  { key: "desktops", href: "/products/category/desktops", Icon: Monitor },
+  { key: "components", href: "/products/category/components", Icon: Cpu },
+  {
+    key: "accessories",
+    href: "/products/category/accessories",
+    Icon: Headphones,
+  },
   { key: "services", href: "/services", Icon: Wrench },
 ] as const;
 
@@ -93,13 +99,15 @@ export default async function ProductsPage({
         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
           {categories.map(({ key, href, Icon }) => (
             <li key={key}>
-              <Link
-                href={href}
-                className="surface-card hover:shadow-raised flex items-center justify-between gap-3 rounded-2xl px-5 py-6 transition-shadow"
-              >
-                <span className="font-medium">{t(`categories.${key}`)}</span>
-                <Icon aria-hidden className="text-muted size-6 shrink-0" />
-              </Link>
+              <Tilt className="h-full rounded-2xl" max={7}>
+                <Link
+                  href={href}
+                  className="surface-card hover:shadow-raised flex h-full items-center justify-between gap-3 rounded-2xl px-5 py-6 transition-shadow"
+                >
+                  <span className="font-medium">{t(`categories.${key}`)}</span>
+                  <Icon aria-hidden className="text-accent size-6 shrink-0" />
+                </Link>
+              </Tilt>
             </li>
           ))}
         </ul>
@@ -127,13 +135,12 @@ export default async function ProductsPage({
           {t("placeholderNotice")}
         </p>
 
-        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {products.map((product) => (
-            <li key={product.slug} className="flex">
-              <ProductCard product={product} locale={locale as Locale} />
-            </li>
-          ))}
-        </ul>
+        <div className="mt-8">
+          <CatalogueBrowser
+            items={toCatalogueItems(products, locale as Locale)}
+            categories={categorySlugs}
+          />
+        </div>
       </section>
     </>
   );

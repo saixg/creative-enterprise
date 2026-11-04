@@ -299,6 +299,30 @@ reference headline is a heavy geometric italic that Inter cannot reproduce. Doc
 
 ---
 
+## D-014 — Depth motion without WebGL; catalogue structure with empty states
+
+**Date:** 2026-11-04
+**Status:** Confirmed
+
+**3D.** The owner asked for "3D motions". Chosen interpretation: _depth
+motion_ — CSS perspective driven by `motion/react`: cards and panels that tilt
+toward the pointer, layered parallax in the hero, product media that turns in
+3D space on hover. **No WebGL / Three.js** in this phase: there are no GLB
+assets, and a procedurally modelled product would not be the owner's actual
+stock (doc 02 §9). Revisit when real models exist.
+
+Rules: tilt is pointer-only (never on touch, where it would fight scrolling),
+capped at a few degrees, spring-damped, and fully disabled under
+`prefers-reduced-motion`. Depth never hides or delays content.
+
+**Catalogue.** Build the structure — category pages, category and brand
+filters, sorting, richer detail pages — over the existing four placeholder
+laptops (D-003). **No new products are invented.** Categories with no products
+render an honest empty state that says the range is being added and invites an
+enquiry.
+
+---
+
 ## Still open — require owner input
 
 These are unresolved and must not be filled with plausible-sounding values:
