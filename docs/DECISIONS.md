@@ -334,3 +334,30 @@ These are unresolved and must not be filled with plausible-sounding values:
 - **Gujarati copy** — requires fluent-speaker review before publication; machine
   translation must not ship (doc 02 §10).
 - **Logo** — exploratory concepts exist; no final mark is approved (doc 02 §9).
+
+---
+
+## D-015 — Web product photos; hero redesigned to one job
+
+**Date:** 2026-11-04
+**Status:** Confirmed
+
+**Product photos.** The owner asked for web images for the listed products.
+Manufacturer press images are copyrighted and normally restricted to
+authorised resellers, and no dealer relationship is confirmed (D-011), so the
+photos come from **Wikimedia Commons** under licences that allow commercial
+use (CC0, CC BY-SA). All four are _representative_ (the product line or an
+equivalent model, not the exact unit) and the product page says so, with the
+attribution each licence requires. Credits: `docs/ASSET-CREDITS.md`.
+
+**Hero.** The owner rejected the reconstruction of reference 02 as
+"disgusting". A design audit (design-taste-frontend skill) found the causes:
+every visual a soft fragment of a low-resolution composite, ~14 elements
+competing in one screen, glass on everything, and an em-dash/bullet run in the
+copy. The hero now does one job: eyebrow, two-line headline, one sentence,
+two CTAs, and the owner on a deep-blue brand plate with three labelled product
+chips. The capability tiles, entry cards and store band from the reference
+moved to the sections directly below. Brand signatures kept: the owner, the
+heavy italic "Sales & Service", the blue palette.
+
+All visible em-dashes were removed from both locales, per the same audit.

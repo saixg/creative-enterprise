@@ -1,4 +1,78 @@
-import type { Product } from "@/types/catalog";
+import type { Product, ProductImage } from "@/types/catalog";
+
+const changes =
+  "Cropped, background removed and resized for the web by Creative Enterprise.";
+
+/**
+ * Photos from Wikimedia Commons, all under licences that permit commercial use
+ * with attribution. Adaptations of CC BY-SA photos are themselves offered under
+ * the same licence. Full list: docs/ASSET-CREDITS.md.
+ */
+const images: Record<string, ProductImage> = {
+  "hp-victus-15": {
+    src: "/images/products/hp-victus-15.webp",
+    width: 1200,
+    height: 871,
+    alt: "HP Victus laptop, lid closed, seen from above",
+    representative: true,
+    credit: {
+      title: "HP Victus laptop",
+      author: "OhanaUnited",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:HP_Victus_laptop.jpg",
+      changes,
+    },
+  },
+  "lenovo-ideapad-slim-5": {
+    src: "/images/products/lenovo-ideapad-slim-5.webp",
+    width: 818,
+    height: 900,
+    alt: "Lenovo IdeaPad laptop, open, three-quarter view",
+    representative: true,
+    credit: {
+      title: "Lenovo IdeaPad 110",
+      author: "EEIM",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:Lenovo_IdeaPad_110.jpg",
+      changes,
+    },
+  },
+  "asus-tuf-gaming-a15": {
+    src: "/images/products/asus-tuf-gaming-a15.webp",
+    width: 854,
+    height: 900,
+    alt: "ASUS TUF Gaming laptop, open, seen from above",
+    representative: true,
+    credit: {
+      title: "ASUS TUF Gaming 5 Pro Laptop",
+      author: "HuangWending18072009",
+      license: "CC0 1.0",
+      licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:ASUS_TUF_Gaming_5_Pro_Laptop.jpg",
+      changes,
+    },
+  },
+  "apple-macbook-air-m3": {
+    src: "/images/products/apple-macbook-air-m3.webp",
+    width: 1200,
+    height: 821,
+    alt: "Apple MacBook Air, lid closed, seen from above",
+    representative: true,
+    credit: {
+      title: "MacBook Air (A2681) front",
+      author: "メイド理世",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:MacBook_Air_(A2681)_front.jpg",
+      changes,
+    },
+  },
+};
 
 /**
  * PLACEHOLDER CATALOGUE — NOT REAL DATA.
@@ -18,6 +92,7 @@ import type { Product } from "@/types/catalog";
 export const placeholderProducts: Product[] = [
   {
     slug: "hp-victus-15",
+    image: images["hp-victus-15"] ?? null,
     name: "HP Victus 15",
     brand: "HP",
     category: "laptops",
@@ -36,6 +111,7 @@ export const placeholderProducts: Product[] = [
   },
   {
     slug: "lenovo-ideapad-slim-5",
+    image: images["lenovo-ideapad-slim-5"] ?? null,
     name: "Lenovo IdeaPad Slim 5",
     brand: "Lenovo",
     category: "laptops",
@@ -53,6 +129,7 @@ export const placeholderProducts: Product[] = [
   },
   {
     slug: "asus-tuf-gaming-a15",
+    image: images["asus-tuf-gaming-a15"] ?? null,
     name: "ASUS TUF Gaming A15",
     brand: "ASUS",
     category: "laptops",
@@ -71,6 +148,7 @@ export const placeholderProducts: Product[] = [
   },
   {
     slug: "apple-macbook-air-m3",
+    image: images["apple-macbook-air-m3"] ?? null,
     name: "Apple MacBook Air (M3)",
     brand: "Apple",
     category: "laptops",

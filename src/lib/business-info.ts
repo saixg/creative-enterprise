@@ -33,7 +33,7 @@ export const businessInfo = {
 
   /** Read from the image-1 reference; awaiting owner confirmation. */
   hours: unverified([
-    { days: "Mon – Sat", opens: "10:00", closes: "20:30" },
+    { days: "Mon - Sat", opens: "10:00", closes: "20:30" },
     { days: "Sun", opens: "11:00", closes: "18:00" },
   ]),
 

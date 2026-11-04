@@ -137,7 +137,7 @@ export async function HeroLocal() {
                     <span className="inline-block min-w-[5.5rem]">
                       {entry.days}
                     </span>
-                    {formatTime(entry.opens)} – {formatTime(entry.closes)}
+                    {formatTime(entry.opens)} - {formatTime(entry.closes)}
                   </p>
                 ))}
               </dd>

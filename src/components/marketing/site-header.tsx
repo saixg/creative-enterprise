@@ -29,7 +29,7 @@ export async function SiteHeader() {
       <div className="mx-auto flex h-20 w-full max-w-[90rem] items-center justify-between gap-6 px-4 sm:px-6 lg:h-24 lg:px-10">
         <Link
           href="/"
-          aria-label="Creative Enterprise — home"
+          aria-label="Creative Enterprise home"
           className="shrink-0"
         >
           <Logo />

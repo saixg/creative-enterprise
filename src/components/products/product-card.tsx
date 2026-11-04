@@ -1,4 +1,4 @@
-import { ArrowRight, Monitor } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import { Link } from "@/i18n/navigation";
@@ -6,6 +6,7 @@ import type { Locale } from "@/i18n/routing";
 import type { Product } from "@/types/catalog";
 import { formatPrice } from "@/lib/format";
 import { Tilt, TiltLayer } from "@/components/motion/tilt";
+import { ProductMedia } from "@/components/products/product-media";
 
 /**
  * Product card.
@@ -32,7 +33,19 @@ export async function ProductCard({
     <Tilt className="flex w-full rounded-3xl" max={5}>
       <article className="surface-card group focus-within:shadow-raised hover:shadow-raised relative flex h-full w-full flex-col rounded-3xl transition-shadow [transform-style:preserve-3d]">
         <div className="bg-surface-muted relative flex aspect-4/3 items-center justify-center rounded-t-3xl [transform-style:preserve-3d]">
-          <div className="absolute start-4 top-4 flex flex-wrap gap-2">
+          {/* Photo lifted off the card plane by the tilt (D-014). */}
+          <TiltLayer depth={34} className="absolute inset-0 p-7">
+            <ProductMedia
+              image={product.image}
+              pendingLabel={t("imagePending")}
+              sizes="(min-width: 1024px) 280px, (min-width: 640px) 45vw, 90vw"
+              className="flex items-center justify-center"
+            />
+          </TiltLayer>
+        </div>
+
+        <div className="flex flex-1 flex-col gap-3 p-5">
+          <div className="flex flex-wrap gap-2">
             {product.isNew && (
               <span className="bg-accent text-primary-foreground rounded-full px-3 py-1 text-xs font-semibold">
                 {t("badgeNew")}
@@ -44,16 +57,6 @@ export async function ProductCard({
               </span>
             )}
           </div>
-
-          {/* No product imagery supplied yet (D-008). A labelled neutral frame
-            rather than a stock photo of someone else's product. */}
-          <TiltLayer depth={30}>
-            <Monitor aria-hidden className="text-border-strong size-12" />
-          </TiltLayer>
-          <span className="sr-only">{t("imagePending")}</span>
-        </div>
-
-        <div className="flex flex-1 flex-col gap-3 p-5">
           <div>
             <p className="text-muted text-xs font-medium tracking-wide uppercase">
               {product.brand}

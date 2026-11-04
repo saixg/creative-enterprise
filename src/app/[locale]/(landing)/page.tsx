@@ -6,6 +6,9 @@ import {
   TransitionBand,
 } from "@/components/layout/theme-section";
 import { Hero } from "@/components/hero/hero";
+import { HeroCards } from "@/components/hero/hero-cards";
+import { HeroLocal } from "@/components/hero/hero-local";
+import { ServiceStrip } from "@/components/hero/service-strip";
 import { FeaturedBand } from "@/components/marketing/featured-band";
 import { CategoryTiles } from "@/components/marketing/category-tiles";
 import { NewArrivals } from "@/components/marketing/new-arrivals";
@@ -37,9 +40,15 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   return (
     <>
       {/* ---- Light half: brand and identity ---- */}
-      {/* The hero carries the whole of reference 02 — capability tiles, entry
-          cards, local identity and store strip — as one composition. */}
+      {/* Hero does one job. What reference 02 packed around it follows
+          directly below, each with room of its own. */}
       <Hero />
+      <ServiceStrip />
+      <section className="mx-auto w-full max-w-7xl px-4 pt-16 sm:px-6 lg:px-8">
+        <h2 className="sr-only">Products and services</h2>
+        <HeroCards />
+      </section>
+      <HeroLocal />
 
       <TransitionBand />
 

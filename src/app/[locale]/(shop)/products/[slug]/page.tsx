@@ -3,7 +3,6 @@ import {
   ChevronRight,
   ClipboardList,
   MessageCircle,
-  Monitor,
   PhoneCall,
   Wrench,
 } from "lucide-react";
@@ -21,6 +20,10 @@ import { formatPrice } from "@/lib/format";
 import { ProductCard } from "@/components/products/product-card";
 import { ProductInquiry } from "@/components/products/product-inquiry";
 import { Tilt, TiltLayer } from "@/components/motion/tilt";
+import {
+  ProductImageCredit,
+  ProductMedia,
+} from "@/components/products/product-media";
 import { buttonClasses } from "@/components/ui/button";
 
 /**
@@ -53,7 +56,7 @@ export async function generateMetadata({
   return {
     title: product.name,
     // No invented marketing copy: the description is the verified spec line.
-    description: `${product.brand} ${product.name} — ${product.summarySpecs.join(", ")}. ${t("inquiryLead")}`,
+    description: `${product.brand} ${product.name}: ${product.summarySpecs.join(", ")}. ${t("inquiryLead")}`,
   };
 }
 
@@ -115,19 +118,30 @@ export default async function ProductDetailPage({
               aria-hidden
               className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(60%_50%_at_50%_80%,color-mix(in_oklab,var(--accent)_22%,transparent),transparent_70%)]"
             />
-            <TiltLayer depth={46}>
-              <Monitor aria-hidden className="text-border-strong size-24" />
-            </TiltLayer>
-            <TiltLayer depth={18} className="mt-6">
-              <span
-                aria-hidden
-                className="bg-accent/40 block h-3 w-48 rounded-[50%] blur-md"
+            <TiltLayer depth={46} className="absolute inset-0 p-10">
+              <ProductMedia
+                image={product.image}
+                pendingLabel={t("imagePending")}
+                sizes="(min-width: 1024px) 560px, 92vw"
+                priority
+                className="flex items-center justify-center"
               />
             </TiltLayer>
-            <span className="bg-warm/15 text-warm absolute bottom-4 rounded-full px-3 py-1 text-xs font-semibold">
-              {t("imagePending")}
-            </span>
+            {!product.image && (
+              <span className="bg-warm/15 text-warm absolute bottom-4 rounded-full px-3 py-1 text-xs font-semibold">
+                {t("imagePending")}
+              </span>
+            )}
           </div>
+          {product.image && (
+            <div className="mt-3 px-1">
+              <ProductImageCredit
+                image={product.image}
+                representativeLabel={t("representativePhoto")}
+                photoLabel={t("photoCredit")}
+              />
+            </div>
+          )}
         </Tilt>
 
         <div>

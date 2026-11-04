@@ -16,18 +16,15 @@
   "hero": {
     "badge": "Rajkot's Trusted IT Partner",
     "headlineLead": "Your One-Stop IT Partner for",
-    "primaryCta": "Explore Products",
-    "secondaryCta": "Book a Service",
+    "primaryCta": "Explore products",
+    "secondaryCta": "Book a service",
     "portraitAlt": "The owner of Creative Enterprise, standing with arms crossed",
     "localTagline": "રાજકોટનું વિશ્વાસુ IT સેવા કેન્દ્ર",
     "headlineSales": "Sales",
     "headlineAmp": "&",
     "headlineService": "Service",
-    "verbBuy": "Buy",
-    "verbRepair": "Repair",
-    "verbService": "Service",
-    "verbMaintain": "Maintain",
-    "subTail": "All Your IT Needs, Under One Roof in Rajkot."
+    "subcopy": "Laptops, desktops, printers and CCTV, sold, repaired and maintained under one roof in Rajkot.",
+    "chipCctv": "CCTV"
   },
   "capabilities": {
     "heading": "What we do",
@@ -72,7 +69,7 @@
     "skipToContent": "Skip to content"
   },
   "meta": {
-    "title": "Creative Enterprise — IT Sales & Service in Rajkot",
+    "title": "Creative Enterprise | IT Sales & Service in Rajkot",
     "titleTemplate": "%s · Creative Enterprise",
     "description": "Computer and electronics sales and service in Rajkot, Gujarat. Laptops, desktops, components, CCTV, printers, repair and on-site IT support."
   },
@@ -109,11 +106,11 @@
     "backToProducts": "Back to products",
     "inquiryLead": "Enquire for current pricing and availability.",
     "inquiryMessage": "Hello, I would like a quote for the {product}.",
-    "inquiryUnavailable": "The enquiry channel is not configured yet — no WhatsApp number has been supplied. This button will work once contact details are added.",
+    "inquiryUnavailable": "The enquiry channel is not set up yet because no WhatsApp number has been supplied. This button will work once contact details are added.",
     "viewAll": "View all",
     "breadcrumb": "Breadcrumb",
     "categoryMeta": "{category} at Creative Enterprise, Rajkot. Enquire for current pricing and availability.",
-    "categoryIntro": "Browse {category} from Creative Enterprise. Don't see what you need? Ask us — we can often source it.",
+    "categoryIntro": "Browse {category} from Creative Enterprise. Don't see what you need? Ask us, as we can often source it.",
     "filters": {
       "category": "Filter by category",
       "brand": "Filter by brand",
@@ -126,12 +123,12 @@
       "sortName": "Name: A to Z",
       "results": "{count, plural, =0 {No products} one {# product} other {# products}}",
       "noMatchTitle": "Nothing matches these filters",
-      "noMatchBody": "Try another brand or category — or ask us directly, since not everything we stock is listed online.",
+      "noMatchBody": "Try another brand or category, or ask us directly. Not everything we stock is listed online.",
       "clear": "Clear filters"
     },
     "emptyCategory": {
       "title": "{category} are not listed online yet",
-      "body": "We have not added {category} to the website so far. Ask us what is available — the store may well have what you are looking for.",
+      "body": "We have not added {category} to the website yet. Ask us what is available; the store may well have what you are looking for.",
       "enquire": "Ask what's available"
     },
     "enquirySteps": {
@@ -153,7 +150,9 @@
       "title": "Need it set up, upgraded or repaired?",
       "body": "Sales and service sit under one roof. The same team that supplies the hardware can install, upgrade and maintain it.",
       "cta": "Explore our services"
-    }
+    },
+    "representativePhoto": "Representative photo of this product line, not the exact unit.",
+    "photoCredit": "Photo"
   },
   "featured": {
     "badge": "New Arrivals",
@@ -173,7 +172,7 @@
     "heading": "Offers",
     "subtitle": "Current promotions from the store.",
     "emptyTitle": "No offers published yet",
-    "emptyBody": "Offers appear here once the business publishes them. Nothing is shown in the meantime — we do not advertise discounts that have not been confirmed."
+    "emptyBody": "Offers appear here once the business publishes them. Until then nothing is shown, because we do not advertise unconfirmed discounts."
   },
   "brands": {
     "heading": "Brands we work with",
@@ -195,7 +194,7 @@
   "services": {
     "eyebrow": "Services",
     "heading": "Technical services and support",
-    "subtitle": "Repair, installation and maintenance handled in Rajkot — the other half of what we do.",
+    "subtitle": "Repair, installation and maintenance, handled in Rajkot. The other half of what we do.",
     "cta": "Browse all services",
     "notice": "Service availability, pricing and turnaround are confirmed with you directly. Nothing is quoted here until the business has published it.",
     "items": {
