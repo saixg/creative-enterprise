@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+/*
+ * CREATIVE ENTERPRISE — design tokens
+ *
+ * ONE semantic token contract, TWO value sets (docs/DECISIONS.md D-005):
+ *   [data-theme="landing"]  light premium   — the landing page (image 1)
+ *   [data-theme="app"]      dark catalogue  — interior pages (image 2)
+ *
+ * Components reference semantic tokens only. No raw colour values in component
+ * code — that is what lets a theme swap be an attribute change rather than a
+ * rewrite.
+ *
+ * Base palette: docs/project-brief/02-DESIGN-AND-TECHNICAL-SPECIFICATION.md §2.
+ *   midnight #07152F · electric blue #0759E8 · cyan #25B8EF · violet #7650E8
+ *   warm #F0A34A · cloud #F6F8FC · white #FFFFFF · slate #667085
+ */
+
+:root,
+[data-theme="landing"] {
+  /* surfaces */
+  --background: #ffffff;
+  --background-subtle: #f6f8fc;
+  --surface: #ffffff;
+  --surface-muted: #f6f8fc;
+  --surface-inverse: #07152f;
+
+  /* text */
+  --foreground: #07152f;
+  --foreground-inverse: #ffffff;
+  --muted: #667085;
+
+  /* brand */
+  --primary: #0759e8;
+  --primary-hover: #0548c2;
+  --primary-foreground: #ffffff;
+  --accent: #25b8ef;
+  --accent-soft: #7650e8;
+  --warm: #f0a34a;
+
+  /* structure */
+  --border: #e4e9f2;
+  --border-strong: #cdd6e6;
+  --focus-ring: #0759e8;
+
+  /* status */
+  --success: #15803d;
+  --warning: #b45309;
+  --destructive: #be123c;
+
+  /* depth — permitted by D-002, defined once and reused */
+  --glow-primary: 0 24px 60px -24px rgb(7 89 232 / 0.45);
+  --glow-accent: 0 24px 60px -28px rgb(37 184 239 / 0.5);
+  --shadow-card:
+    0 1px 2px rgb(7 21 47 / 0.04), 0 12px 32px -16px rgb(7 21 47 / 0.14);
+  --shadow-raised:
+    0 2px 4px rgb(7 21 47 / 0.05), 0 24px 56px -24px rgb(7 21 47 / 0.22);
+}
+
+[data-theme="app"] {
+  /* surfaces */
+  --background: #07080f;
+  --background-subtle: #0b0d16;
+  --surface: #12141e;
+  --surface-muted: #1a1d29;
+  --surface-inverse: #ffffff;
+
+  /* text */
+  --foreground: #f6f8fc;
+  --foreground-inverse: #07152f;
+  --muted: #9aa1b4;
+
+  /* brand */
+  --primary: #2f73ff;
+  --primary-hover: #4d87ff;
+  --primary-foreground: #ffffff;
+  --accent: #7650e8;
+  --accent-soft: #25b8ef;
+  --warm: #f0a34a;
+
+  /* structure */
+  --border: #262a38;
+  --border-strong: #353b4d;
+  --focus-ring: #25b8ef;
+
+  /* status */
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --destructive: #fb7185;
+
+  /* depth */
+  --glow-primary: 0 24px 70px -26px rgb(47 115 255 / 0.55);
+  --glow-accent: 0 24px 70px -26px rgb(118 80 232 / 0.55);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.5), 0 16px 40px -20px rgb(0 0 0 / 0.7);
+  --shadow-raised:
+    0 2px 6px rgb(0 0 0 / 0.55), 0 28px 64px -24px rgb(0 0 0 / 0.8);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-subtle: var(--background-subtle);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-inverse: var(--surface-inverse);
+
+  --color-foreground: var(--foreground);
+  --color-foreground-inverse: var(--foreground-inverse);
+  --color-muted: var(--muted);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-warm: var(--warm);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-focus-ring: var(--focus-ring);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-destructive: var(--destructive);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-gujarati: var(--font-noto-gujarati), var(--font-inter), sans-serif;
+
+  --shadow-card: var(--shadow-card);
+  --shadow-raised: var(--shadow-raised);
+  --shadow-glow: var(--glow-primary);
+  --shadow-glow-accent: var(--glow-accent);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Gujarati gets its own face; `lang` drives it so it also applies to
+     mixed-script fragments inside an English page. */
+  :lang(gu) {
+    font-family: var(--font-gujarati);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  /* Reusable depth treatments from the approved references (D-002).
+     Defined once here rather than invented per component. */
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+  }
+
+  .glow-accent {
+    box-shadow: var(--glow-accent);
+  }
+
+  .surface-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

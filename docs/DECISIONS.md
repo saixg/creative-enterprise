@@ -50,8 +50,8 @@ permitted.
 **Reason:** The references are the approved visual target; the avoid-list was
 written as general guidance before they existed.
 
-**Constraint retained:** This permits the treatments *as composed in the
-references*. It is not licence for unbounded glow, gradients or glassmorphism
+**Constraint retained:** This permits the treatments _as composed in the
+references_. It is not licence for unbounded glow, gradients or glassmorphism
 elsewhere. Glow is implemented as a small set of reusable token-driven utilities, not
 invented per component. Everything else in doc 02 §4 — no unrelated logo-like
 symbols, no random floating UI panels, no generic template layouts, no animation
@@ -140,7 +140,7 @@ The five-day client demonstration sequence is no longer a target. Work proceeds 
 milestone, without a calendar deadline.
 
 **Reason:** Owner direction — work starts immediately and is paced by readiness
-rather than by a demo date. The *content* of doc 01 §9 (what gets demonstrated)
+rather than by a demo date. The _content_ of doc 01 §9 (what gets demonstrated)
 remains a useful ordering; only the five-day deadline is withdrawn.
 
 ---

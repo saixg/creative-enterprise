@@ -21,28 +21,28 @@ shipping. The conversion action is a quote request or WhatsApp inquiry.
 
 Read these before changing anything:
 
-| Document | What it covers |
-|---|---|
-| [`CLAUDE.md`](CLAUDE.md) | Repository instructions and the architecture invariant |
-| [`docs/project-brief/01-PRODUCT-VISION.md`](docs/project-brief/01-PRODUCT-VISION.md) | **What** we are building — scope, roles, workflows |
-| [`docs/project-brief/02-DESIGN-AND-TECHNICAL-SPECIFICATION.md`](docs/project-brief/02-DESIGN-AND-TECHNICAL-SPECIFICATION.md) | Design direction, components, stack, architecture |
-| [`docs/project-brief/03-CLAUDE-WORKING-RULES.md`](docs/project-brief/03-CLAUDE-WORKING-RULES.md) | Mandatory operating rules for any agent in this repo |
-| [`docs/DECISIONS.md`](docs/DECISIONS.md) | Owner decisions; where one overrides a brief, the decision wins |
+| Document                                                                                                                     | What it covers                                                  |
+| ---------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| [`CLAUDE.md`](CLAUDE.md)                                                                                                     | Repository instructions and the architecture invariant          |
+| [`docs/project-brief/01-PRODUCT-VISION.md`](docs/project-brief/01-PRODUCT-VISION.md)                                         | **What** we are building — scope, roles, workflows              |
+| [`docs/project-brief/02-DESIGN-AND-TECHNICAL-SPECIFICATION.md`](docs/project-brief/02-DESIGN-AND-TECHNICAL-SPECIFICATION.md) | Design direction, components, stack, architecture               |
+| [`docs/project-brief/03-CLAUDE-WORKING-RULES.md`](docs/project-brief/03-CLAUDE-WORKING-RULES.md)                             | Mandatory operating rules for any agent in this repo            |
+| [`docs/DECISIONS.md`](docs/DECISIONS.md)                                                                                     | Owner decisions; where one overrides a brief, the decision wins |
 
 ## Status
 
 Foundation in progress. Nothing is deployed.
 
-| Area | Status |
-|---|---|
-| Project briefs and decision record | Complete |
-| Application scaffold | In progress |
-| Design tokens and shared components | Not started |
-| Landing page | Not started |
-| Products / interior pages | Not started |
-| Admin area and authentication | Not started |
-| Supabase backend | Not started |
-| WhatsApp Cloud API | Not started |
+| Area                                | Status                           |
+| ----------------------------------- | -------------------------------- |
+| Project briefs and decision record  | Complete                         |
+| Application scaffold                | Complete                         |
+| Design tokens and shared components | Complete                         |
+| Landing page                        | Implemented, tested locally      |
+| Products / interior pages           | Not started                      |
+| Admin area and authentication       | Not started                      |
+| Supabase backend                    | Data model documented, not built |
+| WhatsApp Cloud API                  | Not started                      |
 
 Design assets (owner photograph, logo artwork, product imagery) are pending from the
 owner; placeholders are in use and are marked as such. Product prices currently in
@@ -60,17 +60,17 @@ The app runs at http://localhost:3000. Locale-prefixed routes: `/en` (default) a
 
 ## Scripts
 
-| Command | Does |
-|---|---|
-| `npm run dev` | Start the development server |
-| `npm run build` | Production build |
-| `npm run start` | Serve the production build |
-| `npm run typecheck` | TypeScript, no emit |
-| `npm run lint` | ESLint |
-| `npm run format` | Prettier write |
-| `npm run format:check` | Prettier check |
-| `npm run test` | Vitest unit tests |
-| `npm run test:e2e` | Playwright end-to-end tests |
+| Command                | Does                         |
+| ---------------------- | ---------------------------- |
+| `npm run dev`          | Start the development server |
+| `npm run build`        | Production build             |
+| `npm run start`        | Serve the production build   |
+| `npm run typecheck`    | TypeScript, no emit          |
+| `npm run lint`         | ESLint                       |
+| `npm run format`       | Prettier write               |
+| `npm run format:check` | Prettier check               |
+| `npm run test`         | Vitest unit tests            |
+| `npm run test:e2e`     | Playwright end-to-end tests  |
 
 ## Environment
 

@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "getQuote": "Get a Quote",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language"
+  },
+  "hero": {
+    "badge": "Rajkot's Trusted IT Partner",
+    "headlineLead": "Your One-Stop IT Partner for",
+    "headlineEmphasis": "Sales & Service",
+    "subheadline": "Buy, repair, service and maintain — all your IT needs, under one roof in Rajkot.",
+    "primaryCta": "Explore Products",
+    "secondaryCta": "Book a Service",
+    "portraitAlt": "Placeholder for the owner portrait — awaiting the supplied photograph",
+    "localTagline": "રાજકોટનું વિશ્વાસુ IT સેવા કેન્દ્ર"
+  },
+  "capabilities": {
+    "heading": "What we do",
+    "laptops": "Laptops & Desktops",
+    "repair": "Repair & Service",
+    "cctv": "CCTV Installation",
+    "printer": "Printer Support",
+    "onsite": "On-Site IT Support",
+    "network": "Network & IT Setup"
+  },
+  "entryPoints": {
+    "products": {
+      "title": "Shop Products",
+      "description": "Laptops, desktops, accessories and more.",
+      "cta": "Browse products"
+    },
+    "services": {
+      "title": "Get IT Services",
+      "description": "Repair, upgrade, installation, AMC and on-site support.",
+      "cta": "Browse services"
+    }
+  },
+  "store": {
+    "heading": "Visit our store",
+    "addressLabel": "Visit Our Store",
+    "hoursLabel": "Store Timings",
+    "unverifiedNotice": "Store details are awaiting owner confirmation.",
+    "directions": "Get directions"
+  },
+  "footer": {
+    "tagline": "Sales · Service · Solutions",
+    "sections": {
+      "explore": "Explore",
+      "contact": "Contact"
+    },
+    "rights": "All rights reserved.",
+    "buildNotice": "This site is in development. Content marked as placeholder is not final."
+  },
+  "common": {
+    "placeholderBadge": "Placeholder",
+    "whatsapp": "Chat on WhatsApp",
+    "skipToContent": "Skip to content"
+  },
+  "meta": {
+    "title": "Creative Enterprise — IT Sales & Service in Rajkot",
+    "titleTemplate": "%s · Creative Enterprise",
+    "description": "Computer and electronics sales and service in Rajkot, Gujarat. Laptops, desktops, components, CCTV, printers, repair and on-site IT support."
+  }
+}

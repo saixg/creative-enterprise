@@ -1,0 +1,71 @@
+{
+  "_status": "DRAFT — NOT REVIEWED. These Gujarati strings have not been checked by a fluent speaker. Per docs/project-brief/02-DESIGN-AND-TECHNICAL-SPECIFICATION.md §10, unreviewed translations must not be published. See docs/KNOWN-ISSUES.md.",
+  "nav": {
+    "home": "હોમ",
+    "products": "પ્રોડક્ટ્સ",
+    "services": "સેવાઓ",
+    "about": "અમારા વિશે",
+    "contact": "સંપર્ક",
+    "getQuote": "ભાવ મેળવો",
+    "openMenu": "મેનુ ખોલો",
+    "closeMenu": "મેનુ બંધ કરો",
+    "language": "ભાષા"
+  },
+  "hero": {
+    "badge": "રાજકોટનું વિશ્વાસુ IT પાર્ટનર",
+    "headlineLead": "તમારા IT માટે એક જ સ્થળ —",
+    "headlineEmphasis": "વેચાણ અને સર્વિસ",
+    "subheadline": "ખરીદી, રિપેર, સર્વિસ અને મેઇન્ટેનન્સ — રાજકોટમાં તમારી બધી IT જરૂરિયાતો એક જ છત નીચે.",
+    "primaryCta": "પ્રોડક્ટ્સ જુઓ",
+    "secondaryCta": "સર્વિસ બુક કરો",
+    "portraitAlt": "માલિકના ફોટો માટે પ્લેસહોલ્ડર — અસલ ફોટોની રાહ જોવાઈ રહી છે",
+    "localTagline": "રાજકોટનું વિશ્વાસુ IT સેવા કેન્દ્ર"
+  },
+  "capabilities": {
+    "heading": "અમે શું કરીએ છીએ",
+    "laptops": "લેપટોપ અને ડેસ્કટોપ",
+    "repair": "રિપેર અને સર્વિસ",
+    "cctv": "CCTV ઇન્સ્ટોલેશન",
+    "printer": "પ્રિન્ટર સપોર્ટ",
+    "onsite": "ઓન-સાઇટ IT સપોર્ટ",
+    "network": "નેટવર્ક અને IT સેટઅપ"
+  },
+  "entryPoints": {
+    "products": {
+      "title": "પ્રોડક્ટ્સ ખરીદો",
+      "description": "લેપટોપ, ડેસ્કટોપ, એક્સેસરીઝ અને વધુ.",
+      "cta": "પ્રોડક્ટ્સ જુઓ"
+    },
+    "services": {
+      "title": "IT સેવાઓ મેળવો",
+      "description": "રિપેર, અપગ્રેડ, ઇન્સ્ટોલેશન, AMC અને ઓન-સાઇટ સપોર્ટ.",
+      "cta": "સેવાઓ જુઓ"
+    }
+  },
+  "store": {
+    "heading": "અમારા સ્ટોરની મુલાકાત લો",
+    "addressLabel": "અમારો સ્ટોર",
+    "hoursLabel": "સ્ટોર સમય",
+    "unverifiedNotice": "સ્ટોરની વિગતો માલિકની પુષ્ટિની રાહ જુએ છે.",
+    "directions": "રસ્તો જુઓ"
+  },
+  "footer": {
+    "tagline": "વેચાણ · સર્વિસ · સોલ્યુશન્સ",
+    "sections": {
+      "explore": "શોધો",
+      "contact": "સંપર્ક"
+    },
+    "rights": "સર્વાધિકાર સુરક્ષિત.",
+    "buildNotice": "આ સાઇટ વિકાસ હેઠળ છે. પ્લેસહોલ્ડર તરીકે ચિહ્નિત સામગ્રી અંતિમ નથી."
+  },
+  "common": {
+    "placeholderBadge": "પ્લેસહોલ્ડર",
+    "whatsapp": "WhatsApp પર ચેટ કરો",
+    "skipToContent": "સામગ્રી પર જાઓ"
+  },
+  "meta": {
+    "title": "ક્રિએટિવ એન્ટરપ્રાઇઝ — રાજકોટમાં IT વેચાણ અને સર્વિસ",
+    "titleTemplate": "%s · ક્રિએટિવ એન્ટરપ્રાઇઝ",
+    "description": "રાજકોટ, ગુજરાતમાં કમ્પ્યુટર અને ઇલેક્ટ્રોનિક્સનું વેચાણ અને સર્વિસ. લેપટોપ, ડેસ્કટોપ, કમ્પોનન્ટ્સ, CCTV, પ્રિન્ટર, રિપેર અને ઓન-સાઇટ IT સપોર્ટ."
+  }
+}
