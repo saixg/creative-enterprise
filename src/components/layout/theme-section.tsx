@@ -43,7 +43,7 @@ export function TransitionBand() {
   return (
     <div
       aria-hidden
-      className="h-28 w-full bg-[linear-gradient(to_bottom,var(--theme-landing-bg),var(--theme-app-bg))] sm:h-36"
+      className="h-32 w-full bg-[linear-gradient(to_bottom_in_oklab,color-mix(in_oklab,var(--primary)_6%,var(--theme-landing-bg))_0%,color-mix(in_oklab,var(--primary-deep)_55%,var(--theme-app-bg))_55%,var(--theme-app-bg)_100%)] sm:h-40"
     />
   );
 }

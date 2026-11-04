@@ -10,6 +10,7 @@ import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { buttonClasses } from "@/components/ui/button";
 
 const items = [
+  { key: "home", href: "/" },
   { key: "products", href: "/products" },
   { key: "brands", href: "/#brands" },
   { key: "offers", href: "/#offers" },
@@ -48,7 +49,7 @@ export function MobileNav() {
         onClick={() => setOpen(true)}
         aria-label={t("openMenu")}
         aria-expanded={open}
-        className="border-border bg-surface inline-flex size-11 items-center justify-center rounded-full border lg:hidden"
+        className="glass inline-flex size-11 items-center justify-center rounded-full lg:hidden"
       >
         <Menu aria-hidden className="size-5" />
       </button>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Sans_Gujarati } from "next/font/google";
+import { Noto_Sans_Gujarati, Plus_Jakarta_Sans } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -8,9 +8,16 @@ import { routing } from "@/i18n/routing";
 
 import "../globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+/**
+ * Plus Jakarta Sans, not Inter. The reference headline is a heavy geometric
+ * italic ("Sales & Service"); Inter's italic is a slanted text face and reads
+ * far weaker at display sizes. Doc 02 §3 lists both as approved.
+ */
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -59,7 +66,7 @@ export default async function LocaleLayout({
       lang={locale}
       // Default theme. Interior route groups override it with data-theme="app".
       data-theme="landing"
-      className={`${inter.variable} ${notoGujarati.variable} h-full`}
+      className={`${jakarta.variable} ${notoGujarati.variable} h-full`}
     >
       <body className="flex min-h-full flex-col">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>

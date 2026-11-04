@@ -253,6 +253,52 @@ clearly-marked placeholders.
 
 ---
 
+## D-013 — Hero rebuilt to the reference, using its own assets
+
+**Date:** 2026-11-04
+**Status:** Confirmed — assets interim
+**Relates to:** D-008, D-012
+**Prompted by:** owner feedback that the first homepage build was "very bad"
+and should recreate reference 02 "with more quality and design authority".
+
+**What went wrong before.** The first build treated every missing asset as a
+labelled placeholder: a framed photo instead of a cut-out owner, blank tiles
+instead of product renders, a flat white field instead of the lavender-blue
+lighting, a medium-weight headline instead of a heavy display italic. Each
+choice was defensible; together they produced a page that looked nothing like
+the approved design.
+
+**Decision.** Rebuild the hero as a faithful reconstruction of reference 02,
+and cut the missing visuals out of the approved references themselves:
+
+- the owner (real person, background removed — extends D-012)
+- the laptop, gaming desktop, CCTV camera, printer and tools renders
+- the two entry-card photos
+- the Rajkot landmark illustration
+- the "C" logo mark, from `reference-03-brand-logo.jpg`
+
+Background removal uses `rembg` with the `isnet-general-use` model, run
+locally. The full pipeline and every crop box live in
+`scripts/reference-assets/` so each asset's provenance is auditable and
+reproducible.
+
+**Typeface** changes from Inter to Plus Jakarta Sans for the whole site. The
+reference headline is a heavy geometric italic that Inter cannot reproduce. Doc
+02 §3 lists both as approved.
+
+**Constraints that still hold:**
+
+- These are **interim** assets cut from a 1600×900 reference; they are soft at
+  large sizes. Original photography and an approved SVG logo are still needed.
+- The logo mark is a raster cut from an _exploration_. Doc 02 §9 says an
+  exploration must not become the final logo — it is used here as an interim
+  stand-in only.
+- Unverified facts in the reference are still not published as fact: the store
+  address and hours carry an explicit marker, and the "4.9/5" rating and the
+  "RAJ Code" postal badge are still omitted.
+
+---
+
 ## Still open — require owner input
 
 These are unresolved and must not be filled with plausible-sounding values:

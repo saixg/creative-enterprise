@@ -16,13 +16,18 @@
   "hero": {
     "badge": "Rajkot's Trusted IT Partner",
     "headlineLead": "Your One-Stop IT Partner for",
-    "headlineEmphasis": "Sales & Service",
-    "subheadline": "Buy, repair, service and maintain — all your IT needs, under one roof in Rajkot.",
     "primaryCta": "Explore Products",
     "secondaryCta": "Book a Service",
-    "portraitAlt": "Placeholder for the owner portrait — awaiting the supplied photograph",
+    "portraitAlt": "The owner of Creative Enterprise, standing with arms crossed",
     "localTagline": "રાજકોટનું વિશ્વાસુ IT સેવા કેન્દ્ર",
-    "panelsLabel": "Products sold and serviced here: laptops, desktops, components, CCTV, printers and accessories."
+    "headlineSales": "Sales",
+    "headlineAmp": "&",
+    "headlineService": "Service",
+    "verbBuy": "Buy",
+    "verbRepair": "Repair",
+    "verbService": "Service",
+    "verbMaintain": "Maintain",
+    "subTail": "All Your IT Needs, Under One Roof in Rajkot."
   },
   "capabilities": {
     "heading": "What we do",
@@ -36,12 +41,12 @@
   "entryPoints": {
     "products": {
       "title": "Shop Products",
-      "description": "Laptops, desktops, accessories and more.",
+      "description": "Laptops, Desktops, Accessories & More",
       "cta": "Browse products"
     },
     "services": {
       "title": "Get IT Services",
-      "description": "Repair, upgrade, installation, AMC and on-site support.",
+      "description": "Repair, Upgrade, Installation, AMC & On-Site Support",
       "cta": "Browse services"
     }
   },
@@ -105,12 +110,7 @@
     "inquiryLead": "Enquire for current pricing and availability.",
     "inquiryMessage": "Hello, I would like a quote for the {product}.",
     "inquiryUnavailable": "The enquiry channel is not configured yet — no WhatsApp number has been supplied. This button will work once contact details are added.",
-    "viewAll": "View all",
-    "panels": {
-      "cctv": "CCTV",
-      "printer": "Printers",
-      "repair": "Repair"
-    }
+    "viewAll": "View all"
   },
   "featured": {
     "badge": "New Arrivals",

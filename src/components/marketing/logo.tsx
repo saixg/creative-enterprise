@@ -1,12 +1,15 @@
+import Image from "next/image";
+
 import { cn } from "@/lib/utils";
 
 /**
- * PLACEHOLDER MARK — not the approved logo.
+ * Brand lockup — mark, hairline divider, two-line wordmark, tagline.
  *
- * Doc 02 §9 and docs/DECISIONS.md D-008: the exploratory logo concepts are not
- * approved artwork, and the owner will supply the real mark. This is a neutral
- * geometric stand-in built from tokens so nothing downstream depends on final
- * artwork. Replace with the supplied SVG; do not promote this to the real logo.
+ * INTERIM MARK. The "C" is cut out of the supplied logo exploration
+ * (`design-references/reference-03-brand-logo.jpg`, docs/DECISIONS.md D-013).
+ * It is a raster cut from an exploration, which doc 02 §9 says must not become
+ * the final logo: the approved mark still needs to be supplied and rebuilt as a
+ * clean SVG. The wordmark is live text, so it stays crisp regardless.
  */
 export function Logo({
   className,
@@ -17,38 +20,33 @@ export function Logo({
 }) {
   return (
     <span className={cn("flex items-center gap-3", className)}>
-      <svg
-        viewBox="0 0 40 40"
-        role="img"
-        aria-label="Creative Enterprise"
-        className="size-9 shrink-0"
-      >
-        <rect
-          x="1"
-          y="1"
-          width="38"
-          height="38"
-          rx="11"
-          fill="var(--primary)"
-        />
-        <path
-          d="M27.5 14.5a9 9 0 1 0 0 11"
-          fill="none"
-          stroke="var(--primary-foreground)"
-          strokeWidth="3.5"
-          strokeLinecap="round"
-        />
-      </svg>
+      <Image
+        src="/images/brand/logo-mark.png"
+        alt=""
+        width={299}
+        height={241}
+        priority
+        className="h-11 w-auto shrink-0 lg:h-14"
+      />
 
       {withWordmark && (
-        <span className="leading-tight">
-          <span className="block text-base font-semibold tracking-tight">
-            Creative Enterprise
+        <>
+          <span
+            aria-hidden
+            className="bg-border-strong hidden h-10 w-px sm:block"
+          />
+          <span className="leading-none">
+            <span className="text-foreground block text-[1.15rem] font-extrabold tracking-tight lg:text-[1.45rem]">
+              Creative
+            </span>
+            <span className="text-foreground block text-[1.15rem] font-extrabold tracking-tight lg:text-[1.45rem]">
+              Enterprise
+            </span>
+            <span className="text-muted mt-1.5 hidden text-[0.6rem] font-semibold tracking-[0.28em] uppercase sm:block">
+              Sales · Service · Solutions
+            </span>
           </span>
-          <span className="text-muted block text-[10px] font-medium tracking-[0.2em] uppercase">
-            Sales · Service · Solutions
-          </span>
-        </span>
+        </>
       )}
     </span>
   );

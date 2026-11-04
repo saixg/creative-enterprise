@@ -137,3 +137,38 @@ business has confirmed it.
 - No Lighthouse or performance measurement has been taken.
 - The rendered page has not been compared side by side with the references by
   the owner.
+
+## Hero rebuilt to the reference (2026-11-04, D-013)
+
+The first homepage build was rejected by the owner as not resembling the
+approved design. The hero has been rebuilt as a close reconstruction of
+reference 02.
+
+### Interim assets cut from the reference
+
+Every image in the hero is cut out of `design-references/` because no original
+photography exists. The pipeline and crop boxes are in
+`scripts/reference-assets/`.
+
+| Asset                                 | Source       | Limitation                                                                                                         |
+| ------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------ |
+| Owner                                 | reference 02 | Real person, background removed. Cut from a 1600×900 composite, so soft at large sizes. **Original photo needed.** |
+| Laptop, desktop, CCTV, printer, tools | reference 02 | Generic renders from the reference, not the owner's actual stock                                                   |
+| Entry-card photos                     | reference 02 | Same                                                                                                               |
+| Rajkot landmark                       | reference 02 | Interim illustration                                                                                               |
+| Logo "C" mark                         | reference 03 | Raster cut from an **exploration** — doc 02 §9 forbids it becoming the final logo. **Approved SVG needed.**        |
+
+Background removal used `rembg`'s small `u2netp` model, because the larger
+`isnet-general-use` weights repeatedly stalled downloading. Edges are therefore
+less refined than they could be; re-running `cutout.py` with
+`isnet-general-use` on a better connection will improve them with no code
+change.
+
+### Still deliberately omitted from the reference
+
+- "RAJ Code: 360001" in the trust badge — postal code unverified; the badge
+  shows "Rajkot, Gujarat" instead.
+- "4.9/5 Customer Satisfaction" — a ratings claim with no source.
+- The search button and light/dark toggle in the header — search is deferred
+  (D-004), and themes are per-area (D-005), not a user toggle.
+- "Solutions" in the nav — no brief defines it.
