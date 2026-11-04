@@ -424,5 +424,45 @@
         "Equipment you cannot afford to lose"
       ]
     }
+  },
+  "admin": {
+    "metaTitle": "Admin",
+    "signIn": {
+      "title": "Admin sign in",
+      "subtitle": "For Creative Enterprise staff only.",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "submitting": "Signing in...",
+      "errors": {
+        "invalid": "That email and password did not match an account.",
+        "not_admin": "This account does not have admin access."
+      },
+      "back": "Back to the website"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "products": "Products",
+      "services": "Services",
+      "inquiries": "Inquiries",
+      "requests": "Service requests",
+      "content": "Website content",
+      "soon": "Next"
+    },
+    "signOut": "Sign out",
+    "signedInAs": "Signed in as {email}",
+    "viewSite": "View website",
+    "dashboard": {
+      "title": "Dashboard",
+      "subtitle": "A live view of what is in the database.",
+      "products": "Products",
+      "published": "{count} published",
+      "inquiries": "New inquiries",
+      "requests": "New service requests",
+      "empty": "The database is empty. The website still shows the placeholder catalogue until products are added here.",
+      "nextTitle": "Coming next",
+      "nextBody": "Product editing, inquiry and service request inboxes, and website content controls are the next milestone. This shell proves sign-in and access control first."
+    },
+    "checking": "Checking access..."
   }
 }
