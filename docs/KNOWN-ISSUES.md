@@ -52,18 +52,28 @@ displayed. It can ship once the owner supplies a real figure and its source.
 
 These are simply not built yet. They are the next milestones, not bugs:
 
-- `/products`, `/services`, `/about`, `/contact` routes — the header and footer link
-  to them and they will 404 until the catalogue milestone.
-- The dark `app` theme is defined in tokens but no page uses it yet; the first
-  interior page will set `data-theme="app"`.
+- `/services`, `/about`, `/contact` routes — the header and footer link to them and
+  they will 404 until those pages are built.
+- The product catalogue is placeholder data only (D-003). `/products` and
+  `/products/[slug]` work, but every row is flagged `isPlaceholder` and no price
+  is verified.
+- The product inquiry action is **disabled**: no WhatsApp number exists, and the
+  stored inquiry form arrives with the backend milestone. The button says so
+  rather than pretending to submit.
+- Product images are placeholder frames; no product imagery has been supplied.
 - Admin area, authentication, Supabase, WhatsApp — see `docs/ARCHITECTURE.md` §8.
 
 ## Verified this build
 
-- `npm run typecheck`, `npm run lint`, `npm run format:check`, `npm run test` and
-  `npm run build` pass locally.
-- `/` and `/gu` prerender as static; both inspected in a real browser.
+- `npm run typecheck`, `npm run lint`, `npm run format:check`, `npm run test`
+  (13 tests) and `npm run build` pass locally.
+- Landing and products pages prerender as static in both locales; product detail
+  pages prerender per slug per locale.
+- All four pages inspected in a real browser in both themes.
 - No horizontal overflow at 375px, 768px or 1440px.
+- Theme scoping verified: `/products` resolves `data-theme="app"` with a dark
+  root background, `/` resolves `landing`. Header and footer re-skin with no
+  component changes.
 - No browser console errors on either locale.
 
 ## Not yet verified

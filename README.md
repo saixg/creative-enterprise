@@ -39,7 +39,7 @@ Foundation in progress. Nothing is deployed.
 | Application scaffold                | Complete                         |
 | Design tokens and shared components | Complete                         |
 | Landing page                        | Implemented, tested locally      |
-| Products / interior pages           | Not started                      |
+| Products / interior pages           | Index + detail, placeholder data |
 | Admin area and authentication       | Not started                      |
 | Supabase backend                    | Data model documented, not built |
 | WhatsApp Cloud API                  | Not started                      |

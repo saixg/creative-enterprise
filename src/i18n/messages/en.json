@@ -66,5 +66,40 @@
     "title": "Creative Enterprise — IT Sales & Service in Rajkot",
     "titleTemplate": "%s · Creative Enterprise",
     "description": "Computer and electronics sales and service in Rajkot, Gujarat. Laptops, desktops, components, CCTV, printers, repair and on-site IT support."
+  },
+  "products": {
+    "title": "Products",
+    "metaDescription": "Laptops, desktops, components and accessories from Creative Enterprise in Rajkot. Enquire for current pricing and availability.",
+    "heroHeadline": "Next-Gen Laptops Now at Creative Enterprise",
+    "heroSubheadline": "Latest laptops, desktops and computer components with genuine products, expert support and after-sales service.",
+    "heroPrimaryCta": "Explore Laptops",
+    "heroSecondaryCta": "Get IT Services",
+    "categoriesHeading": "Browse by category",
+    "categories": {
+      "laptops": "Laptops",
+      "desktops": "Desktops",
+      "components": "Components",
+      "accessories": "Accessories",
+      "services": "Services"
+    },
+    "justArrived": "Just Arrived",
+    "newArrivals": "New Arrivals",
+    "newArrivalsSubtitle": "Explore the latest additions to our collection.",
+    "placeholderNotice": "These products are placeholder examples, not the real catalogue. Prices and specifications are unverified and will be replaced with owner-supplied data.",
+    "badgeNew": "New",
+    "badgePlaceholder": "Placeholder",
+    "imagePending": "Product image pending",
+    "getQuote": "Get Quote",
+    "requestQuote": "Request a quote",
+    "priceOnRequest": "Price on request",
+    "priceUnverified": "Unverified price",
+    "priceUnverifiedLong": "This price is a placeholder and has not been confirmed. Please enquire for current pricing.",
+    "specifications": "Specifications",
+    "specsUnverified": "These specifications are placeholder data and have not been verified by the business.",
+    "related": "Related products",
+    "backToProducts": "Back to products",
+    "inquiryLead": "Enquire for current pricing and availability.",
+    "inquiryMessage": "Hello, I would like a quote for the {product}.",
+    "inquiryUnavailable": "The enquiry channel is not configured yet — no WhatsApp number has been supplied. This button will work once contact details are added."
   }
 }

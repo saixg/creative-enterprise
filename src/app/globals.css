@@ -16,6 +16,16 @@
  *   warm #F0A34A · cloud #F6F8FC · white #FFFFFF · slate #667085
  */
 
+/*
+ * Root-level copies of each theme's base background. These exist only so the
+ * <html> element can match the active theme (see the `:has()` rule below);
+ * components never reference them.
+ */
+:root {
+  --theme-landing-bg: #ffffff;
+  --theme-app-bg: #07080f;
+}
+
 :root,
 [data-theme="landing"] {
   /* surfaces */
@@ -136,12 +146,27 @@
     border-color: var(--border);
   }
 
+  /*
+   * The page background lives on <html>, not <body>.
+   *
+   * Themes are scoped to a wrapper inside <body> (see SiteChrome), so the
+   * overscroll area outside that wrapper would otherwise keep the default
+   * light background and flash white on a dark page. `:has()` lifts the
+   * active theme's base colour up to the root element.
+   */
   html {
     scroll-behavior: smooth;
+    background-color: var(--theme-landing-bg);
+    color-scheme: light;
+  }
+
+  html:has([data-theme="app"]) {
+    background-color: var(--theme-app-bg);
+    color-scheme: dark;
   }
 
   body {
-    background-color: var(--background);
+    background-color: transparent;
     color: var(--foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
