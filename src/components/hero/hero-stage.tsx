@@ -42,7 +42,7 @@ const panels: Panel[] = [
     key: "laptop",
     src: "/images/hero/laptop.png",
     alt: "Laptop",
-    box: "left-[1%] top-[3%] w-[29%] aspect-[6/5]",
+    box: "left-[0%] top-[4%] w-[25%] aspect-[6/5]",
     mobile: true,
     delay: 0.18,
     inset: "p-[9%]",

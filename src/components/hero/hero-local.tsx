@@ -52,14 +52,14 @@ export async function HeroLocal() {
           sizes="320px"
           // Keyed artwork with its own wave. The crop ends in hard edges at the
           // top and right; the mask dissolves them into the hero field.
-          className="h-28 w-auto [mask-image:radial-gradient(115%_105%_at_32%_72%,black_58%,transparent_88%)] sm:h-36 lg:-mb-4 lg:-ml-6 lg:h-48"
+          className="h-28 w-auto [mask-image:radial-gradient(115%_105%_at_32%_72%,black_58%,transparent_88%)] sm:h-36 lg:-mb-4 lg:-ml-6 lg:h-40"
         />
 
         <div className="flex items-center gap-6 pb-1">
           <div>
             <p
               lang="gu"
-              className="text-primary-deep max-w-[13rem] text-[1.6rem] leading-[1.15] font-bold text-balance"
+              className="text-primary-deep max-w-[15rem] text-[1.45rem] leading-[1.15] font-bold text-balance"
             >
               {hero("localTagline")}
             </p>
@@ -90,7 +90,7 @@ export async function HeroLocal() {
               className="text-primary size-7"
               strokeWidth={1.8}
             />
-            <span className="leading-tight">
+            <span className="leading-tight whitespace-nowrap">
               <span className="text-foreground block text-lg font-semibold">
                 {businessInfo.legalName.value}
               </span>
@@ -104,7 +104,7 @@ export async function HeroLocal() {
 
       {/* Store strip */}
       <div className="lg:justify-self-end">
-        <dl className="glass grid gap-5 rounded-[1.6rem] px-6 py-5 sm:grid-cols-2 sm:gap-0 sm:divide-x sm:divide-[var(--border)] lg:min-w-[40rem]">
+        <dl className="glass grid gap-5 rounded-[1.6rem] px-6 py-5 sm:grid-cols-2 sm:gap-0 sm:divide-x sm:divide-[var(--border)] lg:min-w-[34rem]">
           <div className="flex gap-4 sm:pe-6">
             <Store
               aria-hidden
