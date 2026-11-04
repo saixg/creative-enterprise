@@ -198,3 +198,16 @@ Structure _was_ verified: cards sit inside an 1100px perspective with
 - Sorting by price sorts **placeholder** prices (D-003).
 - Desktops, Components and Accessories have no products and show an empty
   state. No products were invented to fill them.
+
+## Storefront inner platform (2026-11-04, D-016)
+
+- **Search is hidden below 768px.** The header has no room for it on a phone;
+  the catalogue's category and brand filters remain. A search entry in the
+  mobile menu is the next step.
+- **Promo row not seen on screen after its last change.** The image masks were
+  pushed right so the copy sits on a clean field; the hidden check pane would
+  not hold the scroll position for a screenshot.
+- **Category, band and promo images are reference crops** (interim, listed in
+  `docs/ASSET-CREDITS.md`). The Laptops tile uses the real ASUS photo instead,
+  because the reference laptop lost its keyboard base when cut out.
+- **"Warranty support"** in the trust row still needs owner confirmation.

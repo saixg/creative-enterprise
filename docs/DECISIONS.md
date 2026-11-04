@@ -361,3 +361,43 @@ moved to the sections directly below. Brand signatures kept: the owner, the
 heavy italic "Sales & Service", the blue palette.
 
 All visible em-dashes were removed from both locales, per the same audit.
+
+---
+
+## D-016 — Inner platform follows the storefront reference
+
+**Date:** 2026-11-04
+**Status:** Confirmed
+**Revises:** D-005 (interior theme) and D-004 (search)
+
+The owner asked for reference 01 (`design-references/reference-01-storefront-full.webp`)
+to be reverse-engineered and applied to the inner platform, excluding the
+landing page.
+
+**Structure, taken from the reference:**
+
+- **Dark storefront band** at the top of every inner page: the dark header,
+  then a featured band (product visual on a lit platform, trust row) on the
+  products page, or a compact title band on category and product pages.
+- **Category tiles** with product renders, overlapping the band's lower edge.
+- **Light catalogue body** below: white product cards on a pale field.
+- **Promo row**: Custom PC Builds, Laptop & Desktop Repair, Why choose us.
+
+This replaces D-005's "dark interior pages" with _dark band, light body_. The
+token contract is unchanged; only where each value set applies moves.
+
+**Search is now in scope** (revises D-004): a working client-side search over
+the catalogue in the inner header, with the reference's ⌘K shortcut.
+
+**Still out, with reasons:**
+
+- Wishlist and compare: e-commerce shaped against an inquiry-first site.
+- Carousel arrows and dots: four placeholder products do not justify one.
+- The repair promo's play button: no video exists.
+- "Competitive pricing" from the reference's trust list: an unverified claim.
+- Reference product renders on the product cards: the cards keep the real
+  Commons photos (D-015); the reference renders are AI art of these products.
+
+Category tiles, the featured visual and promo images are cut from the
+reference (interim, like D-013); crop boxes are recorded in
+`docs/ASSET-CREDITS.md`.

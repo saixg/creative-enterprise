@@ -30,3 +30,18 @@ official imagery can replace these.
 The owner portrait, hero product renders, landmark and logo mark are cut from
 the owner's own design references. See `scripts/reference-assets/` and
 `docs/DECISIONS.md` D-012, D-013.
+
+## Storefront reference crops (D-016)
+
+Cut from `design-references/reference-01-storefront-full.webp` (1536x1024).
+Interim artwork: replace with real photography when supplied.
+
+| Asset                            | Box (left, top, width, height) | Treatment                   |
+| -------------------------------- | ------------------------------ | --------------------------- |
+| `storefront/band-laptops.webp`   | 684, 40, 646, 326              | kept background, 2x lanczos |
+| `storefront/cat-desktops.png`    | 495, 408, 105, 100             | background removed          |
+| `storefront/cat-components.png`  | 782, 418, 110, 76              | background removed          |
+| `storefront/cat-accessories.png` | 1068, 410, 90, 98              | background removed          |
+| `storefront/cat-services.png`    | 1350, 420, 88, 80              | background removed          |
+| `storefront/promo-builds.webp`   | 300, 862, 232, 158             | kept background, 2x lanczos |
+| `storefront/promo-repair.webp`   | 880, 862, 162, 158             | kept background, 2x lanczos |

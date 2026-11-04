@@ -76,7 +76,7 @@
   "products": {
     "title": "Products",
     "metaDescription": "Laptops, desktops, components and accessories from Creative Enterprise in Rajkot. Enquire for current pricing and availability.",
-    "heroHeadline": "Next-Gen Laptops Now at Creative Enterprise",
+    "heroHeadline": "The latest laptops, now at Creative Enterprise",
     "heroSubheadline": "Latest laptops, desktops and computer components with genuine products, expert support and after-sales service.",
     "heroPrimaryCta": "Explore Laptops",
     "heroSecondaryCta": "Get IT Services",
@@ -183,13 +183,16 @@
     "builds": {
       "title": "Custom PC Builds",
       "body": "Build your setup with guidance on parts, compatibility and budget. Tell us what you need it for and we will put a configuration together.",
-      "cta": "Enquire about a build"
+      "cta": "Enquire about a build",
+      "short": "Build your setup with expert guidance on parts and budget."
     },
     "repair": {
       "title": "Laptop & Desktop Repair",
       "body": "Diagnostics, hardware replacement and upgrades for laptops and desktops. Bring the machine in or ask about on-site support.",
-      "cta": "Book a service"
-    }
+      "cta": "Book a service",
+      "short": "Diagnostics, hardware replacement, upgrades and more."
+    },
+    "heading": "Builds, repairs and why us"
   },
   "services": {
     "eyebrow": "Services",
@@ -241,12 +244,18 @@
         "title": "Local presence",
         "body": "A physical store in Rajkot, so support does not mean a courier and a wait."
       }
-    }
+    },
+    "headingShort": "Why choose us?"
   },
   "finalCta": {
     "heading": "Tell us what you need and we will help you choose",
     "subtitle": "Enquire about a product, or book a repair. We will get back to you with real availability and pricing.",
     "productCta": "Explore products",
     "serviceCta": "Book a service"
+  },
+  "search": {
+    "label": "Search products",
+    "placeholder": "Search laptops, components, accessories...",
+    "noResults": "No products match \"{query}\". Ask us, as not everything we stock is listed."
   }
 }

@@ -1,49 +1,32 @@
 import type { Metadata } from "next";
-import {
-  ArrowRight,
-  Cpu,
-  Headphones,
-  Laptop,
-  Monitor,
-  Wrench,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import { buttonClasses } from "@/components/ui/button";
+import { categorySlugs, listProducts } from "@/lib/catalog";
 import { CatalogueBrowser } from "@/components/products/catalogue-browser";
 import { toCatalogueItems } from "@/components/products/catalogue-items";
-import { Tilt } from "@/components/motion/tilt";
-import { categorySlugs, listProducts } from "@/lib/catalog";
+import { BrandStrip } from "@/components/marketing/offers-and-brands";
+import {
+  CategoryRail,
+  FeaturedBand,
+  StorefrontPromos,
+} from "@/components/storefront/storefront-sections";
 
 export async function generateMetadata({
   params,
 }: PageProps<"/[locale]/products">): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "products" });
-
   return { title: t("title"), description: t("metaDescription") };
 }
 
 /**
- * Category tiles from the image-2 reference. "Services" sits alongside the
- * product categories deliberately — doc 01 §2 requires services to carry equal
- * weight, and burying them here would be exactly the drift doc 03 §4 warns
- * about.
+ * Products: the storefront from reference 01 (D-016).
+ * Dark featured band and category rail, then the light catalogue, brands and
+ * the promo row.
  */
-const categories = [
-  { key: "laptops", href: "/products/category/laptops", Icon: Laptop },
-  { key: "desktops", href: "/products/category/desktops", Icon: Monitor },
-  { key: "components", href: "/products/category/components", Icon: Cpu },
-  {
-    key: "accessories",
-    href: "/products/category/accessories",
-    Icon: Headphones,
-  },
-  { key: "services", href: "/services", Icon: Wrench },
-] as const;
-
 export default async function ProductsPage({
   params,
 }: PageProps<"/[locale]/products">) {
@@ -57,80 +40,32 @@ export default async function ProductsPage({
 
   return (
     <>
-      {/* Banner. Static, not a carousel — carousels are deferred (D-004). */}
-      <section className="border-border relative overflow-hidden border-b">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(70%_80%_at_70%_20%,var(--surface-muted),transparent_70%)]"
-        />
-
-        <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-          <p className="bg-accent/15 text-accent inline-flex rounded-full px-3 py-1 text-xs font-semibold">
-            {t("badgeNew")}
-          </p>
-
-          <h1 className="mt-6 max-w-2xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
-            {t("heroHeadline")}
-          </h1>
-
-          <p className="text-muted mt-5 max-w-xl text-lg text-pretty">
-            {t("heroSubheadline")}
-          </p>
-
-          <div className="mt-9 flex flex-wrap gap-3">
-            <a href="#catalogue" className={buttonClasses({ size: "lg" })}>
-              {t("heroPrimaryCta")}
-              <ArrowRight aria-hidden className="size-4" />
-            </a>
-            <Link
-              href="/services"
-              className={buttonClasses({ variant: "secondary", size: "lg" })}
-            >
-              <Wrench aria-hidden className="size-4" />
-              {t("heroSecondaryCta")}
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <h2 className="sr-only">{t("categoriesHeading")}</h2>
-
-        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-          {categories.map(({ key, href, Icon }) => (
-            <li key={key}>
-              <Tilt className="h-full rounded-2xl" max={7}>
-                <Link
-                  href={href}
-                  className="surface-card hover:shadow-raised flex h-full items-center justify-between gap-3 rounded-2xl px-5 py-6 transition-shadow"
-                >
-                  <span className="font-medium">{t(`categories.${key}`)}</span>
-                  <Icon aria-hidden className="text-accent size-6 shrink-0" />
-                </Link>
-              </Tilt>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <FeaturedBand />
+      <CategoryRail />
 
       <section
         id="catalogue"
-        className="mx-auto w-full max-w-7xl scroll-mt-24 px-4 pb-20 sm:px-6 lg:px-8"
+        className="mx-auto w-full max-w-7xl scroll-mt-24 px-4 pt-16 pb-8 sm:px-6 lg:px-8"
       >
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-accent text-sm font-medium">
+            <p className="text-accent-soft text-sm font-semibold">
               {t("justArrived")}
             </p>
-            <h2 className="mt-1 text-3xl font-semibold tracking-tight">
+            <h2 className="mt-1 text-3xl font-extrabold tracking-tight">
               {t("newArrivals")}
             </h2>
-            <p className="text-muted mt-2">{t("newArrivalsSubtitle")}</p>
+            <p className="text-muted mt-1.5">{t("newArrivalsSubtitle")}</p>
           </div>
+          <Link
+            href="/products/category/laptops"
+            className="text-foreground hover:text-primary inline-flex items-center gap-1.5 text-sm font-semibold"
+          >
+            {t("viewAll")}
+            <ArrowRight aria-hidden className="size-4" />
+          </Link>
         </div>
 
-        {/* Honest framing: this whole grid is placeholder data (D-003). Saying
-            so once at the top is clearer than relying on per-card badges alone. */}
         <p className="border-warm/40 bg-warm/10 text-warm mt-6 rounded-2xl border px-4 py-3 text-sm">
           {t("placeholderNotice")}
         </p>
@@ -142,6 +77,12 @@ export default async function ProductsPage({
           />
         </div>
       </section>
+
+      <div id="brands" className="scroll-mt-24">
+        <BrandStrip />
+      </div>
+
+      <StorefrontPromos />
     </>
   );
 }

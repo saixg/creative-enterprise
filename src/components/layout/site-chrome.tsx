@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 
 import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";
+import { StorefrontHeader } from "@/components/storefront/storefront-header";
 
 type Theme = "landing" | "app";
 
@@ -20,9 +21,12 @@ type Theme = "landing" | "app";
  */
 export async function SiteChrome({
   theme,
+  header = "default",
   children,
 }: {
   theme: Theme;
+  /** `storefront`: the dark inner-platform header with search (D-016). */
+  header?: "default" | "storefront";
   children: ReactNode;
 }) {
   const t = await getTranslations("common");
@@ -44,7 +48,7 @@ export async function SiteChrome({
         {t("skipToContent")}
       </a>
 
-      <SiteHeader />
+      {header === "storefront" ? <StorefrontHeader /> : <SiteHeader />}
       <main id="main" className="flex-1">
         {children}
       </main>
