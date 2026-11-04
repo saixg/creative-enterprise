@@ -422,3 +422,26 @@ no record has a price, turnaround, warranty or guarantee field (doc 03 §3).
 process (it is a sequence), reveal-on-scroll for the bento (paces a dense
 grid), pointer parallax in the band and tilt on cards (depth, D-014). All
 static under `prefers-reduced-motion`.
+
+---
+
+## D-018 — Backend: Supabase cloud project
+
+**Date:** 2026-11-04
+**Status:** Confirmed — created, empty
+
+|           |                                                   |
+| --------- | ------------------------------------------------- |
+| Project   | `creative-enterprise`                             |
+| Ref       | `cgwphkmezoaigxgvywpe`                            |
+| URL       | `https://cgwphkmezoaigxgvywpe.supabase.co`        |
+| Region    | `ap-south-1` (Mumbai, closest to Rajkot)          |
+| Plan cost | $0 / month (free tier), confirmed before creation |
+
+The URL and publishable key live in `.env.local` (git-ignored). The
+publishable key is designed to be public, but it is only safe once Row Level
+Security is enabled on every table, so **no table may be created without RLS**
+(doc 03 §11). The secret key has not been retrieved; nothing needs it yet.
+
+The database is empty. Next: migrations for the MVP schema in
+`docs/ARCHITECTURE.md` §4, then admin authentication.

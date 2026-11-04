@@ -18,7 +18,7 @@ secret must not carry that prefix.
 
 | Variable                               | Scope  | Purpose                                                                 |
 | -------------------------------------- | ------ | ----------------------------------------------------------------------- |
-| `NEXT_PUBLIC_SUPABASE_URL`             | client | Project URL                                                             |
+| `NEXT_PUBLIC_SUPABASE_URL`             | client | Project URL (set in .env.local, D-018)                                  |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | client | Publishable key; safe in the browser **only** because RLS constrains it |
 | `SUPABASE_SECRET_KEY`                  | server | Bypasses RLS. Server-only, never logged, never in a client component    |
 
