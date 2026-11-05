@@ -61,6 +61,14 @@ export function ProductImageCredit({
   photoLabel: string;
 }) {
   const { credit } = image;
+  // The business's own photos carry no third-party credit.
+  if (!credit) {
+    return image.representative ? (
+      <p className="text-foreground text-xs font-medium">
+        {representativeLabel}
+      </p>
+    ) : null;
+  }
   return (
     <p className="text-muted text-xs leading-relaxed">
       {image.representative && (

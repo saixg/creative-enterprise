@@ -3,6 +3,7 @@ import { Clock, MapPin, Store } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { businessInfo } from "@/lib/business-info";
+import { getBusinessInfo } from "@/lib/site-content";
 
 /**
  * The hero's lower band (reference 02): Rajkot landmark, Gujarati tagline,
@@ -37,7 +38,7 @@ export async function HeroLocal() {
     const [h = 0, m = 0] = hhmm.split(":").map(Number);
     return timeFormat.format(new Date(Date.UTC(2000, 0, 1, h, m)));
   };
-  const { addressLines, hours } = businessInfo;
+  const { addressLines, hours } = await getBusinessInfo();
   const unverified = !addressLines.verified || !hours.verified;
 
   return (
@@ -104,7 +105,7 @@ export async function HeroLocal() {
 
       {/* Store strip */}
       <div className="lg:justify-self-end">
-        <dl className="glass grid gap-5 rounded-[1.6rem] px-6 py-5 sm:grid-cols-2 sm:gap-0 sm:divide-x sm:divide-[var(--border)] lg:min-w-[34rem]">
+        <dl className="glass-tile grid gap-5 rounded-[1.6rem] px-6 py-5 sm:grid-cols-2 sm:gap-0 sm:divide-x sm:divide-[var(--border)] lg:min-w-[34rem]">
           <div className="flex gap-4 sm:pe-6">
             <Store
               aria-hidden

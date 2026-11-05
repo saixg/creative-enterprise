@@ -24,6 +24,7 @@ export type ProductImage = {
   height: number;
   alt: string;
   representative: boolean;
+  /** Null for the business's own photos, which need no third-party credit. */
   credit: {
     title: string;
     author: string;
@@ -32,14 +33,22 @@ export type ProductImage = {
     sourceUrl: string;
     /** What was changed, as CC BY / BY-SA require. */
     changes: string;
-  };
+  } | null;
 };
 
+/** Text in both locales; Gujarati may be missing and falls back to English. */
+export type Localized<T> = { en: T; gu: T };
+
 export type Product = {
+  id: string;
   slug: string;
   name: string;
   brand: string;
   category: CategorySlug;
+  /** Short and long description. Null when the admin has not written one. */
+  summary: Localized<string | null>;
+  description: Localized<string | null>;
+  isFeatured: boolean;
   /** Short spec line shown on the card, e.g. "Ryzen 7 · 16GB · 512GB SSD". */
   summarySpecs: string[];
   specs: Spec[];

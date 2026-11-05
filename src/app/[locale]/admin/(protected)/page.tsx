@@ -1,6 +1,7 @@
 import { Boxes, ClipboardList, Inbox } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
+import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
 
 /**
@@ -46,9 +47,20 @@ export default async function AdminDashboard({
       value: products,
       note: t("published", { count: published }),
       Icon: Boxes,
+      href: "/admin/products",
     },
-    { label: t("inquiries"), value: inquiries, Icon: Inbox },
-    { label: t("requests"), value: requests, Icon: ClipboardList },
+    {
+      label: t("inquiries"),
+      value: inquiries,
+      Icon: Inbox,
+      href: "/admin/inquiries",
+    },
+    {
+      label: t("requests"),
+      value: requests,
+      Icon: ClipboardList,
+      href: "/admin/requests",
+    },
   ];
 
   return (
@@ -57,11 +69,19 @@ export default async function AdminDashboard({
       <p className="text-muted mt-1.5">{t("subtitle")}</p>
 
       <dl className="mt-8 grid gap-4 sm:grid-cols-3">
-        {stats.map(({ label, value, note, Icon }) => (
-          <div key={label} className="surface-card rounded-2xl p-6">
+        {stats.map(({ label, value, note, Icon, href }) => (
+          <div
+            key={label}
+            className="surface-card hover:shadow-raised relative rounded-2xl p-6 transition-shadow"
+          >
             <dt className="text-muted flex items-center gap-2 text-sm font-medium">
               <Icon aria-hidden className="size-4" />
-              {label}
+              <Link
+                href={href}
+                className="after:absolute after:inset-0 hover:underline"
+              >
+                {label}
+              </Link>
             </dt>
             <dd className="mt-3 text-4xl font-extrabold tabular-nums">
               {value}
@@ -76,11 +96,6 @@ export default async function AdminDashboard({
           {t("empty")}
         </p>
       )}
-
-      <section className="surface-card mt-8 rounded-2xl p-6">
-        <h2 className="font-bold">{t("nextTitle")}</h2>
-        <p className="text-muted mt-1.5 text-sm text-pretty">{t("nextBody")}</p>
-      </section>
     </div>
   );
 }

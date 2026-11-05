@@ -4,6 +4,8 @@ import { getTranslations } from "next-intl/server";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";
 import { StorefrontHeader } from "@/components/storefront/storefront-header";
+import { AnnouncementBar } from "@/components/layout/announcement-bar";
+import { SmoothScroll } from "@/components/motion/smooth-scroll";
 
 type Theme = "landing" | "app";
 
@@ -48,6 +50,8 @@ export async function SiteChrome({
         {t("skipToContent")}
       </a>
 
+      <SmoothScroll />
+      <AnnouncementBar />
       {header === "storefront" ? <StorefrontHeader /> : <SiteHeader />}
       <main id="main" className="flex-1">
         {children}

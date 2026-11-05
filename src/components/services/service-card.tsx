@@ -3,20 +3,26 @@ import {
   ArrowRight,
   Camera,
   Cpu,
+  Headset,
   MonitorSmartphone,
+  Network,
   Printer,
   ShieldCheck,
   TerminalSquare,
   Wrench,
 } from "lucide-react";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import { Link } from "@/i18n/navigation";
-import type { ServiceKey, ServiceRecord } from "@/lib/services";
+import {
+  serviceCopy,
+  type ServiceIcon,
+  type ServiceRecord,
+} from "@/lib/services-map";
 import { cn } from "@/lib/utils";
 import { Tilt, TiltLayer } from "@/components/motion/tilt";
 
-export const serviceIcons: Record<ServiceKey, typeof Wrench> = {
+export const serviceIcons: Record<ServiceIcon, typeof Wrench> = {
   repair: Wrench,
   screen: MonitorSmartphone,
   upgrades: Cpu,
@@ -24,6 +30,8 @@ export const serviceIcons: Record<ServiceKey, typeof Wrench> = {
   cctv: Camera,
   printer: Printer,
   amc: ShieldCheck,
+  network: Network,
+  support: Headset,
 };
 
 /**
@@ -40,11 +48,12 @@ export async function ServiceCard({
   size?: "lg" | "md" | "sm";
   className?: string;
 }) {
-  const [t, pages] = await Promise.all([
-    getTranslations(`serviceCatalogue.${service.key}`),
+  const [locale, pages] = await Promise.all([
+    getLocale(),
     getTranslations("servicePages"),
   ]);
-  const Icon = serviceIcons[service.key];
+  const copy = serviceCopy(service, locale);
+  const Icon = serviceIcons[service.icon];
   const isLead = size === "lg";
 
   return (
@@ -118,7 +127,7 @@ export async function ServiceCard({
               href={`/services/${service.slug}`}
               className="after:absolute after:inset-0 focus-visible:outline-none"
             >
-              {t("title")}
+              {copy.title}
             </Link>
           </h3>
           <p
@@ -127,7 +136,7 @@ export async function ServiceCard({
               isLead && "max-w-md text-base",
             )}
           >
-            {t("summary")}
+            {copy.summary}
           </p>
           <span className="text-primary mt-2 inline-flex items-center gap-1.5 text-sm font-semibold transition-transform group-hover:translate-x-0.5">
             {pages("learnMore")}

@@ -1,92 +1,51 @@
+import "server-only";
+
+import { cacheLife, cacheTag } from "next/cache";
+
+import { CACHE_TAGS } from "@/lib/cache-tags";
+import { createPublicClient } from "@/lib/supabase/public";
+import { toServiceRecord, type ServiceRecord } from "@/lib/services-map";
+
+export {
+  serviceCopy,
+  type ServiceCopy,
+  type ServiceIcon,
+  type ServiceRecord,
+} from "@/lib/services-map";
+
 /**
- * Service catalogue: the single seam between service pages and their data.
+ * Service catalogue: the single seam between service pages and the database.
  *
- * The list is doc 01 §2.2's *candidate* service categories. None is confirmed
- * by the owner yet, so pages carry a notice, and no record holds a price,
- * turnaround time, warranty or guarantee (doc 03 §3). Fields for those are
- * deliberately absent: a column that does not exist cannot be filled with an
- * invented value.
- *
- * Copy lives in the message catalogues under `serviceCatalogue.<key>`; this
- * file holds only structure and media.
+ * Published rows only (RLS, anon client), cached under the `services` tag and
+ * refreshed by admin saves. Records seeded from doc 01's candidate list keep
+ * `isCandidate`, and the pages say so until the owner confirms each service.
  */
+async function fetchPublishedServices(): Promise<ServiceRecord[]> {
+  "use cache";
+  cacheTag(CACHE_TAGS.services);
+  cacheLife("hours");
 
-export type ServiceKey =
-  "repair" | "screen" | "upgrades" | "software" | "cctv" | "printer" | "amc";
+  const { data, error } = await createPublicClient()
+    .from("services")
+    .select("*")
+    .eq("status", "published")
+    .order("sort_order")
+    .order("name_en");
 
-export type ServiceRecord = {
-  slug: string;
-  key: ServiceKey;
-  /** Cut-out render or photo; null renders the service's icon instead. */
-  image: string | null;
-  /** True when the image is a photo (cover) rather than a cut-out (contain). */
-  photo: boolean;
-  /** Candidate from doc 01, not yet confirmed by the owner. */
-  isCandidate: true;
-};
-
-export const services: ServiceRecord[] = [
-  {
-    slug: "laptop-desktop-repair",
-    key: "repair",
-    image: "/images/storefront/promo-repair.webp",
-    photo: true,
-    isCandidate: true,
-  },
-  {
-    slug: "screen-replacement",
-    key: "screen",
-    image: "/images/products/lenovo-ideapad-slim-5.webp",
-    photo: false,
-    isCandidate: true,
-  },
-  {
-    slug: "hardware-upgrades",
-    key: "upgrades",
-    image: "/images/storefront/cat-components.png",
-    photo: false,
-    isCandidate: true,
-  },
-  {
-    slug: "software-troubleshooting",
-    key: "software",
-    image: null,
-    photo: false,
-    isCandidate: true,
-  },
-  {
-    slug: "cctv-installation",
-    key: "cctv",
-    image: "/images/hero/cctv.png",
-    photo: false,
-    isCandidate: true,
-  },
-  {
-    slug: "printer-repair",
-    key: "printer",
-    image: "/images/hero/printer.png",
-    photo: false,
-    isCandidate: true,
-  },
-  {
-    slug: "maintenance-amc",
-    key: "amc",
-    image: "/images/storefront/cat-services.png",
-    photo: false,
-    isCandidate: true,
-  },
-];
+  if (error) throw new Error(`Services read failed: ${error.message}`);
+  return data.map(toServiceRecord);
+}
 
 export async function listServices(): Promise<ServiceRecord[]> {
-  return services;
+  return fetchPublishedServices();
 }
 
 export async function getService(slug: string): Promise<ServiceRecord | null> {
-  return services.find((s) => s.slug === slug) ?? null;
+  return (await listServices()).find((s) => s.slug === slug) ?? null;
 }
 
 export async function listServiceSlugs(): Promise<string[]> {
-  return services.map((s) => s.slug);
+  return (await listServices()).map((s) => s.slug);
 }
 
 /** Other services to suggest on a detail page, never the page's own. */
@@ -94,5 +53,7 @@ export async function listRelatedServices(
   service: ServiceRecord,
   limit = 3,
 ): Promise<ServiceRecord[]> {
-  return services.filter((s) => s.slug !== service.slug).slice(0, limit);
+  return (await listServices())
+    .filter((s) => s.slug !== service.slug)
+    .slice(0, limit);
 }

@@ -39,3 +39,13 @@ export async function getAdmin(): Promise<AdminUser | null> {
     name: profile.full_name,
   };
 }
+
+/**
+ * For server actions: the admin, or a thrown error. Every admin mutation
+ * calls this first; RLS then enforces the same rule again in the database.
+ */
+export async function requireAdmin(): Promise<AdminUser> {
+  const admin = await getAdmin();
+  if (!admin) throw new Error("Not authorised");
+  return admin;
+}

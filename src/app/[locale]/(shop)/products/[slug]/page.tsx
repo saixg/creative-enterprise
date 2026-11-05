@@ -10,6 +10,7 @@ import {
   listProductSlugs,
   listRelatedProducts,
 } from "@/lib/catalog";
+import { pick } from "@/lib/catalog-map";
 import { formatPrice } from "@/lib/format";
 import { ProductCard } from "@/components/products/product-card";
 import { ProductInquiry } from "@/components/products/product-inquiry";
@@ -163,7 +164,23 @@ export default async function ProductDetailPage({
               )}
             </div>
 
-            <ProductInquiry productName={product.name} />
+            {(pick(product.summary, locale) ||
+              pick(product.description, locale)) && (
+              <div className="mt-6 grid gap-3 text-pretty">
+                {pick(product.summary, locale) && (
+                  <p className="text-lg font-medium">
+                    {pick(product.summary, locale)}
+                  </p>
+                )}
+                {pick(product.description, locale) && (
+                  <p className="text-muted leading-relaxed whitespace-pre-line">
+                    {pick(product.description, locale)}
+                  </p>
+                )}
+              </div>
+            )}
+
+            <ProductInquiry productId={product.id} productName={product.name} />
 
             <div className="mt-10">
               <h2 className="text-lg font-semibold">{t("specifications")}</h2>

@@ -1,19 +1,11 @@
 import { Suspense, type ReactNode } from "react";
-import {
-  Boxes,
-  ExternalLink,
-  FileText,
-  Inbox,
-  LayoutDashboard,
-  LogOut,
-  Wrench,
-  ClipboardList,
-} from "lucide-react";
+import { ExternalLink, LogOut } from "lucide-react";
 import { getLocale, getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Link, redirect } from "@/i18n/navigation";
 import { getAdmin } from "@/lib/auth/admin";
 import { Logo } from "@/components/marketing/logo";
+import { AdminNav } from "@/components/admin/admin-nav";
 import { signOut } from "../actions";
 
 /**
@@ -33,77 +25,13 @@ export default async function ProtectedAdminLayout({
   setRequestLocale(locale);
   const t = await getTranslations("admin");
 
-  const items = [
-    {
-      href: "/admin",
-      label: t("nav.dashboard"),
-      Icon: LayoutDashboard,
-      live: true,
-    },
-    {
-      href: "/admin/products",
-      label: t("nav.products"),
-      Icon: Boxes,
-      live: false,
-    },
-    {
-      href: "/admin/services",
-      label: t("nav.services"),
-      Icon: Wrench,
-      live: false,
-    },
-    {
-      href: "/admin/inquiries",
-      label: t("nav.inquiries"),
-      Icon: Inbox,
-      live: false,
-    },
-    {
-      href: "/admin/requests",
-      label: t("nav.requests"),
-      Icon: ClipboardList,
-      live: false,
-    },
-    {
-      href: "/admin/content",
-      label: t("nav.content"),
-      Icon: FileText,
-      live: false,
-    },
-  ];
-
   return (
     <div className="flex min-h-full flex-1">
       <aside className="border-border bg-surface hidden w-64 shrink-0 flex-col border-r p-5 lg:flex">
         <Logo />
-        <nav aria-label="Admin" className="mt-8 grid gap-1">
-          {items.map(({ href, label, Icon, live }) =>
-            live ? (
-              <Link
-                key={href}
-                href={href}
-                className="bg-primary/10 text-primary flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold"
-              >
-                <Icon aria-hidden className="size-4" />
-                {label}
-              </Link>
-            ) : (
-              // Not built yet: shown so the shape of the admin is visible, but
-              // not a link, because a link to nothing is a dead end.
-              <span
-                key={href}
-                aria-disabled="true"
-                className="text-muted flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm"
-              >
-                <Icon aria-hidden className="size-4" />
-                {label}
-                <span className="bg-surface-muted ms-auto rounded-full px-2 py-0.5 text-[0.65rem] font-semibold">
-                  {t("nav.soon")}
-                </span>
-              </span>
-            ),
-          )}
-        </nav>
+        <Suspense fallback={<div className="mt-8 h-72" />}>
+          <AdminNav variant="sidebar" />
+        </Suspense>
         <Link
           href="/"
           className="text-muted hover:text-foreground mt-auto inline-flex items-center gap-2 text-sm"
@@ -134,7 +62,7 @@ async function AdminGate({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <header className="border-border bg-surface flex h-16 items-center justify-between gap-4 border-b px-6">
+      <header className="border-border bg-surface flex h-16 items-center justify-between gap-4 border-b px-4 sm:px-6">
         <p className="text-muted truncate text-sm">
           {t("signedInAs", { email: admin?.email ?? "" })}
         </p>
@@ -148,7 +76,10 @@ async function AdminGate({ children }: { children: ReactNode }) {
           </button>
         </form>
       </header>
-      <main id="main" className="flex-1 p-6 lg:p-10">
+      <Suspense fallback={<div className="h-[3.3rem] lg:hidden" />}>
+        <AdminNav variant="bar" />
+      </Suspense>
+      <main id="main" className="flex-1 p-4 sm:p-6 lg:p-10">
         {children}
       </main>
     </>

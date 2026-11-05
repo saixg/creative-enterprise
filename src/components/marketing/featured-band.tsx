@@ -1,15 +1,9 @@
-import {
-  ArrowRight,
-  BadgeCheck,
-  Laptop,
-  ShieldCheck,
-  Wrench,
-  Zap,
-} from "lucide-react";
+import { ArrowRight, BadgeCheck, ShieldCheck, Wrench, Zap } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import { Link } from "@/i18n/navigation";
 import { buttonClasses } from "@/components/ui/button";
+import { LitPlatform } from "@/components/storefront/storefront-sections";
 
 /**
  * The cinematic dark band — reference 01's hero, repurposed as the homepage's
@@ -75,28 +69,8 @@ export async function FeaturedBand() {
           </ul>
         </div>
 
-        {/*
-          Product stage. Reference 01 puts a lit laptop on a glowing platform
-          here. No product photography has been supplied, so the platform and
-          framing are built and the product itself is a labelled placeholder.
-        */}
-        <div className="relative">
-          <div className="border-border/70 bg-surface/40 flex aspect-4/3 items-center justify-center rounded-3xl border backdrop-blur-sm">
-            <div className="flex flex-col items-center gap-3 text-center">
-              <Laptop aria-hidden className="text-border-strong size-16" />
-              <span className="bg-warm/15 text-warm rounded-full px-3 py-1 text-xs font-semibold">
-                {t("imagePending")}
-              </span>
-            </div>
-          </div>
-
-          {/* The glowing ellipse beneath the product — one of this viewport's
-              two permitted glows (D-002, D-010). */}
-          <div
-            aria-hidden
-            className="bg-accent/30 mx-auto -mt-6 h-10 w-2/3 rounded-[50%] blur-2xl"
-          />
-        </div>
+        {/* Reference 01's lit product moment, shared with /products. */}
+        <LitPlatform />
       </div>
     </div>
   );

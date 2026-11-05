@@ -205,13 +205,13 @@ own, with its own errors and retries.
 
 ## 8. Build order
 
-1. Scaffold, tokens, shared components ← _current_
-2. Landing page (image 1)
-3. Products and services pages (image 2)
-4. Supabase provisioning, migrations, RLS
-5. Admin auth and protected routes
-6. Admin product/content management and publishing
-7. Inquiries and service requests end to end
+1. Scaffold, tokens, shared components ✓
+2. Landing page (image 1) ✓
+3. Products and services pages (image 2) ✓
+4. Supabase provisioning, migrations, RLS ✓
+5. Admin auth and protected routes ✓ (no admin account yet)
+6. Admin product/content management and publishing ✓ (D-019)
+7. Inquiries and service requests end to end ✓ (D-019) ← _current_
 8. WhatsApp Cloud API, consent, campaigns
 9. Automation, escalation, analytics
 

@@ -37,7 +37,7 @@ export function Reveal({
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{
-            duration: 0.6,
+            duration: 0.3,
             delay: index * stagger,
             ease: [0.16, 1, 0.3, 1],
           }}
@@ -70,7 +70,7 @@ export function RevealItem({
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{
-        duration: 0.6,
+        duration: 0.3,
         delay: index * 0.07,
         ease: [0.16, 1, 0.3, 1],
       }}

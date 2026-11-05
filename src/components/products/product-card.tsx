@@ -31,10 +31,18 @@ export async function ProductCard({
 
   return (
     <Tilt className="flex w-full rounded-3xl" max={5}>
-      <article className="surface-card group focus-within:shadow-raised hover:shadow-raised relative flex h-full w-full flex-col rounded-3xl transition-shadow [transform-style:preserve-3d]">
-        <div className="bg-surface-muted relative flex aspect-4/3 items-center justify-center rounded-t-3xl [transform-style:preserve-3d]">
+      <article className="surface-card group focus-within:shadow-raised hover:shadow-raised relative flex h-full w-full flex-col rounded-3xl transition-[box-shadow,transform] duration-300 ease-[var(--ease-out)] [transform-style:preserve-3d] hover:-translate-y-1">
+        <div className="relative flex aspect-4/3 items-center justify-center overflow-hidden rounded-t-3xl bg-[radial-gradient(80%_70%_at_50%_35%,#ffffff,color-mix(in_oklab,var(--primary)_7%,var(--surface-muted)))] [transform-style:preserve-3d]">
+          {/* Soft floor light under the product, brighter on hover. */}
+          <div
+            aria-hidden
+            className="absolute inset-x-[18%] bottom-[12%] h-[14%] rounded-[50%] bg-[color-mix(in_oklab,var(--primary)_22%,transparent)] opacity-60 blur-xl transition-opacity duration-300 group-hover:opacity-100"
+          />
           {/* Photo lifted off the card plane by the tilt (D-014). */}
-          <TiltLayer depth={34} className="absolute inset-0 p-7">
+          <TiltLayer
+            depth={34}
+            className="absolute inset-0 p-7 transition-transform duration-300 ease-[var(--ease-out)] group-hover:scale-[1.04]"
+          >
             <ProductMedia
               image={product.image}
               pendingLabel={t("imagePending")}

@@ -24,7 +24,9 @@
     "headlineAmp": "&",
     "headlineService": "Service",
     "subcopy": "Laptops, desktops, printers and CCTV, sold, repaired and maintained under one roof in Rajkot.",
-    "chipCctv": "CCTV"
+    "chipCctv": "CCTV",
+    "chipRepair": "Repair",
+    "chipPrinter": "Printers"
   },
   "capabilities": {
     "heading": "What we do",
@@ -304,127 +306,6 @@
     "related": "Other services",
     "candidateBadge": "Being confirmed"
   },
-  "serviceCatalogue": {
-    "repair": {
-      "title": "Laptop & desktop repair",
-      "summary": "Diagnosis and repair for laptops and desktops that will not start, overheat, crash or run slowly.",
-      "problem": "A machine you rely on stops working, and you need to know whether it can be fixed and what it involves.",
-      "covers": [
-        "Fault diagnosis",
-        "Component replacement",
-        "Power and charging faults",
-        "Overheating and fan issues"
-      ],
-      "signs": [
-        "Will not power on or boot",
-        "Shuts down or overheats",
-        "Random crashes or blue screens",
-        "Unusual noises"
-      ]
-    },
-    "screen": {
-      "title": "Laptop screen replacement",
-      "summary": "Replacement of cracked, flickering or dead laptop displays.",
-      "problem": "A damaged screen makes a working laptop unusable.",
-      "covers": [
-        "Cracked or broken panels",
-        "Flickering or lines on screen",
-        "Backlight faults",
-        "Hinge and bezel issues"
-      ],
-      "signs": [
-        "Cracks or dark patches",
-        "Flicker or coloured lines",
-        "Screen stays black",
-        "Loose or stiff hinge"
-      ]
-    },
-    "upgrades": {
-      "title": "Hardware upgrades",
-      "summary": "Memory, storage and component upgrades, with compatibility checked first.",
-      "problem": "A computer that is too slow for the work it now has to do.",
-      "covers": [
-        "RAM upgrades",
-        "SSD upgrades and data move",
-        "Graphics and component swaps",
-        "Compatibility check before any purchase"
-      ],
-      "signs": [
-        "Slow start-up and loading",
-        "Running out of storage",
-        "Struggles with newer software",
-        "Games or design tools lag"
-      ]
-    },
-    "software": {
-      "title": "Software troubleshooting",
-      "summary": "Help with operating system problems, setup, updates and unwanted software.",
-      "problem": "The hardware is fine, but the software stops you working.",
-      "covers": [
-        "Operating system issues",
-        "Setup and configuration",
-        "Update problems",
-        "Removing unwanted software"
-      ],
-      "signs": [
-        "Errors at start-up",
-        "Programs will not open",
-        "Pop-ups or unexpected behaviour",
-        "Updates fail"
-      ]
-    },
-    "cctv": {
-      "title": "CCTV installation & repair",
-      "summary": "Camera installation, cabling, configuration and fault-finding for homes and shops.",
-      "problem": "You need to see what happens at your home or business, reliably.",
-      "covers": [
-        "Site assessment",
-        "Camera and recorder installation",
-        "Cabling and configuration",
-        "Fault-finding on existing systems"
-      ],
-      "signs": [
-        "New premises or no cameras yet",
-        "Cameras offline or blurry",
-        "Recorder not saving footage",
-        "Gaps in coverage"
-      ]
-    },
-    "printer": {
-      "title": "Printer repair & setup",
-      "summary": "Servicing, repair and setup for home and office printers.",
-      "problem": "A printer that jams, will not connect or prints badly holds up the whole office.",
-      "covers": [
-        "Paper jams and feed faults",
-        "Print quality problems",
-        "Network and Wi-Fi setup",
-        "Routine servicing"
-      ],
-      "signs": [
-        "Frequent jams",
-        "Streaks or faded prints",
-        "Will not connect",
-        "Error lights"
-      ]
-    },
-    "amc": {
-      "title": "Maintenance & AMC",
-      "summary": "Ongoing maintenance arrangements for businesses. Ask what a contract would cover.",
-      "problem": "Keeping several machines healthy without waiting for each one to fail.",
-      "covers": [
-        "Planned maintenance visits",
-        "Multiple devices under one arrangement",
-        "Ongoing technical support",
-        "Scope agreed with you"
-      ],
-      "signs": [
-        "Several computers in an office",
-        "Repeated small faults",
-        "No one in-house for IT",
-        "Equipment you cannot afford to lose"
-      ]
-    }
-  },
   "admin": {
     "metaTitle": "Admin",
     "signIn": {
@@ -446,8 +327,7 @@
       "services": "Services",
       "inquiries": "Inquiries",
       "requests": "Service requests",
-      "content": "Website content",
-      "soon": "Next"
+      "content": "Website content"
     },
     "signOut": "Sign out",
     "signedInAs": "Signed in as {email}",
@@ -459,10 +339,37 @@
       "published": "{count} published",
       "inquiries": "New inquiries",
       "requests": "New service requests",
-      "empty": "The database is empty. The website still shows the placeholder catalogue until products are added here.",
-      "nextTitle": "Coming next",
-      "nextBody": "Product editing, inquiry and service request inboxes, and website content controls are the next milestone. This shell proves sign-in and access control first."
+      "empty": "No products in the database yet. Add one under Products; the website catalogue shows exactly what is published here."
     },
     "checking": "Checking access..."
+  },
+  "inquiryForm": {
+    "productHeading": "Ask about this product",
+    "serviceHeading": "Request this service",
+    "productLead": "Send your question and the store will reply with current price and availability.",
+    "serviceLead": "Describe the problem and the store will contact you to arrange it.",
+    "name": "Your name",
+    "phone": "Phone number",
+    "phoneHint": "So the store can call or message you back.",
+    "email": "Email",
+    "optional": "optional",
+    "message": "Your question",
+    "messagePlaceholder": "For example: is this available in 16GB, and can you set it up for me?",
+    "description": "What is the problem?",
+    "descriptionPlaceholder": "For example: my laptop shuts down after ten minutes and the fan is loud.",
+    "privacy": "Your details are used only to reply to this request. You will not be added to any marketing list.",
+    "submit": "Send",
+    "sending": "Sending...",
+    "successTitle": "Thank you, your request has been sent",
+    "successBody": "The store has it and will contact you on the number you gave.",
+    "sendAnother": "Send another",
+    "errors": {
+      "name": "Enter your name.",
+      "phone": "Enter a phone number with at least 10 digits.",
+      "email": "Enter a valid email, or leave it empty.",
+      "message": "Tell us a little more (at least 10 characters).",
+      "failed": "Your request could not be sent. Please try again."
+    },
+    "whatsappAlt": "Or message on WhatsApp"
   }
 }

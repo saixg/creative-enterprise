@@ -1,5 +1,11 @@
 import type { Product, ProductImage } from "@/types/catalog";
 
+/** A seed row: the database assigns the id; copy fields start empty. */
+export type SeedProduct = Omit<
+  Product,
+  "id" | "summary" | "description" | "isFeatured"
+>;
+
 const changes =
   "Cropped, background removed and resized for the web by Creative Enterprise.";
 
@@ -89,7 +95,7 @@ const images: Record<string, ProductImage> = {
  * DO NOT set `isPlaceholder: false` or `priceIsVerified: true` on any row until
  * the owner confirms that specific product and that specific price.
  */
-export const placeholderProducts: Product[] = [
+export const placeholderProducts: SeedProduct[] = [
   {
     slug: "hp-victus-15",
     image: images["hp-victus-15"] ?? null,
@@ -167,6 +173,6 @@ export const placeholderProducts: Product[] = [
   },
 ];
 
-export function findPlaceholderProduct(slug: string): Product | undefined {
+export function findPlaceholderProduct(slug: string): SeedProduct | undefined {
   return placeholderProducts.find((product) => product.slug === slug);
 }

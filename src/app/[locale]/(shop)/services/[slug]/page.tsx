@@ -1,21 +1,24 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { CheckCircle2, CircleAlert, MessageCircle } from "lucide-react";
+import { CheckCircle2, CircleAlert } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { routing } from "@/i18n/routing";
-import { businessInfo } from "@/lib/business-info";
+import { whatsappLink } from "@/lib/business-info";
+import { getBusinessInfo } from "@/lib/site-content";
+import { submitServiceRequest } from "@/features/inquiries/actions";
+import { InquiryForm } from "@/components/inquiries/inquiry-form";
 import {
   getService,
   listRelatedServices,
   listServiceSlugs,
+  serviceCopy,
 } from "@/lib/services";
 import { CompactBand } from "@/components/storefront/storefront-sections";
 import { ServiceCard, serviceIcons } from "@/components/services/service-card";
 import { Tilt, TiltLayer } from "@/components/motion/tilt";
 import { RevealItem } from "@/components/motion/reveal";
-import { buttonClasses } from "@/components/ui/button";
 
 export async function generateStaticParams() {
   const slugs = await listServiceSlugs();
@@ -30,11 +33,8 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const service = await getService(slug);
   if (!service) return {};
-  const t = await getTranslations({
-    locale,
-    namespace: `serviceCatalogue.${service.key}`,
-  });
-  return { title: t("title"), description: t("summary") };
+  const copy = serviceCopy(service, locale);
+  return { title: copy.title, description: copy.summary };
 }
 
 /** Whole page depends on the slug; known slugs prerender. */
@@ -54,15 +54,15 @@ export default async function ServiceDetailPage({
   const service = await getService(slug);
   if (!service) notFound();
 
-  const [t, pages, related] = await Promise.all([
-    getTranslations(`serviceCatalogue.${service.key}`),
+  const [pages, form, related, info] = await Promise.all([
     getTranslations("servicePages"),
+    getTranslations("inquiryForm"),
     listRelatedServices(service),
+    getBusinessInfo(),
   ]);
-  const covers = t.raw("covers") as string[];
-  const signs = t.raw("signs") as string[];
-  const Icon = serviceIcons[service.key];
-  const whatsapp = businessInfo.whatsappNumberE164;
+  const copy = serviceCopy(service, locale);
+  const { covers, signs } = copy;
+  const Icon = serviceIcons[service.icon];
 
   return (
     <>
@@ -70,10 +70,10 @@ export default async function ServiceDetailPage({
         label={pages("breadcrumb")}
         crumbs={[
           { href: "/services", label: pages("title") },
-          { label: t("title") },
+          { label: copy.title },
         ]}
-        title={t("title")}
-        intro={t("summary")}
+        title={copy.title}
+        intro={copy.summary}
       />
 
       <div className="relative z-10 mx-auto -mt-16 grid w-full max-w-7xl gap-10 px-4 pb-16 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:px-8">
@@ -119,9 +119,11 @@ export default async function ServiceDetailPage({
                 </TiltLayer>
               </>
             )}
-            <span className="bg-warm/15 text-warm absolute top-4 left-4 rounded-full px-3 py-1 text-xs font-semibold">
-              {pages("candidateBadge")}
-            </span>
+            {service.isCandidate && (
+              <span className="bg-warm/15 text-warm absolute top-4 left-4 rounded-full px-3 py-1 text-xs font-semibold">
+                {pages("candidateBadge")}
+              </span>
+            )}
           </div>
         </Tilt>
 
@@ -131,7 +133,7 @@ export default async function ServiceDetailPage({
               {pages("problem")}
             </h2>
             <p className="mt-2 text-xl leading-relaxed font-medium text-pretty">
-              {t("problem")}
+              {copy.problem}
             </p>
           </RevealItem>
 
@@ -176,39 +178,19 @@ export default async function ServiceDetailPage({
                 className="absolute inset-0 bg-[radial-gradient(60%_90%_at_90%_10%,color-mix(in_oklab,var(--accent)_30%,transparent),transparent_70%)]"
               />
               <div className="relative">
-                <h2 className="text-xl font-bold">{pages("requestHeading")}</h2>
-                {whatsapp ? (
-                  <a
-                    href={`https://wa.me/${whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(t("title"))}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={buttonClasses({ size: "lg", className: "mt-5" })}
-                  >
-                    <MessageCircle aria-hidden className="size-4" />
-                    {pages("primaryCta")}
-                  </a>
-                ) : (
-                  <>
-                    <button
-                      type="button"
-                      disabled
-                      aria-describedby="service-request-unavailable"
-                      className={buttonClasses({
-                        size: "lg",
-                        className: "mt-5",
-                      })}
-                    >
-                      <MessageCircle aria-hidden className="size-4" />
-                      {pages("primaryCta")}
-                    </button>
-                    <p
-                      id="service-request-unavailable"
-                      className="text-warm mt-3 text-sm"
-                    >
-                      {pages("requestUnavailable")}
-                    </p>
-                  </>
-                )}
+                <h2 className="text-xl font-bold">{form("serviceHeading")}</h2>
+                <p className="text-muted mt-1 mb-5 text-sm text-pretty">
+                  {form("serviceLead")}
+                </p>
+                <InquiryForm
+                  kind="service"
+                  action={submitServiceRequest.bind(null, service.id)}
+                  subject={copy.title}
+                  whatsappHref={whatsappLink(
+                    info.whatsappNumberE164,
+                    copy.title,
+                  )}
+                />
               </div>
             </div>
           </RevealItem>

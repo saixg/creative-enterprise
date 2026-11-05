@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Toaster } from "sonner";
 
 /**
  * Admin area root: inside the same application, NOT a separate app
@@ -31,6 +32,7 @@ export default async function AdminRootLayout({
       className="bg-background-subtle text-foreground flex min-h-full flex-1 flex-col"
     >
       {children}
+      <Toaster position="bottom-right" richColors closeButton />
     </div>
   );
 }

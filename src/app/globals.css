@@ -169,6 +169,12 @@
     color-scheme: light;
   }
 
+  /* Lenis supplies the smoothing; native smooth scrolling on top of it
+     double-animates programmatic and anchor scrolls. */
+  html.lenis {
+    scroll-behavior: auto;
+  }
+
   html:has([data-page-theme="app"]) {
     background-color: var(--theme-app-bg);
     color-scheme: dark;
@@ -245,6 +251,91 @@
       0 8px 24px -12px color-mix(in oklab, var(--primary) 25%, transparent);
   }
 
+  /*
+   * Glass tile: the floating product panels of reference 02, rebuilt as a
+   * layered material rather than one translucent box. Web approximation of
+   * frosted glass (backdrop-filter + layered borders + highlight); there is
+   * no official web "liquid glass" (D-020).
+   *   - body: a light-to-clear gradient over a strong blur
+   *   - ::before: the specular highlight along the upper-left edge
+   *   - ::after: an inner hairline, so the edge reads as thickness
+   *   - a cool bloom beneath, which lifts it off the lavender field
+   */
+  .glass-tile {
+    position: relative;
+    isolation: isolate;
+    background: linear-gradient(
+      150deg,
+      color-mix(in oklab, white 72%, transparent),
+      color-mix(in oklab, white 22%, transparent) 60%,
+      color-mix(in oklab, var(--accent) 10%, transparent)
+    );
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    backdrop-filter: blur(22px) saturate(170%);
+    border: 1px solid color-mix(in oklab, white 70%, transparent);
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklab, white 85%, transparent),
+      inset 0 -10px 24px -18px
+        color-mix(in oklab, var(--primary) 45%, transparent),
+      0 28px 60px -28px color-mix(in oklab, var(--primary) 60%, transparent),
+      0 10px 24px -14px
+        color-mix(in oklab, var(--primary-deep) 30%, transparent);
+  }
+
+  .glass-tile::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(
+      120% 60% at 12% 0%,
+      color-mix(in oklab, white 70%, transparent),
+      transparent 55%
+    );
+    pointer-events: none;
+  }
+
+  .glass-tile::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border-radius: inherit;
+    border: 1px solid color-mix(in oklab, white 35%, transparent);
+    pointer-events: none;
+  }
+
+  /* Dark glass for the storefront band (reference 01's category tiles). */
+  .glass-dark {
+    position: relative;
+    isolation: isolate;
+    background: linear-gradient(
+      160deg,
+      color-mix(in oklab, white 10%, transparent),
+      color-mix(in oklab, white 3%, transparent) 55%
+    );
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid color-mix(in oklab, white 12%, transparent);
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklab, white 16%, transparent),
+      0 24px 60px -30px rgb(0 0 0 / 0.8);
+  }
+
+  /*
+   * Cursor spotlight: a soft light that follows the pointer across a card
+   * (--spot-x / --spot-y are set by <Spotlight>). Pure paint, no layout.
+   */
+  .spotlight {
+    background: radial-gradient(
+      420px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      color-mix(in oklab, var(--accent) 22%, transparent),
+      transparent 60%
+    );
+    opacity: var(--spot-o, 0);
+    transition: opacity var(--motion-300) var(--ease-out);
+  }
+
   /* Primary CTA — gradient fill with the blue bloom from the reference. */
   .btn-gradient {
     background: linear-gradient(
@@ -256,6 +347,99 @@
     box-shadow:
       inset 0 1px 0 color-mix(in oklab, white 25%, transparent),
       var(--glow-primary);
+  }
+}
+
+/*
+ * Motion tokens (vectorlab motion skill): chrome uses 100-300ms, ease-out to
+ * enter, ease-in to exit. The two keyframes below are the documented optical
+ * exception: the hero scene's slow float and light drift, which are scenery,
+ * not chrome, and stop entirely under reduced motion.
+ */
+:root {
+  --motion-100: 100ms;
+  --motion-150: 150ms;
+  --motion-200: 200ms;
+  --motion-300: 300ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(3%, -4%, 0) scale(1.08);
+  }
+}
+
+@keyframes sheen {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(220%) skewX(-18deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-float {
+    animation: float-y 7s ease-in-out infinite;
+    animation-delay: var(--float-delay, 0s);
+  }
+
+  .animate-drift {
+    animation: drift 18s ease-in-out infinite;
+    animation-delay: var(--drift-delay, 0s);
+  }
+
+  /* One pass of light across a surface when it is hovered. */
+  .sheen::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 40%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, white 35%, transparent),
+      transparent
+    );
+    transform: translateX(-120%) skewX(-18deg);
+    pointer-events: none;
+  }
+
+  .sheen:hover::after {
+    animation: sheen 900ms var(--ease-out) 1;
+  }
+}
+
+/* Users who ask for less transparency get solid surfaces with the same edges. */
+@media (prefers-reduced-transparency: reduce) {
+  .glass,
+  .glass-panel,
+  .glass-tile {
+    background: var(--surface);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .glass-dark {
+    background: var(--surface);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 }
 

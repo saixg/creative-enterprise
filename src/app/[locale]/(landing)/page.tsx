@@ -10,7 +10,7 @@ import { HeroCards } from "@/components/hero/hero-cards";
 import { HeroLocal } from "@/components/hero/hero-local";
 import { ServiceStrip } from "@/components/hero/service-strip";
 import { FeaturedBand } from "@/components/marketing/featured-band";
-import { CategoryTiles } from "@/components/marketing/category-tiles";
+import { CategoryRail } from "@/components/storefront/storefront-sections";
 import { NewArrivals } from "@/components/marketing/new-arrivals";
 import {
   BrandStrip,
@@ -42,20 +42,24 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       {/* ---- Light half: brand and identity ---- */}
       {/* Hero does one job. What reference 02 packed around it follows
           directly below, each with room of its own. */}
-      <Hero />
-      <ServiceStrip />
-      <section className="mx-auto w-full max-w-7xl px-4 pt-16 sm:px-6 lg:px-8">
-        <h2 className="sr-only">Products and services</h2>
-        <HeroCards />
-      </section>
-      <HeroLocal />
+      {/* One continuous lit field, so every glass surface in the light half
+          has colour behind it to refract (D-020). */}
+      <div className="relative isolate bg-[linear-gradient(180deg,var(--background)_0%,#eef1ff_18%,#f1f3ff_62%,var(--background)_100%)]">
+        <Hero />
+        <ServiceStrip />
+        <section className="mx-auto w-full max-w-7xl px-4 pt-12 sm:px-6 lg:px-8">
+          <h2 className="sr-only">Products and services</h2>
+          <HeroCards />
+        </section>
+        <HeroLocal />
+      </div>
 
       <TransitionBand />
 
       {/* ---- Dark half: products, promotions and services ---- */}
       <ThemeSection theme="app" aria-label="Products and services">
         <FeaturedBand />
-        <CategoryTiles />
+        <CategoryRail overlap={false} />
 
         <div id="new-arrivals" className="scroll-mt-24">
           <NewArrivals locale={locale as Locale} />

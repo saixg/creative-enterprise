@@ -16,6 +16,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { Tilt, TiltLayer } from "@/components/motion/tilt";
+import { Spotlight } from "@/components/motion/spotlight";
 
 /**
  * Storefront sections for the inner platform (reference 01, D-016).
@@ -124,19 +125,40 @@ export async function FeaturedBand() {
 
         {/* Laptops on the lit platform, cut from reference 01 (interim). The
             mask dissolves the crop's edges into the band. */}
-        <div className="relative">
-          <Image
-            src="/images/storefront/band-laptops.webp"
-            alt=""
-            width={1292}
-            height={652}
-            priority
-            sizes="(min-width: 1024px) 640px, 92vw"
-            className="h-auto w-full [mask-image:radial-gradient(58%_62%_at_52%_52%,black_45%,transparent_92%)]"
-          />
-        </div>
+        <LitPlatform priority />
       </div>
     </BandShell>
+  );
+}
+
+/**
+ * Reference 01's product moment: the laptops floating over a lit platform.
+ * The platform's light ring and the slow float are scenery (static under
+ * reduced motion). Image cut from reference 01, interim (D-016).
+ */
+export function LitPlatform({ priority = false }: { priority?: boolean }) {
+  return (
+    <div className="relative">
+      <div
+        aria-hidden
+        className="absolute inset-x-[12%] bottom-[6%] h-[22%] rounded-[50%] bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--accent)_55%,transparent),transparent)] blur-xl"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-x-[16%] bottom-[10%] h-[13%] rounded-[50%] border border-[color-mix(in_oklab,var(--accent-soft)_70%,transparent)] shadow-[0_0_40px_color-mix(in_oklab,var(--accent-soft)_45%,transparent),inset_0_0_24px_color-mix(in_oklab,var(--accent-soft)_35%,transparent)]"
+      />
+      <div className="animate-float relative">
+        <Image
+          src="/images/storefront/band-laptops.webp"
+          alt=""
+          width={1292}
+          height={652}
+          priority={priority}
+          sizes="(min-width: 1024px) 640px, 92vw"
+          className="h-auto w-full [mask-image:radial-gradient(58%_62%_at_52%_52%,black_45%,transparent_92%)]"
+        />
+      </div>
+    </div>
   );
 }
 
@@ -224,54 +246,68 @@ const rail = [
  * Category rail across the band's lower seam (reference 01). Services sits in
  * the same row at the same size: equal pillars (doc 01 §2).
  */
-export async function CategoryRail({ current }: { current?: string }) {
+export async function CategoryRail({
+  current,
+  overlap = true,
+}: {
+  current?: string;
+  /** Pull the rail up across the band's lower edge, as in reference 01. */
+  overlap?: boolean;
+}) {
   const t = await getTranslations("products");
 
   return (
-    <div className="relative z-10 mx-auto -mt-28 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div
+      className={cn(
+        "relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8",
+        overlap ? "-mt-28" : "py-10",
+      )}
+    >
       <h2 className="sr-only">{t("categoriesHeading")}</h2>
       <ul className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0 lg:grid-cols-5">
         {rail.map(({ key, href, src }) => (
           <li key={key} className="w-[62%] shrink-0 snap-start sm:w-auto">
             <Tilt className="h-full rounded-2xl" max={7}>
-              <Link
-                href={href}
-                data-theme="app"
-                aria-current={current === key ? "page" : undefined}
-                className={cn(
-                  "group text-foreground relative flex h-28 overflow-hidden rounded-2xl border p-5 transition-colors [transform-style:preserve-3d]",
-                  "bg-[linear-gradient(140deg,color-mix(in_oklab,var(--surface-muted)_92%,transparent),color-mix(in_oklab,var(--surface)_96%,transparent))]",
-                  current === key
-                    ? "border-accent"
-                    : "border-border hover:border-border-strong",
-                )}
-              >
-                <span className="relative z-10 self-center text-lg font-semibold">
-                  {key === "services"
-                    ? t("categories.services")
-                    : t(`categories.${key}`)}
-                </span>
-                <TiltLayer
-                  depth={28}
-                  className="absolute inset-y-2 right-2 w-[52%]"
+              <Spotlight className="h-full rounded-2xl">
+                <Link
+                  href={href}
+                  data-theme="app"
+                  aria-current={current === key ? "page" : undefined}
+                  className={cn(
+                    "group glass-dark text-foreground relative flex h-28 overflow-hidden rounded-2xl p-5 transition-[border-color] duration-200 [transform-style:preserve-3d]",
+                    "bg-[linear-gradient(140deg,color-mix(in_oklab,var(--surface-muted)_88%,transparent),color-mix(in_oklab,var(--theme-app-bg)_70%,transparent))]",
+                    current === key
+                      ? "!border-accent"
+                      : "hover:!border-white/25",
+                  )}
                 >
-                  <span className="relative block h-full w-full">
-                    <Image
-                      src={src}
-                      alt=""
-                      fill
-                      sizes="140px"
-                      className="object-contain object-right"
-                    />
+                  <span className="relative z-10 self-center text-lg font-semibold">
+                    {key === "services"
+                      ? t("categories.services")
+                      : t(`categories.${key}`)}
                   </span>
-                </TiltLayer>
-                <span
-                  aria-hidden
-                  className="bg-surface-inverse/10 text-foreground absolute right-3 bottom-3 z-10 inline-flex size-7 items-center justify-center rounded-full backdrop-blur transition-transform group-hover:translate-x-0.5"
-                >
-                  <ArrowRight className="size-3.5" />
-                </span>
-              </Link>
+                  <TiltLayer
+                    depth={28}
+                    className="absolute inset-y-2 right-2 w-[52%]"
+                  >
+                    <span className="relative block h-full w-full">
+                      <Image
+                        src={src}
+                        alt=""
+                        fill
+                        sizes="140px"
+                        className="object-contain object-right"
+                      />
+                    </span>
+                  </TiltLayer>
+                  <span
+                    aria-hidden
+                    className="bg-surface-inverse/10 text-foreground absolute right-3 bottom-3 z-10 inline-flex size-7 items-center justify-center rounded-full backdrop-blur transition-transform group-hover:translate-x-0.5"
+                  >
+                    <ArrowRight className="size-3.5" />
+                  </span>
+                </Link>
+              </Spotlight>
             </Tilt>
           </li>
         ))}

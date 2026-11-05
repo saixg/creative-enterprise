@@ -1,49 +1,63 @@
+import "server-only";
+
+import { cacheLife, cacheTag } from "next/cache";
+
 import type { CategorySlug, Product } from "@/types/catalog";
+import { CACHE_TAGS } from "@/lib/cache-tags";
+import { createPublicClient } from "@/lib/supabase/public";
 import {
-  findPlaceholderProduct,
-  placeholderProducts,
-} from "../../supabase/seed/placeholder-products";
+  PRODUCT_SELECT,
+  toProduct,
+  type ProductQueryRow,
+} from "@/lib/catalog-map";
+
+export { categorySlugs, isCategorySlug } from "@/lib/catalog-map";
 
 /**
- * Catalogue data access — the single seam between pages and the data source.
+ * Catalogue data access: the single seam between pages and the database.
  *
- * Today it returns placeholder seed records (docs/DECISIONS.md D-003). At the
- * backend milestone these functions query Supabase instead, and no page needs
- * to change. Pages must import from here, never from the seed file directly.
+ * Reads go through the cookie-less public client, so RLS returns PUBLISHED
+ * products only. Results are cached under the `catalogue` tag and the pages
+ * stay prerendered; admin saves call `updateTag(CACHE_TAGS.catalogue)` so a
+ * publish shows on the website immediately (docs/DECISIONS.md D-019).
+ *
+ * A failed read throws rather than returning an empty list: an outage must
+ * never masquerade as "we have no products".
  */
+async function fetchPublishedProducts(): Promise<Product[]> {
+  "use cache";
+  cacheTag(CACHE_TAGS.catalogue);
+  cacheLife("hours");
+
+  const { data, error } = await createPublicClient()
+    .from("products")
+    .select(PRODUCT_SELECT)
+    .eq("status", "published")
+    .order("is_featured", { ascending: false })
+    .order("published_at", { ascending: false });
+
+  if (error) throw new Error(`Catalogue read failed: ${error.message}`);
+  return (data as unknown as ProductQueryRow[]).flatMap((row) => {
+    const product = toProduct(row);
+    return product ? [product] : [];
+  });
+}
 
 export async function listProducts(): Promise<Product[]> {
-  return placeholderProducts;
+  return fetchPublishedProducts();
 }
 
 export async function getProduct(slug: string): Promise<Product | null> {
-  return findPlaceholderProduct(slug) ?? null;
+  return (await listProducts()).find((p) => p.slug === slug) ?? null;
 }
 
 export async function listProductSlugs(): Promise<string[]> {
-  return placeholderProducts.map((product) => product.slug);
+  return (await listProducts()).map((product) => product.slug);
 }
 
-/** True while the catalogue is still unverified placeholder content. */
+/** True while any published product is still unverified placeholder content. */
 export async function catalogueIsPlaceholder(): Promise<boolean> {
-  const products = await listProducts();
-  return products.some((product) => product.isPlaceholder);
-}
-
-/**
- * Product categories, in display order. The set is fixed by the data model
- * (`CategorySlug`); a category can exist with no products yet, and its page
- * then shows an honest empty state rather than being hidden (D-014).
- */
-export const categorySlugs = [
-  "laptops",
-  "desktops",
-  "components",
-  "accessories",
-] as const satisfies readonly CategorySlug[];
-
-export function isCategorySlug(value: string): value is CategorySlug {
-  return (categorySlugs as readonly string[]).includes(value);
+  return (await listProducts()).some((product) => product.isPlaceholder);
 }
 
 export async function listProductsByCategory(

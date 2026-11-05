@@ -3,7 +3,6 @@ import { getTranslations } from "next-intl/server";
 
 import { Link } from "@/i18n/navigation";
 import { businessInfo } from "@/lib/business-info";
-import { getProduct } from "@/lib/catalog";
 import { HeroBackdrop } from "@/components/hero/hero-backdrop";
 import { HeroStage, type StageChip } from "@/components/hero/hero-stage";
 import { HeroReveal } from "@/components/marketing/hero-reveal";
@@ -18,19 +17,20 @@ import { HeroReveal } from "@/components/marketing/hero-reveal";
  * heavy italic.
  */
 export async function Hero() {
-  const [t, products, asus] = await Promise.all([
+  const [t, products] = await Promise.all([
     getTranslations("hero"),
     getTranslations("products"),
-    getProduct("asus-tuf-gaming-a15"),
   ]);
 
-  // The laptop chip uses a real product photo (D-015); the other two use the
-  // interim reference renders until product photography is supplied.
+  // Five tiles in reference 02's arrangement, all interim renders cut from
+  // the reference (D-013) until product photography is supplied. They are
+  // category illustrations, not catalogue items, so no product claim rides
+  // on them; the catalogue itself uses the credited photos (D-015).
   const chips: StageChip[] = [
     {
       key: "laptops",
-      src: asus?.image?.src ?? "/images/hero/laptop.png",
-      alt: asus?.image?.alt ?? "Laptop",
+      src: "/images/hero/laptop.png",
+      alt: "Laptop",
       label: products("categories.laptops"),
     },
     {
@@ -45,6 +45,18 @@ export async function Hero() {
       alt: "CCTV dome camera",
       label: t("chipCctv"),
     },
+    {
+      key: "repair",
+      src: "/images/hero/tools.png",
+      alt: "Repair tools",
+      label: t("chipRepair"),
+    },
+    {
+      key: "printer",
+      src: "/images/hero/printer.png",
+      alt: "Office printer",
+      label: t("chipPrinter"),
+    },
   ];
 
   return (
@@ -54,7 +66,7 @@ export async function Hero() {
       <div className="mx-auto grid min-h-[calc(100dvh-6rem)] w-full max-w-7xl items-center gap-12 px-4 pt-10 pb-16 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:px-8 lg:pt-6 lg:pb-20">
         <HeroReveal>
           {/* 1. Eyebrow */}
-          <p className="border-border bg-surface inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border px-4 py-2 text-sm shadow-[0_8px_24px_-16px_color-mix(in_oklab,var(--primary-deep)_40%,transparent)]">
+          <p className="glass inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full px-4 py-2 text-sm">
             <span className="inline-flex items-center gap-2 font-semibold">
               <ShieldCheck aria-hidden className="text-primary size-4" />
               {t("badge")}
@@ -109,14 +121,14 @@ export async function Hero() {
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
               href="/products"
-              className="btn-gradient text-primary-foreground inline-flex h-13 items-center gap-2.5 rounded-full px-7 text-base font-semibold transition-transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+              className="btn-gradient sheen text-primary-foreground relative inline-flex h-13 items-center gap-2.5 overflow-hidden rounded-full px-7 text-base font-semibold transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
             >
               {t("primaryCta")}
               <ArrowRight aria-hidden className="size-4" />
             </Link>
             <Link
               href="/services"
-              className="border-border-strong bg-surface text-foreground hover:border-primary inline-flex h-13 items-center gap-2.5 rounded-full border px-7 text-base font-semibold transition-colors active:scale-[0.98]"
+              className="glass text-foreground hover:border-primary/40 inline-flex h-13 items-center gap-2.5 rounded-full px-7 text-base font-semibold transition-[transform,border-color] duration-200 hover:-translate-y-0.5 active:scale-[0.98]"
             >
               <Wrench aria-hidden className="size-4" />
               {t("secondaryCta")}

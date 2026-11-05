@@ -108,24 +108,30 @@ export type Database = {
           alt_gu: string | null;
           created_at: string;
           credit: Json | null;
+          height: number | null;
           id: string;
           is_primary: boolean;
+          is_representative: boolean;
           kind: string;
           product_id: string;
           sort_order: number;
           storage_path: string;
+          width: number | null;
         };
         Insert: {
           alt_en?: string | null;
           alt_gu?: string | null;
           created_at?: string;
           credit?: Json | null;
+          height?: number | null;
           id?: string;
           is_primary?: boolean;
+          is_representative?: boolean;
           kind?: string;
           product_id: string;
           sort_order?: number;
           storage_path: string;
+          width?: number | null;
         };
         Update: Partial<
           Database["public"]["Tables"]["product_media"]["Insert"]
@@ -263,27 +269,51 @@ export type Database = {
       };
       services: {
         Row: {
+          covers_en: string[];
+          covers_gu: string[];
           created_at: string;
+          icon: string;
           id: string;
+          image_is_photo: boolean;
+          image_path: string | null;
           is_candidate: boolean;
           key: string;
           name_en: string;
           name_gu: string | null;
+          problem_en: string | null;
+          problem_gu: string | null;
+          published_at: string | null;
+          signs_en: string[];
+          signs_gu: string[];
           slug: string;
           sort_order: number;
           status: Database["public"]["Enums"]["publish_status"];
+          summary_en: string | null;
+          summary_gu: string | null;
           updated_at: string;
         };
         Insert: {
+          covers_en?: string[];
+          covers_gu?: string[];
           created_at?: string;
+          icon?: string;
           id?: string;
+          image_is_photo?: boolean;
+          image_path?: string | null;
           is_candidate?: boolean;
           key: string;
           name_en: string;
           name_gu?: string | null;
+          problem_en?: string | null;
+          problem_gu?: string | null;
+          published_at?: string | null;
+          signs_en?: string[];
+          signs_gu?: string[];
           slug: string;
           sort_order?: number;
           status?: Database["public"]["Enums"]["publish_status"];
+          summary_en?: string | null;
+          summary_gu?: string | null;
           updated_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["services"]["Insert"]>;

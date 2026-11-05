@@ -7,17 +7,20 @@ import { cn } from "@/lib/utils";
 import { ParallaxStage, useParallax } from "@/components/motion/tilt";
 
 /**
- * Hero stage: the owner on a deep-blue brand plate, with three product chips.
+ * Hero stage, rebuilt toward reference 02 (D-020): the owner inside a
+ * luminous halo, surrounded by floating frosted-glass product tiles.
  *
- * Redesign notes (design audit, 2026-11-04):
- * - The previous stage floated a soft cut-out among five small glass boxes on
- *   a lavender field. It read as a collage of blurry fragments. The plate now
- *   gives the owner a deliberate frame, and its colour hides the soft edge of
- *   the low-resolution cut-out (D-012).
- * - His head breaks the plate's top edge. That one overlap is what gives the
- *   composition depth; everything else stays clean.
- * - Three labelled chips replace five unlabelled thumbnails: fewer, larger,
- *   and each says what it is.
+ * What changed from the D-013 attempt the owner rejected: that one pasted
+ * soft, low-resolution fragments straight onto the field. Here each product
+ * sits on a real glass material (globals.css .glass-tile) at a size its
+ * source image can hold sharply, and the halo, not a hard plate, carries the
+ * owner's soft cut-out edge.
+ *
+ * Motion, each with a reason:
+ *   - staggered entrance (300ms ease-out): reveals the cluster in reading order
+ *   - pointer parallax, nearer tiles travel further: depth
+ *   - slow float on each tile, offset phases: the reference's weightlessness.
+ *     Scenery only; it stops under prefers-reduced-motion.
  */
 
 export type StageChip = {
@@ -27,50 +30,68 @@ export type StageChip = {
   label: string;
 };
 
-const chipLayout = [
+type Slot = {
+  box: string;
+  depth: number;
+  float: string;
+  /** Hidden on small screens, where five tiles would crowd the owner. */
+  wide?: boolean;
+};
+
+const slots: Slot[] = [
+  { box: "left-[0%] top-[10%] w-[31%]", depth: 22, float: "-1s" },
+  { box: "right-[0%] top-[4%] w-[27%]", depth: 16, float: "-3.5s" },
+  { box: "right-[-6%] top-[35%] w-[20%]", depth: 26, float: "-5s", wide: true },
   {
-    box: "left-[-2%] top-[22%] w-[38%] lg:left-[-12%]",
-    depth: 18,
-    delay: 0.25,
-  },
-  {
-    box: "right-[-2%] top-[44%] w-[34%] lg:right-[-10%]",
+    box: "left-[-4%] top-[50%] w-[21%]",
     depth: 12,
-    delay: 0.35,
+    float: "-2.2s",
+    wide: true,
   },
-  { box: "left-[4%] bottom-[6%] w-[30%] lg:left-[-6%]", depth: 9, delay: 0.45 },
-] as const;
+  { box: "right-[2%] bottom-[3%] w-[26%]", depth: 18, float: "-6s" },
+];
 
-const ease = [0.22, 1, 0.36, 1] as const;
+const ease = [0.16, 1, 0.3, 1] as const;
 
-function Chip({ chip, index }: { chip: StageChip; index: number }) {
+function Tile({
+  chip,
+  slot,
+  index,
+}: {
+  chip: StageChip;
+  slot: Slot;
+  index: number;
+}) {
   const reduceMotion = useReducedMotion();
-  const layout = chipLayout[index] ?? chipLayout[0];
-  const { x, y } = useParallax(layout.depth);
+  const { x, y } = useParallax(slot.depth);
 
   return (
     <motion.figure
-      className={cn("absolute z-20", layout.box)}
-      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-      animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: layout.delay, ease }}
+      className={cn("absolute z-20", slot.box, slot.wide && "hidden sm:block")}
+      initial={reduceMotion ? false : { opacity: 0, scale: 0.94, y: 12 }}
+      animate={reduceMotion ? undefined : { opacity: 1, scale: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: 0.25 + index * 0.06, ease }}
     >
-      <motion.div
-        style={{ x, y }}
-        className="bg-surface border-border rounded-2xl border p-2.5 shadow-[0_24px_48px_-24px_color-mix(in_oklab,var(--primary-deep)_45%,transparent)]"
-      >
-        <div className="bg-surface-muted relative aspect-[4/3] overflow-hidden rounded-xl">
-          <Image
-            src={chip.src}
-            alt={chip.alt}
-            fill
-            sizes="(min-width: 1024px) 200px, 34vw"
-            className="object-contain p-2"
-          />
+      <motion.div style={{ x, y }}>
+        <div
+          className="animate-float"
+          style={{ ["--float-delay" as string]: slot.float }}
+        >
+          <div className="glass-tile rounded-[1.6rem] p-2.5 sm:p-3">
+            <div className="relative aspect-square">
+              <Image
+                src={chip.src}
+                alt={chip.alt}
+                fill
+                sizes="(min-width: 1024px) 180px, 28vw"
+                className="object-contain p-1 drop-shadow-[0_14px_16px_color-mix(in_oklab,var(--primary-deep)_35%,transparent)]"
+              />
+            </div>
+            <figcaption className="text-primary-deep mt-1 truncate px-1 text-center text-[0.7rem] font-semibold sm:text-xs">
+              {chip.label}
+            </figcaption>
+          </div>
         </div>
-        <figcaption className="text-foreground mt-2 px-1 text-[0.8rem] font-semibold sm:text-sm">
-          {chip.label}
-        </figcaption>
       </motion.div>
     </motion.figure>
   );
@@ -78,14 +99,14 @@ function Chip({ chip, index }: { chip: StageChip; index: number }) {
 
 function Owner({ alt }: { alt: string }) {
   const reduceMotion = useReducedMotion();
-  const { x, y } = useParallax(-5);
+  const { x, y } = useParallax(-6);
 
   return (
     <motion.div
-      className="absolute inset-x-0 bottom-0 z-10 mx-auto w-full"
-      initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+      className="absolute inset-x-[14%] bottom-0 z-10"
+      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
       animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: 0.1, ease }}
+      transition={{ duration: 0.3, delay: 0.1, ease }}
     >
       <motion.div style={{ x, y }}>
         <Image
@@ -94,10 +115,27 @@ function Owner({ alt }: { alt: string }) {
           width={866}
           height={896}
           priority
-          sizes="(min-width: 1024px) 420px, 72vw"
-          className="h-auto w-full"
+          sizes="(min-width: 1024px) 440px, 72vw"
+          className="h-auto w-full [mask-image:linear-gradient(to_bottom,black_82%,transparent)]"
         />
       </motion.div>
+    </motion.div>
+  );
+}
+
+function Halo() {
+  const { x, y } = useParallax(-3);
+  return (
+    <motion.div
+      aria-hidden
+      style={{ x, y }}
+      className="absolute inset-x-[10%] top-[12%] aspect-square rounded-full"
+    >
+      {/* Light disc */}
+      <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_42%,#ffffff_0%,#eaf0ff_38%,color-mix(in_oklab,var(--primary)_22%,#dfe7ff)_70%,transparent_72%)]" />
+      {/* Glass ring: the reference's glow framing (D-002, D-010). */}
+      <div className="absolute inset-[3%] rounded-full border border-white/80 shadow-[inset_0_0_40px_color-mix(in_oklab,white_70%,transparent),0_0_70px_-10px_color-mix(in_oklab,var(--primary)_45%,transparent)]" />
+      <div className="absolute inset-[9%] rounded-full border border-[color-mix(in_oklab,var(--primary)_18%,transparent)]" />
     </motion.div>
   );
 }
@@ -110,24 +148,11 @@ export function HeroStage({
   chips: StageChip[];
 }) {
   return (
-    <ParallaxStage className="relative mx-auto aspect-[5/6] w-full max-w-[34rem]">
-      {/* Brand plate, lower 80% of the stage, so the owner's head rises out
-          of it. */}
-      <div className="absolute inset-x-[8%] top-[34%] bottom-0 overflow-hidden rounded-[2.5rem] bg-[linear-gradient(160deg,var(--primary-deep-2),var(--primary-deep)_72%)]">
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-[radial-gradient(70%_55%_at_50%_28%,color-mix(in_oklab,var(--accent)_40%,transparent),transparent_72%)]"
-        />
-      </div>
-
-      {/* The figure is clipped to the plate's bottom corners, so his waist
-          ends inside the plate rather than in a hard horizontal cut. */}
-      <div className="absolute inset-x-[8%] top-0 bottom-0 overflow-hidden rounded-b-[2.5rem]">
-        <Owner alt={ownerAlt} />
-      </div>
-
-      {chips.slice(0, 3).map((chip, index) => (
-        <Chip key={chip.key} chip={chip} index={index} />
+    <ParallaxStage className="relative mx-auto aspect-[1/1.05] w-full max-w-[38rem]">
+      <Halo />
+      <Owner alt={ownerAlt} />
+      {chips.slice(0, slots.length).map((chip, index) => (
+        <Tile key={chip.key} chip={chip} slot={slots[index]!} index={index} />
       ))}
     </ParallaxStage>
   );

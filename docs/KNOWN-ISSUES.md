@@ -3,7 +3,7 @@
 Honest status, per `docs/project-brief/03-CLAUDE-WORKING-RULES.md` §8. Nothing here
 is hidden behind a "done".
 
-Last updated: 2026-11-04 (homepage reconstruction)
+Last updated: 2026-11-05 (admin, database-backed site, glass redesign)
 
 ## Blocking publication
 
@@ -223,3 +223,48 @@ Structure _was_ verified: cards sit inside an 1100px perspective with
   structure and geometry only. One look in a visible browser is needed.
 - **Interim imagery** reuses reference crops; the Software card has no image
   and shows its icon.
+
+## Admin and database-backed site (2026-11-05, D-019)
+
+### Blocking real use
+
+- **No admin account exists.** Nobody can sign in to `/admin` until the owner
+  follows `docs/ADMIN-PROVISIONING.md` (turn off sign-ups, create the user).
+  Step 3, granting admin, can be run by the agent on the owner's explicit
+  request once the user exists.
+- **The admin screens have never been used by a signed-in admin.** What was
+  verified: typecheck, lint, 33 unit tests, production build; signed-out
+  visitors are redirected to sign-in; RLS checks run as `anon` and as a
+  signed-in non-admin (all rolled back): visitors can submit but not read,
+  cannot set `status`, see only published rows and cannot list the media
+  bucket; a non-admin updates 0 rows and sees 0 inquiries. What was NOT
+  verified: saving, publishing, photo upload and the inboxes end to end with
+  a real admin session.
+
+### Verified end to end
+
+- A product inquiry submitted through the live form on the local site was
+  stored as `new`, linked to its product, then deleted (it was a test row
+  named "CLAUDE TEST - delete me").
+
+### Known limitations
+
+- **No rate limiting** on the public forms; honeypot and fill-time checks
+  only. Add one before launch if spam appears.
+- **Categories are fixed** (laptops, desktops, components, accessories).
+  Brands are created from the product editor; categories have no editor.
+- **No email or WhatsApp notification** when an inquiry arrives; the admin
+  sees it in the inbox. Notifications belong to the WhatsApp milestone.
+- `serviceCatalogue` copy moved from the message files to the database. The
+  seed keeps it in `supabase/seed/candidate-services.copy.json`.
+
+## Glass and motion redesign (2026-11-05, D-020)
+
+- **Motion not seen running.** The check pane was hidden, which pauses
+  animation frames. Layouts were checked with animations forced to their end
+  state at 1440px and 375px (no horizontal overflow); the float, parallax,
+  spotlight, entrance and Lenis scrolling need one look in a visible browser.
+- **Hero tiles are interim renders** cut from reference 02 (300px sources),
+  sized so they stay sharp. Real product photography is still wanted.
+- **Inner pages** (`/products`, `/services`, detail pages) got the shared
+  glass, card and platform upgrades but were not individually re-laid-out.
