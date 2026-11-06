@@ -526,3 +526,40 @@ documented exception (scenery, not chrome). All of it stops under
 runs in `/admin`.
 
 **New dependency:** `lenis@1.3.27` (pinned, released 2026-10-15).
+
+---
+
+## D-021 — Landing page: light only, no products, no owner photo, 3D hero
+
+**Date:** 2026-11-06
+**Status:** Implemented, seen rendering in a visible browser
+**Supersedes:** D-009 (light hero into dark catalogue), the hero parts of
+D-012, D-013 and D-020; **revises** D-014 (no WebGL)
+
+The owner asked for the landing page to carry no products or catalogue
+content, no owner photo and no product tiles, in the existing white and blue
+light theme, with premium, reactive, flowing 3D motion.
+
+**Page now:** the hero (unchanged copy and CTAs) beside a WebGL scene; one
+flowing ribbon of capability chips; two equal glass pillar panels (Products,
+Services) with no product imagery; the store strip; a closing call to action.
+The dark storefront half is gone from the homepage; the catalogue stays at
+`/products` and `/services`, where it is unchanged.
+
+**The 3D scene** (`src/components/hero3d`, three.js via React Three Fiber
+and drei): a frosted-glass torus knot refracting three orbiting light spheres
+in blue, white and a third ice-cyan tone. It leans toward the pointer,
+quickens when the pointer moves, and eases away as the hero scrolls off.
+D-014 ruled out WebGL because modelling products would misrepresent stock;
+this form is abstract, so that reason does not apply.
+
+**Guard rails:** code-split and loaded after the text (no effect on LCP); a
+still CSS orb for no-WebGL and reduced-motion visitors; render loop stops
+off-screen and in hidden tabs; a lighter scene on small or low-core
+devices; lighting built from shapes, so no HDR file is fetched.
+
+**New dependencies (pinned):** `three@0.186.1`, `@react-three/fiber@9.8.2`,
+`@react-three/drei@10.7.9`, `@types/three@0.186.0`.
+
+The products page still uses the four placeholder laptops (D-003); the owner
+photo remains available for an About page if wanted.

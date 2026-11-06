@@ -4,66 +4,25 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { businessInfo } from "@/lib/business-info";
 import { HeroBackdrop } from "@/components/hero/hero-backdrop";
-import { HeroStage, type StageChip } from "@/components/hero/hero-stage";
+import { HeroScene } from "@/components/hero3d/hero-scene";
 import { HeroReveal } from "@/components/marketing/hero-reveal";
 
 /**
- * Hero: one job, four text elements (design audit, 2026-11-04).
+ * Landing hero (D-021): the copy column and a reactive WebGL scene.
  *
- * The previous hero packed ~14 elements into one screen: capability tiles,
- * entry cards, landmark, tagline and store strip all competed with the
- * headline. Those now live in the sections directly below. What stays is the
- * brand's signature from reference 02: the owner, and "Sales & Service" in a
- * heavy italic.
+ * The owner's photo and the product tiles are gone at the owner's request;
+ * the right half is now the flowing glass form (components/hero3d). Four
+ * text elements, unchanged: eyebrow, headline, one sentence, two CTAs (one
+ * per pillar, so products and services stay equal).
  */
 export async function Hero() {
-  const [t, products] = await Promise.all([
-    getTranslations("hero"),
-    getTranslations("products"),
-  ]);
-
-  // Five tiles in reference 02's arrangement, all interim renders cut from
-  // the reference (D-013) until product photography is supplied. They are
-  // category illustrations, not catalogue items, so no product claim rides
-  // on them; the catalogue itself uses the credited photos (D-015).
-  const chips: StageChip[] = [
-    {
-      key: "laptops",
-      src: "/images/hero/laptop.png",
-      alt: "Laptop",
-      label: products("categories.laptops"),
-    },
-    {
-      key: "desktops",
-      src: "/images/hero/tower.png",
-      alt: "Gaming desktop",
-      label: products("categories.desktops"),
-    },
-    {
-      key: "cctv",
-      src: "/images/hero/cctv.png",
-      alt: "CCTV dome camera",
-      label: t("chipCctv"),
-    },
-    {
-      key: "repair",
-      src: "/images/hero/tools.png",
-      alt: "Repair tools",
-      label: t("chipRepair"),
-    },
-    {
-      key: "printer",
-      src: "/images/hero/printer.png",
-      alt: "Office printer",
-      label: t("chipPrinter"),
-    },
-  ];
+  const t = await getTranslations("hero");
 
   return (
     <section className="relative isolate overflow-hidden">
       <HeroBackdrop />
 
-      <div className="mx-auto grid min-h-[calc(100dvh-6rem)] w-full max-w-7xl items-center gap-12 px-4 pt-10 pb-16 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:px-8 lg:pt-6 lg:pb-20">
+      <div className="mx-auto grid min-h-[calc(100dvh-6rem)] w-full max-w-7xl items-center gap-12 px-4 pt-10 pb-16 sm:px-6 lg:grid-cols-[1.08fr_1fr] lg:gap-10 lg:px-8 lg:pt-6 lg:pb-20">
         <HeroReveal>
           {/* 1. Eyebrow */}
           <p className="glass inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full px-4 py-2 text-sm">
@@ -136,7 +95,7 @@ export async function Hero() {
           </div>
         </HeroReveal>
 
-        <HeroStage ownerAlt={t("portraitAlt")} chips={chips} />
+        <HeroScene className="pointer-events-none aspect-square w-full max-w-[40rem] justify-self-center lg:aspect-auto lg:h-[min(46rem,82dvh)] lg:max-w-none" />
       </div>
     </section>
   );

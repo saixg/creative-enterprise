@@ -385,6 +385,22 @@
   }
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Capability ribbon: the list is rendered twice, so -50% loops seamlessly. */
+@keyframes marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
 @keyframes sheen {
   0% {
     transform: translateX(-120%) skewX(-18deg);
@@ -398,6 +414,15 @@
   .animate-float {
     animation: float-y 7s ease-in-out infinite;
     animation-delay: var(--float-delay, 0s);
+  }
+
+  .animate-marquee {
+    animation: marquee 38s linear infinite;
+  }
+
+  .animate-marquee:hover,
+  .animate-marquee:focus-within {
+    animation-play-state: paused;
   }
 
   .animate-drift {

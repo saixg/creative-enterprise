@@ -268,3 +268,12 @@ Structure _was_ verified: cards sit inside an 1100px perspective with
   sized so they stay sharp. Real product photography is still wanted.
 - **Inner pages** (`/products`, `/services`, detail pages) got the shared
   glass, card and platform upgrades but were not individually re-laid-out.
+
+## Landing page 3D hero (2026-11-06, D-021)
+
+- **Seen rendering** in a visible browser at 1440px; layout checked at 375px
+  (no overflow). Not measured: frame rate on a low-end phone, and Lighthouse.
+- **Bundle:** three.js is a large dependency (size not measured), loaded lazily after the
+  hero text. The rest of the site does not load it.
+- **Dev console** shows two harmless messages from three.js (a THREE.Clock
+  deprecation inside drei, and GPU shader-precision warnings).
