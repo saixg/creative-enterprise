@@ -3,7 +3,7 @@
 A single integrated web platform for **Creative Enterprise**, a computer and
 electronics **sales and service** business in Rajkot, Gujarat.
 
-One application, two roles:
+One application
 
 - **customer** — the public visitor, who explores products and services and submits
   inquiries or service requests.
