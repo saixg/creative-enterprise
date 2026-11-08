@@ -1,4 +1,4 @@
-# CREATIVE ENTERPRISE creative enterprise
+# CREATIVE ENTERPRISE creative 
 
 A single integrated web platform for **Creative Enterprise**, a computer and
 electronics **sales and service** business in Rajkot, Gujarat.
