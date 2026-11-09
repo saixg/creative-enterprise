@@ -563,3 +563,43 @@ devices; lighting built from shapes, so no HDR file is fetched.
 
 The products page still uses the four placeholder laptops (D-003); the owner
 photo remains available for an About page if wanted.
+
+---
+
+## D-022 — Hero becomes a glass processor; review fixes
+
+**Date:** 2026-11-09
+**Status:** Implemented, seen rendering in a visible browser
+**Revises:** D-021 (hero scene)
+
+The owner asked to replace the abstract glass knot with something from the
+business's own domain, and to fix the high-severity findings of
+`docs/design/DESIGN-REVIEW-2026-11-09.md` and
+`docs/design/VISUAL-REVIEW-2026-11-09.md`.
+
+**Hero scene** (`src/components/hero3d/chip-scene.tsx`): a frosted-glass
+processor with a glowing die and metal pins floats over a circuit board;
+light pulses run along the traces into the chip like data. It is the inside
+of the machine the shop sells and repairs, without depicting a product.
+Review fixes inside it: lights are additive glow sprites (no flat discs, no
+post-processing dependency); the canvas fills the hero with faded edges (no
+hard clipping); the scene lifts and fades on scroll (no slicing); on phones
+it sits in the first screen below the CTAs.
+
+**Other fixes:** mobile menu portalled to `<body>` (it was clipped to the
+header); `/contact` built (general enquiry form, store details, honest note
+while numbers are missing); branded, localised 404; stale `/#brands`,
+`/#offers`, `/#new-arrivals` links removed or pointed at `/products`; Offers
+section moved to `/products`; product menu links go to real category pages;
+honesty labels use the `--warning` text token (amber was ~2.1:1 on white);
+"Being confirmed" photo badge has a solid backing; Gujarati headline no
+longer synthetically italic; service-card renders no longer cover titles;
+form inputs at 16px (no iOS zoom); landing header 80px.
+
+**About is removed from the navigation** until the owner supplies About
+content; inventing it is not allowed (doc 03 §3).
+
+**Still open from the reviews (need the owner):** real product photography
+(the mismatched representative photos are the largest remaining visual gap),
+`@react-three/postprocessing` if real bloom is wanted, and the medium/low
+findings listed in the two review files.
