@@ -193,6 +193,14 @@
     font-family: var(--font-gujarati);
   }
 
+  /* Noto Sans Gujarati has no italic; the browser would shear the letters
+     (synthetic oblique) and break the matras. Gujarati stays upright. */
+  :lang(gu) .italic,
+  :lang(gu) em,
+  :lang(gu) i {
+    font-style: normal;
+  }
+
   :focus-visible {
     outline: 2px solid var(--focus-ring);
     outline-offset: 2px;

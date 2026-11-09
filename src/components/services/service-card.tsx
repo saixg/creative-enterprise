@@ -61,7 +61,7 @@ export async function ServiceCard({
       <article
         className={cn(
           "group surface-card hover:shadow-raised relative flex h-full flex-col rounded-3xl transition-shadow [transform-style:preserve-3d]",
-          isLead ? "min-h-[26rem] overflow-hidden" : "min-h-[15rem]",
+          isLead ? "min-h-[26rem] overflow-hidden" : "min-h-[17rem]",
         )}
       >
         {/* Media */}
@@ -82,7 +82,7 @@ export async function ServiceCard({
         ) : (
           <TiltLayer
             depth={30}
-            className="pointer-events-none absolute top-5 right-5 size-24"
+            className="pointer-events-none absolute top-5 right-5 size-20"
           >
             {service.image ? (
               <span className="relative block size-full">
@@ -105,7 +105,10 @@ export async function ServiceCard({
         <div
           data-theme={isLead ? "app" : undefined}
           className={cn(
+            // Non-lead cards reserve the top band for the floating render, so
+            // it can never sit on the title (visual review S1).
             "relative mt-auto flex flex-col gap-2 p-6",
+            !isLead && "pt-28",
             isLead && "text-foreground p-8",
           )}
         >

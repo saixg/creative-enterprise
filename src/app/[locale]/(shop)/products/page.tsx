@@ -7,7 +7,10 @@ import type { Locale } from "@/i18n/routing";
 import { categorySlugs, listProducts } from "@/lib/catalog";
 import { CatalogueBrowser } from "@/components/products/catalogue-browser";
 import { toCatalogueItems } from "@/components/products/catalogue-items";
-import { BrandStrip } from "@/components/marketing/offers-and-brands";
+import {
+  BrandStrip,
+  OffersSection,
+} from "@/components/marketing/offers-and-brands";
 import {
   CategoryRail,
   FeaturedBand,
@@ -66,7 +69,7 @@ export default async function ProductsPage({
           </Link>
         </div>
 
-        <p className="border-warm/40 bg-warm/10 text-warm mt-6 rounded-2xl border px-4 py-3 text-sm">
+        <p className="border-warm/40 bg-warm/10 text-warning mt-6 rounded-2xl border px-4 py-3 text-sm">
           {t("placeholderNotice")}
         </p>
 
@@ -78,6 +81,9 @@ export default async function ProductsPage({
         </div>
       </section>
 
+      <div id="offers" className="scroll-mt-24">
+        <OffersSection />
+      </div>
       <div id="brands" className="scroll-mt-24">
         <BrandStrip />
       </div>
