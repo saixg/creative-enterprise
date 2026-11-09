@@ -11,16 +11,10 @@ import {
 import { cn } from "@/lib/utils";
 
 const productLinks = [
-  { key: "categories.laptops", href: "/products" },
-  { key: "categories.desktops", href: "/products" },
-  { key: "categories.components", href: "/products" },
-  { key: "categories.accessories", href: "/products" },
-] as const;
-
-const productExtras = [
-  { key: "newArrivals", href: "/#new-arrivals" },
-  { key: "brands", href: "/#brands" },
-  { key: "offers", href: "/#offers" },
+  { key: "categories.laptops", href: "/products/category/laptops" },
+  { key: "categories.desktops", href: "/products/category/desktops" },
+  { key: "categories.components", href: "/products/category/components" },
+  { key: "categories.accessories", href: "/products/category/accessories" },
 ] as const;
 
 const serviceLinks = ["repair", "upgrades", "cctv", "printer", "amc"] as const;
@@ -37,11 +31,11 @@ const itemBase =
   "inline-flex h-10 items-center rounded-full px-4 text-[0.95rem] font-semibold transition-colors";
 
 /**
- * Desktop navigation — Home, Products ▾, Services ▾, About, as in reference 02.
+ * Desktop navigation: Home, Products ▾, Services ▾, Contact.
  *
- * Brands, Offers and New Arrivals (D-011) live inside the Products menu rather
- * than as top-level items: the reference keeps the bar to five entries, and
- * nine items plus utilities would crowd it.
+ * About is left out until the owner supplies About content (D-022): a nav
+ * item that leads to a 404 is worse than none. The landing-page anchors for
+ * Brands, Offers and New Arrivals went with those sections (D-021).
  *
  * "Solutions" from the reference is still omitted — no brief defines it, and a
  * nav item with no destination is worse than none.
@@ -87,11 +81,6 @@ export function DesktopNav() {
           </Link>
         ))}
         <div className="border-border my-1.5 border-t" />
-        {productExtras.map((item) => (
-          <Link key={item.key} href={item.href} className={menuItemClasses}>
-            {nav(item.key)}
-          </Link>
-        ))}
         <Link href="/products" className={cn(menuItemClasses, "text-primary")}>
           {products("viewAll")}
           <ArrowRight aria-hidden className="size-4" />
@@ -121,16 +110,16 @@ export function DesktopNav() {
       </DisclosureMenu>
 
       <Link
-        href="/about"
-        aria-current={isActive("/about") ? "page" : undefined}
+        href="/contact"
+        aria-current={isActive("/contact") ? "page" : undefined}
         className={cn(
           itemBase,
-          isActive("/about")
+          isActive("/contact")
             ? "bg-primary/10 text-primary"
             : "text-foreground hover:text-primary",
         )}
       >
-        {nav("about")}
+        {nav("contact")}
       </Link>
     </nav>
   );

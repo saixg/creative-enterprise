@@ -11,7 +11,6 @@ import { MobileNav } from "@/components/marketing/mobile-nav";
 export const footerNavItems = [
   { key: "products", href: "/products" },
   { key: "services", href: "/services" },
-  { key: "about", href: "/about" },
   { key: "contact", href: "/contact" },
 ] as const;
 
@@ -26,7 +25,7 @@ export async function SiteHeader() {
 
   return (
     <header className="bg-background/55 sticky top-0 z-50 border-b border-transparent backdrop-blur-xl">
-      <div className="mx-auto flex h-20 w-full max-w-[90rem] items-center justify-between gap-6 px-4 sm:px-6 lg:h-24 lg:px-10">
+      <div className="mx-auto flex h-18 w-full max-w-[90rem] items-center justify-between gap-6 px-4 sm:px-6 lg:h-20 lg:px-10">
         <Link
           href="/"
           aria-label="Creative Enterprise home"

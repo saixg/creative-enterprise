@@ -72,7 +72,7 @@ export function StorefrontNav() {
       <Link href="/products#brands" className={cn(item, tone(false))}>
         {nav("brands")}
       </Link>
-      <Link href="/#offers" className={cn(item, tone(false))}>
+      <Link href="/products#offers" className={cn(item, tone(false))}>
         {nav("offers")}
       </Link>
       <Link href="/products#catalogue" className={cn(item, tone(false))}>
