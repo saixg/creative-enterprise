@@ -371,5 +371,25 @@
       "failed": "Your request could not be sent. Please try again."
     },
     "whatsappAlt": "Or message on WhatsApp"
+  },
+  "contactPage": {
+    "metaTitle": "Contact",
+    "title": "Talk to the store",
+    "lead": "Ask about a product, a repair or a service visit. The store replies on the number you give.",
+    "formHeading": "Send an enquiry",
+    "subject": "General enquiry",
+    "storeHeading": "Visit or call",
+    "phone": "Phone",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "noContact": "Phone and WhatsApp numbers will appear here once the store adds them. Until then, the form reaches the store directly.",
+    "hours": "Opening hours"
+  },
+  "notFound": {
+    "title": "This page is not here",
+    "body": "The link may be old, or the page may have moved. Everything the store offers is one step away.",
+    "home": "Back to home",
+    "products": "Browse products",
+    "services": "See services"
   }
 }
