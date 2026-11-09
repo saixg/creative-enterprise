@@ -21,8 +21,11 @@ export async function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
       <HeroBackdrop />
+      {/* The 3D core fills the hero behind the copy: right of it on desktop,
+          below the CTAs on phones, inside the first screen on both. */}
+      <HeroScene className="pointer-events-none absolute inset-0 -z-[5]" />
 
-      <div className="mx-auto grid min-h-[calc(100dvh-6rem)] w-full max-w-7xl items-center gap-12 px-4 pt-10 pb-16 sm:px-6 lg:grid-cols-[1.08fr_1fr] lg:gap-10 lg:px-8 lg:pt-6 lg:pb-20">
+      <div className="mx-auto grid min-h-[calc(100dvh-5rem)] w-full max-w-7xl content-between gap-6 px-4 pt-10 pb-8 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:content-center lg:items-center lg:gap-12 lg:px-8 lg:pt-6 lg:pb-20">
         <HeroReveal>
           {/* 1. Eyebrow */}
           <p className="glass inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full px-4 py-2 text-sm">
@@ -94,8 +97,9 @@ export async function Hero() {
             </Link>
           </div>
         </HeroReveal>
-
-        <HeroScene className="pointer-events-none aspect-square w-full max-w-[40rem] justify-self-center lg:aspect-auto lg:h-[min(46rem,82dvh)] lg:max-w-none" />
+        {/* Room for the 3D core: below the copy on phones, the right column
+            on desktop. */}
+        <div aria-hidden className="min-h-[32dvh] lg:min-h-0" />
       </div>
     </section>
   );
