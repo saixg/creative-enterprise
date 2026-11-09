@@ -77,7 +77,7 @@ export default async function CategoryPage({
           ) : (
             <>
               {products.some((p) => p.isPlaceholder) && (
-                <p className="border-warm/40 bg-warm/10 text-warm mb-6 rounded-2xl border px-4 py-3 text-sm">
+                <p className="border-warm/40 bg-warm/10 text-warning mb-6 rounded-2xl border px-4 py-3 text-sm">
                   {t("placeholderNotice")}
                 </p>
               )}

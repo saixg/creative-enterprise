@@ -92,7 +92,7 @@ export default async function AdminDashboard({
       </dl>
 
       {products === 0 && (
-        <p className="border-warm/40 bg-warm/10 text-warm mt-6 rounded-2xl border px-4 py-3 text-sm">
+        <p className="border-warm/40 bg-warm/10 text-warning mt-6 rounded-2xl border px-4 py-3 text-sm">
           {t("empty")}
         </p>
       )}

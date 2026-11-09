@@ -68,7 +68,7 @@ export async function HeroLocal() {
             <svg
               aria-hidden
               viewBox="0 0 200 14"
-              className="text-warm mt-1 h-3 w-40"
+              className="text-warning mt-1 h-3 w-40"
             >
               <path
                 d="M4 10 C 60 2, 130 2, 196 8"

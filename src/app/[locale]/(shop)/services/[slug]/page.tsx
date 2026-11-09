@@ -120,7 +120,7 @@ export default async function ServiceDetailPage({
               </>
             )}
             {service.isCandidate && (
-              <span className="bg-warm/15 text-warm absolute top-4 left-4 rounded-full px-3 py-1 text-xs font-semibold">
+              <span className="bg-surface/95 text-warning border-warm/40 absolute top-4 left-4 rounded-full border px-3 py-1 text-xs font-semibold shadow-sm backdrop-blur">
                 {pages("candidateBadge")}
               </span>
             )}

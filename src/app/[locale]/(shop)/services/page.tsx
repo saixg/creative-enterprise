@@ -111,7 +111,7 @@ export default async function ServicesPage({
           {t("gridHeading")}
         </h2>
         <p className="text-muted mt-1.5">{t("gridSubtitle")}</p>
-        <p className="border-warm/40 bg-warm/10 text-warm mt-6 rounded-2xl border px-4 py-3 text-sm">
+        <p className="border-warm/40 bg-warm/10 text-warning mt-6 rounded-2xl border px-4 py-3 text-sm">
           {t("candidateNotice")}
         </p>
 

@@ -39,7 +39,7 @@ export async function SiteFooter() {
         </div>
 
         {/* Development notice. Remove once placeholder content is replaced. */}
-        <p className="border-warm/40 bg-warm/10 text-warm mt-10 rounded-2xl border px-4 py-3 text-sm">
+        <p className="border-warm/40 bg-warm/10 text-warning mt-10 rounded-2xl border px-4 py-3 text-sm">
           {t("buildNotice")}
         </p>
 

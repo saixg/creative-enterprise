@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 const initial: SubmissionState = { status: "idle" };
 
 const field =
-  "w-full rounded-xl border border-border-strong bg-surface px-4 text-[0.95rem] text-foreground placeholder:text-muted/70 " +
+  "w-full rounded-xl border border-border-strong bg-surface px-4 text-base text-foreground placeholder:text-muted/70 " +
   "transition-[border-color,box-shadow] focus-visible:border-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/15 " +
   "aria-[invalid=true]:border-destructive";
 

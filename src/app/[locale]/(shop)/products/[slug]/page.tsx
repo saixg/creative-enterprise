@@ -112,7 +112,7 @@ export default async function ProductDetailPage({
                 />
               </TiltLayer>
               {!product.image && (
-                <span className="bg-warm/15 text-warm absolute bottom-4 rounded-full px-3 py-1 text-xs font-semibold">
+                <span className="bg-warm/15 text-warning absolute bottom-4 rounded-full px-3 py-1 text-xs font-semibold">
                   {t("imagePending")}
                 </span>
               )}
@@ -136,7 +136,7 @@ export default async function ProductDetailPage({
                 </span>
               )}
               {product.isPlaceholder && (
-                <span className="bg-warm/15 text-warm rounded-full px-3 py-1 text-xs font-semibold">
+                <span className="bg-warm/15 text-warning rounded-full px-3 py-1 text-xs font-semibold">
                   {t("badgePlaceholder")}
                 </span>
               )}
@@ -154,7 +154,7 @@ export default async function ProductDetailPage({
                 <>
                   <p className="text-3xl font-semibold">{price}</p>
                   {!product.priceIsVerified && (
-                    <p className="text-warm mt-1 text-sm">
+                    <p className="text-warning mt-1 text-sm">
                       {t("priceUnverifiedLong")}
                     </p>
                   )}
@@ -198,7 +198,9 @@ export default async function ProductDetailPage({
                 ))}
               </dl>
               {product.isPlaceholder && (
-                <p className="text-warm mt-4 text-sm">{t("specsUnverified")}</p>
+                <p className="text-warning mt-4 text-sm">
+                  {t("specsUnverified")}
+                </p>
               )}
             </div>
           </div>

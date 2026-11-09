@@ -63,7 +63,7 @@ export async function BrandStrip() {
         ))}
       </ul>
 
-      <p className="text-warm mt-6 text-sm">{t("notice")}</p>
+      <p className="text-warning mt-6 text-sm">{t("notice")}</p>
     </div>
   );
 }

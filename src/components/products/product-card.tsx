@@ -60,7 +60,7 @@ export async function ProductCard({
               </span>
             )}
             {product.isPlaceholder && (
-              <span className="bg-warm/15 text-warm rounded-full px-3 py-1 text-xs font-semibold">
+              <span className="bg-warm/15 text-warning rounded-full px-3 py-1 text-xs font-semibold">
                 {t("badgePlaceholder")}
               </span>
             )}
@@ -89,7 +89,9 @@ export async function ProductCard({
                 <>
                   <p className="text-lg font-semibold">{price}</p>
                   {!product.priceIsVerified && (
-                    <p className="text-warm text-xs">{t("priceUnverified")}</p>
+                    <p className="text-warning text-xs">
+                      {t("priceUnverified")}
+                    </p>
                   )}
                 </>
               ) : (
