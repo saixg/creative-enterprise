@@ -42,7 +42,7 @@ export async function HeroLocal() {
   const unverified = !addressLines.verified || !hours.verified;
 
   return (
-    <div className="mx-auto grid w-full max-w-7xl items-end gap-8 px-4 pt-6 pb-10 sm:px-6 lg:grid-cols-[auto_1fr] lg:gap-10 lg:px-8 lg:pt-4 lg:pb-10">
+    <div className="mx-auto grid w-full max-w-7xl items-end gap-8 px-4 pt-6 pb-10 sm:px-6 lg:px-8 lg:pt-4 lg:pb-10 xl:grid-cols-[auto_1fr] xl:gap-10">
       {/* Local identity */}
       <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-end">
         <Image
@@ -104,7 +104,7 @@ export async function HeroLocal() {
       </div>
 
       {/* Store strip */}
-      <div className="lg:justify-self-end">
+      <div className="xl:justify-self-end">
         <dl className="glass-tile grid gap-5 rounded-[1.6rem] px-6 py-5 sm:grid-cols-2 sm:gap-0 sm:divide-x sm:divide-[var(--border)] lg:min-w-[34rem]">
           <div className="flex gap-4 sm:pe-6">
             <Store
