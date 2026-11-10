@@ -20,7 +20,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
 
   return (
     // One continuous lit field so every glass surface has colour behind it.
-    <div className="relative isolate bg-[linear-gradient(180deg,var(--background)_0%,#eef2ff_14%,#f3f6ff_55%,#eef3ff_80%,var(--background)_100%)]">
+    <div className="relative isolate bg-[linear-gradient(180deg,var(--background)_0%,#f6edff_14%,#faf2ff_55%,#f7eeff_80%,var(--background)_100%)]">
       <Hero />
       <CapabilityFlow />
       <Pillars />

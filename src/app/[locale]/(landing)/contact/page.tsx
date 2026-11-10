@@ -48,7 +48,7 @@ export default async function ContactPage({
   const unverified = !info.addressLines.verified || !info.hours.verified;
 
   return (
-    <div className="relative isolate overflow-hidden bg-[linear-gradient(180deg,var(--background),#eef2ff_30%,#f3f6ff_70%,var(--background))]">
+    <div className="relative isolate overflow-hidden bg-[linear-gradient(180deg,var(--background),#f6edff_30%,#faf2ff_70%,var(--background))]">
       <div
         aria-hidden
         className="animate-drift absolute -top-40 -right-40 -z-10 size-[42rem] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--primary)_22%,transparent),transparent_65%)] blur-2xl"
