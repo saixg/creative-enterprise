@@ -105,7 +105,7 @@ export async function HeroLocal() {
 
       {/* Store strip */}
       <div className="xl:justify-self-end">
-        <dl className="glass-tile grid gap-5 rounded-[1.6rem] px-6 py-5 sm:grid-cols-2 sm:gap-0 sm:divide-x sm:divide-[var(--border)] lg:min-w-[34rem]">
+        <dl className="glass-tile grid gap-5 rounded-[1.6rem] px-6 py-5 sm:grid-cols-[1fr_auto] sm:gap-0 sm:divide-x sm:divide-[var(--border)]">
           <div className="flex gap-4 sm:pe-6">
             <Store
               aria-hidden
