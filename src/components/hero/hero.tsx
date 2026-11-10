@@ -6,6 +6,7 @@ import { businessInfo } from "@/lib/business-info";
 import { HeroBackdrop } from "@/components/hero/hero-backdrop";
 import { HeroScene } from "@/components/hero3d/hero-scene";
 import { HeroReveal } from "@/components/marketing/hero-reveal";
+import { DrawUnderline, Magnetic, RiseLine } from "@/components/motion/kinetic";
 
 /**
  * Landing hero (D-021): the copy column and a reactive WebGL scene.
@@ -45,33 +46,28 @@ export async function Hero() {
 
           {/* 2. Headline */}
           <h1 className="mt-8">
-            <span className="text-foreground block text-[clamp(1.6rem,2.6vw,2.5rem)] leading-tight font-semibold tracking-tight">
+            <RiseLine
+              delay={0.1}
+              className="text-foreground text-[clamp(1.6rem,2.6vw,2.5rem)] leading-tight font-semibold tracking-tight"
+            >
               {t("headlineLead")}
-            </span>
-            <span className="mt-1 block pb-2 text-[clamp(3rem,6vw,5.25rem)] leading-[1.1] font-extrabold tracking-[-0.035em] italic">
+            </RiseLine>
+            <RiseLine
+              delay={0.26}
+              className="mt-1 text-[clamp(3rem,6vw,5.25rem)] leading-[1.1] font-extrabold tracking-[-0.035em] italic"
+            >
               <span className="text-foreground">{t("headlineSales")}</span>{" "}
               <span className="text-primary/50 font-bold">
                 {t("headlineAmp")}
               </span>{" "}
               <span className="text-primary relative inline-block">
                 {t("headlineService")}
-                <svg
-                  aria-hidden
-                  viewBox="0 0 400 30"
-                  preserveAspectRatio="none"
+                <DrawUnderline
+                  delay={0.95}
                   className="absolute -bottom-[0.2em] left-0 h-[0.26em] w-full"
-                >
-                  <path
-                    d="M6 22 C 120 8, 260 4, 394 10"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeOpacity="0.45"
-                    strokeWidth="7"
-                    strokeLinecap="round"
-                  />
-                </svg>
+                />
               </span>
-            </span>
+            </RiseLine>
           </h1>
 
           {/* 3. One sentence, under 20 words. */}
@@ -81,20 +77,24 @@ export async function Hero() {
 
           {/* 4. Two CTAs, one per intent. */}
           <div className="mt-9 flex flex-wrap gap-3">
-            <Link
-              href="/products"
-              className="btn-gradient sheen text-primary-foreground relative inline-flex h-13 items-center gap-2.5 overflow-hidden rounded-full px-7 text-base font-semibold transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
-            >
-              {t("primaryCta")}
-              <ArrowRight aria-hidden className="size-4" />
-            </Link>
-            <Link
-              href="/services"
-              className="glass text-foreground hover:border-primary/40 inline-flex h-13 items-center gap-2.5 rounded-full px-7 text-base font-semibold transition-[transform,border-color] duration-200 hover:-translate-y-0.5 active:scale-[0.98]"
-            >
-              <Wrench aria-hidden className="size-4" />
-              {t("secondaryCta")}
-            </Link>
+            <Magnetic>
+              <Link
+                href="/products"
+                className="btn-gradient sheen text-primary-foreground relative inline-flex h-13 items-center gap-2.5 overflow-hidden rounded-full px-7 text-base font-semibold transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+              >
+                {t("primaryCta")}
+                <ArrowRight aria-hidden className="size-4" />
+              </Link>
+            </Magnetic>
+            <Magnetic strength={0.22}>
+              <Link
+                href="/services"
+                className="glass text-foreground hover:border-primary/40 inline-flex h-13 items-center gap-2.5 rounded-full px-7 text-base font-semibold transition-[transform,border-color] duration-200 hover:-translate-y-0.5 active:scale-[0.98]"
+              >
+                <Wrench aria-hidden className="size-4" />
+                {t("secondaryCta")}
+              </Link>
+            </Magnetic>
           </div>
         </HeroReveal>
         {/* Room for the 3D core: below the copy on phones, the right column
