@@ -22,93 +22,95 @@
  * components never reference them.
  */
 :root {
-  --theme-landing-bg: #ffffff;
-  --theme-app-bg: #07080f;
+  --theme-landing-bg: #fbf5ea;
+  --theme-app-bg: #140f1e;
 }
 
 :root,
 [data-theme="landing"] {
-  /* surfaces */
-  --background: #ffffff;
-  --background-subtle: #f6f8fc;
-  --surface: #ffffff;
-  --surface-muted: #f6f8fc;
-  --surface-inverse: #07152f;
+  /* surfaces — vanilla cream field, warm white cards */
+  --background: #fbf5ea;
+  --background-subtle: #f3ead9;
+  --surface: #fffdf8;
+  --surface-muted: #f6efe2;
+  --surface-inverse: #241a3d;
 
-  /* text */
-  --foreground: #07152f;
-  --foreground-inverse: #ffffff;
-  --muted: #667085;
+  /* text — violet ink, never pure black on cream */
+  --foreground: #2a1e45;
+  --foreground-inverse: #fbf5ea;
+  --muted: #665a80;
 
-  /* brand */
-  --primary: #0759e8;
-  --primary-hover: #0548c2;
+  /* brand — one accent: sugar violet */
+  --primary: #6d3be4;
+  --primary-hover: #5a2fc4;
   --primary-foreground: #ffffff;
-  --accent: #25b8ef;
-  --accent-soft: #7650e8;
-  --warm: #f0a34a;
+  --accent: #8b5cf6;
+  --accent-soft: #a78bfa;
+  --warm: #e08a2e;
 
-  /* structure */
-  --border: #e4e9f2;
-  --border-strong: #cdd6e6;
-  --focus-ring: #0759e8;
+  /* structure — warm hairlines, so edges sit in the cream */
+  --border: #e9dece;
+  --border-strong: #d8c9b2;
+  --focus-ring: #6d3be4;
 
   /* Deep navy — the "Get a Quote" button and the Shop Products card in
      reference 02. Darker and more saturated than `foreground`. */
-  --primary-deep: #0b2463;
-  --primary-deep-2: #1a45b8;
+  --primary-deep: #3a1f7a;
+  --primary-deep-2: #5a2fc4;
 
   /* status */
   --success: #15803d;
-  --warning: #b45309;
+  --warning: #9a4e0b;
   --destructive: #be123c;
 
-  /* depth — permitted by D-002, defined once and reused */
-  --glow-primary: 0 24px 60px -24px rgb(7 89 232 / 0.45);
-  --glow-accent: 0 24px 60px -28px rgb(37 184 239 / 0.5);
+  /* depth — permitted by D-002, defined once and reused. Shadows are tinted
+     violet rather than neutral, so they sit in the cream instead of greying
+     it. */
+  --glow-primary: 0 24px 60px -24px rgb(109 59 228 / 0.42);
+  --glow-accent: 0 24px 60px -28px rgb(139 92 246 / 0.45);
   --shadow-card:
-    0 1px 2px rgb(7 21 47 / 0.04), 0 12px 32px -16px rgb(7 21 47 / 0.14);
+    0 1px 2px rgb(42 30 69 / 0.05), 0 12px 32px -16px rgb(42 30 69 / 0.16);
   --shadow-raised:
-    0 2px 4px rgb(7 21 47 / 0.05), 0 24px 56px -24px rgb(7 21 47 / 0.22);
+    0 2px 4px rgb(42 30 69 / 0.06), 0 24px 56px -24px rgb(42 30 69 / 0.24);
 }
 
 [data-theme="app"] {
-  /* surfaces */
-  --background: #07080f;
-  --background-subtle: #0b0d16;
-  --surface: #12141e;
-  --surface-muted: #1a1d29;
-  --surface-inverse: #ffffff;
+  /* surfaces — deep violet night, not neutral black */
+  --background: #140f1e;
+  --background-subtle: #1a1428;
+  --surface: #211a33;
+  --surface-muted: #2a2240;
+  --surface-inverse: #fbf5ea;
 
-  /* text */
-  --foreground: #f6f8fc;
-  --foreground-inverse: #07152f;
-  --muted: #9aa1b4;
+  /* text — vanilla cream on violet */
+  --foreground: #f7f1e6;
+  --foreground-inverse: #140f1e;
+  --muted: #a99bc4;
 
-  /* brand */
-  --primary: #2f73ff;
-  --primary-hover: #4d87ff;
-  --primary-foreground: #ffffff;
-  --accent: #7650e8;
-  --accent-soft: #25b8ef;
-  --warm: #f0a34a;
+  /* brand — the same sugar violet, lifted for a dark field */
+  --primary: #a78bfa;
+  --primary-hover: #c4a9ff;
+  --primary-foreground: #140f1e;
+  --accent: #8b5cf6;
+  --accent-soft: #c4a9ff;
+  --warm: #f0b45e;
 
   /* structure */
-  --border: #262a38;
-  --border-strong: #353b4d;
-  --focus-ring: #25b8ef;
+  --border: #2e2545;
+  --border-strong: #42365f;
+  --focus-ring: #c4a9ff;
 
-  --primary-deep: #1b2f73;
-  --primary-deep-2: #2f5fe0;
+  --primary-deep: #3a1f7a;
+  --primary-deep-2: #6d3be4;
 
   /* status */
   --success: #4ade80;
-  --warning: #fbbf24;
+  --warning: #f0b45e;
   --destructive: #fb7185;
 
   /* depth */
-  --glow-primary: 0 24px 70px -26px rgb(47 115 255 / 0.55);
-  --glow-accent: 0 24px 70px -26px rgb(118 80 232 / 0.55);
+  --glow-primary: 0 24px 70px -26px rgb(167 139 250 / 0.5);
+  --glow-accent: 0 24px 70px -26px rgb(139 92 246 / 0.55);
   --shadow-card: 0 1px 2px rgb(0 0 0 / 0.5), 0 16px 40px -20px rgb(0 0 0 / 0.7);
   --shadow-raised:
     0 2px 6px rgb(0 0 0 / 0.55), 0 28px 64px -24px rgb(0 0 0 / 0.8);
@@ -274,15 +276,15 @@
     isolation: isolate;
     background: linear-gradient(
       150deg,
-      color-mix(in oklab, white 72%, transparent),
-      color-mix(in oklab, white 22%, transparent) 60%,
-      color-mix(in oklab, var(--accent) 10%, transparent)
+      color-mix(in oklab, var(--surface) 82%, transparent),
+      color-mix(in oklab, var(--surface) 28%, transparent) 60%,
+      color-mix(in oklab, var(--accent) 12%, transparent)
     );
     -webkit-backdrop-filter: blur(22px) saturate(170%);
     backdrop-filter: blur(22px) saturate(170%);
-    border: 1px solid color-mix(in oklab, white 70%, transparent);
+    border: 1px solid color-mix(in oklab, var(--surface) 78%, transparent);
     box-shadow:
-      inset 0 1px 0 color-mix(in oklab, white 85%, transparent),
+      inset 0 1px 0 color-mix(in oklab, var(--surface) 90%, transparent),
       inset 0 -10px 24px -18px
         color-mix(in oklab, var(--primary) 45%, transparent),
       0 28px 60px -28px color-mix(in oklab, var(--primary) 60%, transparent),
@@ -298,7 +300,7 @@
     border-radius: inherit;
     background: radial-gradient(
       120% 60% at 12% 0%,
-      color-mix(in oklab, white 70%, transparent),
+      color-mix(in oklab, var(--surface) 76%, transparent),
       transparent 55%
     );
     pointer-events: none;
@@ -409,6 +411,15 @@
   }
 }
 
+/* One light travelling around a card's edge. The ring is a conic gradient
+   on a huge spinning pseudo-element, masked down to a 1.5px border: masking
+   is what keeps it a hairline instead of a glow over the whole card. */
+@keyframes spin-beam {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
 @keyframes sheen {
   0% {
     transform: translateX(-120%) skewX(-18deg);
@@ -436,6 +447,45 @@
   .animate-drift {
     animation: drift 18s ease-in-out infinite;
     animation-delay: var(--drift-delay, 0s);
+  }
+
+  .beam-ring {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    padding: 1.5px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--motion-300) var(--ease-out);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+  }
+
+  .beam-ring::before {
+    content: "";
+    position: absolute;
+    inset: -140%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0 70%,
+      color-mix(in oklab, var(--accent-soft) 85%, transparent) 82%,
+      var(--primary) 89%,
+      transparent 95% 100%
+    );
+    animation: spin-beam 3.2s linear infinite;
+  }
+
+  .group:hover .beam-ring,
+  .group:focus-within .beam-ring {
+    opacity: 1;
   }
 
   /* One pass of light across a surface when it is hovered. */
