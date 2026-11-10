@@ -17,7 +17,6 @@ export async function SiteFooter() {
         <div className="flex flex-col gap-10 sm:flex-row sm:justify-between">
           <div>
             <Logo />
-            <p className="text-muted mt-4 max-w-xs text-sm">{t("tagline")}</p>
             <WhatsAppCta className="mt-6" />
           </div>
 

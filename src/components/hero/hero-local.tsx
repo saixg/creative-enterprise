@@ -1,8 +1,7 @@
 import Image from "next/image";
-import { Clock, MapPin, Store } from "lucide-react";
+import { Clock, Store } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 
-import { businessInfo } from "@/lib/business-info";
 import { getBusinessInfo } from "@/lib/site-content";
 
 /**
@@ -42,7 +41,7 @@ export async function HeroLocal() {
   const unverified = !addressLines.verified || !hours.verified;
 
   return (
-    <div className="mx-auto grid w-full max-w-[90rem] items-end gap-8 px-4 pt-6 pb-10 sm:px-6 lg:grid-cols-[auto_1fr] lg:gap-10 lg:px-10 lg:pt-4 lg:pb-10">
+    <div className="mx-auto grid w-full max-w-7xl items-end gap-8 px-4 pt-6 pb-10 sm:px-6 lg:px-8 lg:pt-4 lg:pb-10 xl:grid-cols-[auto_1fr] xl:gap-10">
       {/* Local identity */}
       <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-end">
         <Image
@@ -51,9 +50,9 @@ export async function HeroLocal() {
           width={700}
           height={420}
           sizes="320px"
-          // Keyed artwork with its own wave. The crop ends in hard edges at the
-          // top and right; the mask dissolves them into the hero field.
-          className="h-28 w-auto [mask-image:radial-gradient(115%_105%_at_32%_72%,black_58%,transparent_88%)] sm:h-36 lg:-mb-4 lg:-ml-6 lg:h-40"
+          // Keyed artwork with its own wave. The crop ends in hard edges on
+          // every side; two crossed fades dissolve all four into the field.
+          className="h-28 w-auto [mask-image:linear-gradient(to_right,transparent,black_20%,black_76%,transparent),linear-gradient(to_bottom,transparent,black_24%,black_78%,transparent)] [mask-composite:intersect] sm:h-36 lg:h-40"
         />
 
         <div className="flex items-center gap-6 pb-1">
@@ -79,33 +78,12 @@ export async function HeroLocal() {
               />
             </svg>
           </div>
-
-          <span
-            aria-hidden
-            className="bg-border-strong hidden h-16 w-px sm:block"
-          />
-
-          <p className="hidden items-center gap-3 sm:flex">
-            <MapPin
-              aria-hidden
-              className="text-primary size-7"
-              strokeWidth={1.8}
-            />
-            <span className="leading-tight whitespace-nowrap">
-              <span className="text-foreground block text-lg font-semibold">
-                {businessInfo.legalName.value}
-              </span>
-              <span className="text-primary block text-lg font-bold">
-                {businessInfo.city.value}
-              </span>
-            </span>
-          </p>
         </div>
       </div>
 
       {/* Store strip */}
-      <div className="lg:justify-self-end">
-        <dl className="glass-tile grid gap-5 rounded-[1.6rem] px-6 py-5 sm:grid-cols-2 sm:gap-0 sm:divide-x sm:divide-[var(--border)] lg:min-w-[34rem]">
+      <div className="xl:justify-self-end">
+        <dl className="glass-tile grid gap-5 rounded-[1.6rem] px-6 py-5 sm:grid-cols-[1fr_auto] sm:gap-0 sm:divide-x sm:divide-[var(--border)]">
           <div className="flex gap-4 sm:pe-6">
             <Store
               aria-hidden
