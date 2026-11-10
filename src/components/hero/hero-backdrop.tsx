@@ -14,7 +14,7 @@ export function HeroBackdrop() {
       className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
     >
       {/* Base field: cool lavender, brightest behind the stage. */}
-      <div className="absolute inset-0 bg-[radial-gradient(70%_80%_at_75%_40%,#e4e9ff_0%,#eef1ff_38%,#f7f8ff_70%,var(--background)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(70%_80%_at_75%_40%,#efe4ff_0%,#f6edff_34%,#fbf3e9_68%,var(--background)_100%)]" />
 
       {/* Drifting blooms. */}
       <div
@@ -35,15 +35,15 @@ export function HeroBackdrop() {
       >
         <defs>
           <linearGradient id="ribbon" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0" stopColor="#ffffff" stopOpacity="0" />
-            <stop offset="0.45" stopColor="#ffffff" stopOpacity="0.85" />
-            <stop offset="0.7" stopColor="#c9d6ff" stopOpacity="0.7" />
-            <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
+            <stop offset="0" stopColor="#fffdf8" stopOpacity="0" />
+            <stop offset="0.45" stopColor="#fffdf8" stopOpacity="0.9" />
+            <stop offset="0.7" stopColor="#e3d4ff" stopOpacity="0.72" />
+            <stop offset="1" stopColor="#fffdf8" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="ribbon-edge" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0" stopColor="#7c97ff" stopOpacity="0" />
-            <stop offset="0.55" stopColor="#7c97ff" stopOpacity="0.55" />
-            <stop offset="1" stopColor="#7c97ff" stopOpacity="0" />
+            <stop offset="0" stopColor="#a78bfa" stopOpacity="0" />
+            <stop offset="0.55" stopColor="#a78bfa" stopOpacity="0.6" />
+            <stop offset="1" stopColor="#a78bfa" stopOpacity="0" />
           </linearGradient>
         </defs>
         <path
