@@ -31,10 +31,10 @@ import * as THREE from "three";
  * pointer, pointer speed makes the data surge, scrolling lifts it away.
  */
 
-const BLUE = new THREE.Color("#0759e8");
-const ICE = new THREE.Color("#7fd3ff");
+const BLUE = new THREE.Color("#6d3be4");
+const ICE = new THREE.Color("#c4a9ff");
 const WHITE = new THREE.Color("#ffffff");
-const FIELD = new THREE.Color("#eef2ff");
+const FIELD = new THREE.Color("#f6edff");
 
 /** One soft round glow, shared by every light in the scene. */
 function useGlowTexture() {
@@ -78,9 +78,9 @@ function useDieTexture() {
       size / 2,
       size * 0.7,
     );
-    bg.addColorStop(0, "#7fd3ff");
-    bg.addColorStop(0.45, "#2f73ff");
-    bg.addColorStop(1, "#0b2463");
+    bg.addColorStop(0, "#e2d2ff");
+    bg.addColorStop(0.45, "#8b5cf6");
+    bg.addColorStop(1, "#3a1f7a");
     ctx.fillStyle = bg;
     ctx.fillRect(0, 0, size, size);
     ctx.strokeStyle = "rgba(255,255,255,0.35)";
@@ -319,7 +319,7 @@ function Board({ lite }: { lite: boolean }) {
         <Line
           key={i}
           points={trace.points}
-          color={i % 3 === 0 ? "#9db8ff" : "#c4d4ff"}
+          color={i % 3 === 0 ? "#a78bfa" : "#d6c7f5"}
           lineWidth={1.1}
           transparent
           opacity={0.6}
@@ -329,7 +329,7 @@ function Board({ lite }: { lite: boolean }) {
       {traces.map((trace, i) => (
         <mesh key={`pad-${i}`} position={trace.points[0]}>
           <circleGeometry args={[0.045, 16]} />
-          <meshBasicMaterial color="#9db8ff" />
+          <meshBasicMaterial color="#a78bfa" />
         </mesh>
       ))}
 
@@ -354,7 +354,7 @@ function Board({ lite }: { lite: boolean }) {
       <sprite ref={halo} position={[0, 0, -0.3]} scale={3.1}>
         <spriteMaterial
           map={glow}
-          color="#6f9dff"
+          color="#8b5cf6"
           transparent
           opacity={0.7}
           depthWrite={false}
@@ -373,7 +373,7 @@ function Board({ lite }: { lite: boolean }) {
           <mesh key={i} position={[x, y, z]} rotation={[0, 0, rot]}>
             <boxGeometry args={[0.2, 0.06, 0.05]} />
             <meshStandardMaterial
-              color="#e8eef9"
+              color="#efe7da"
               metalness={0.55}
               roughness={0.3}
             />
@@ -397,9 +397,9 @@ function Board({ lite }: { lite: boolean }) {
             distortionScale={0.3}
             temporalDistortion={0}
             clearcoat={1}
-            attenuationColor="#c9d8ff"
+            attenuationColor="#c4a9ff"
             attenuationDistance={1.8}
-            color="#f6f9ff"
+            color="#fdf8ff"
             samples={lite ? 3 : 6}
             resolution={lite ? 256 : 768}
           />
@@ -444,7 +444,7 @@ export default function ChipScene({
           position={[-5, 0, 1]}
           rotation-y={Math.PI / 2}
           scale={[8, 3, 1]}
-          color="#7fd3ff"
+          color="#c4a9ff"
         />
         <Lightformer
           form="rect"
@@ -452,7 +452,7 @@ export default function ChipScene({
           position={[5, -1, 1]}
           rotation-y={-Math.PI / 2}
           scale={[8, 3, 1]}
-          color="#0759e8"
+          color="#6d3be4"
         />
       </Environment>
     </Canvas>

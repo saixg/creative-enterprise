@@ -78,7 +78,7 @@ export function HeroScene({ className }: { className?: string }) {
         )}
       >
         <div className="relative aspect-square w-[min(70%,26rem)] lg:w-[34%]">
-          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_35%_30%,#ffffff,#cfe0ff_40%,color-mix(in_oklab,var(--primary)_55%,#9fc4ff)_75%,transparent_76%)] opacity-80 blur-[2px]" />
+          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_35%_30%,#fffdf8,#e2d2ff_40%,color-mix(in_oklab,var(--primary)_55%,#c4a9ff)_75%,transparent_76%)] opacity-80 blur-[2px]" />
           <div className="absolute inset-[18%] rounded-full bg-[radial-gradient(circle_at_60%_65%,color-mix(in_oklab,var(--accent)_45%,transparent),transparent_70%)] blur-2xl" />
         </div>
       </div>
