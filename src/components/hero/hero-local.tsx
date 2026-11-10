@@ -50,9 +50,9 @@ export async function HeroLocal() {
           width={700}
           height={420}
           sizes="320px"
-          // Keyed artwork with its own wave. The crop ends in hard edges at the
-          // top and right; the mask dissolves them into the hero field.
-          className="h-28 w-auto [mask-image:radial-gradient(115%_105%_at_32%_72%,black_58%,transparent_88%)] sm:h-36 lg:h-40"
+          // Keyed artwork with its own wave. The crop ends in hard edges on
+          // every side; two crossed fades dissolve all four into the field.
+          className="h-28 w-auto [mask-image:linear-gradient(to_right,transparent,black_20%,black_76%,transparent),linear-gradient(to_bottom,transparent,black_24%,black_78%,transparent)] [mask-composite:intersect] sm:h-36 lg:h-40"
         />
 
         <div className="flex items-center gap-6 pb-1">
