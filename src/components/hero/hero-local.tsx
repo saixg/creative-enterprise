@@ -1,8 +1,7 @@
 import Image from "next/image";
-import { Clock, MapPin, Store } from "lucide-react";
+import { Clock, Store } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 
-import { businessInfo } from "@/lib/business-info";
 import { getBusinessInfo } from "@/lib/site-content";
 
 /**
@@ -79,27 +78,6 @@ export async function HeroLocal() {
               />
             </svg>
           </div>
-
-          <span
-            aria-hidden
-            className="bg-border-strong hidden h-16 w-px sm:block"
-          />
-
-          <p className="hidden items-center gap-3 sm:flex">
-            <MapPin
-              aria-hidden
-              className="text-primary size-7"
-              strokeWidth={1.8}
-            />
-            <span className="leading-tight whitespace-nowrap">
-              <span className="text-foreground block text-lg font-semibold">
-                {businessInfo.legalName.value}
-              </span>
-              <span className="text-primary block text-lg font-bold">
-                {businessInfo.city.value}
-              </span>
-            </span>
-          </p>
         </div>
       </div>
 
