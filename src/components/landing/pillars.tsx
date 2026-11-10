@@ -45,13 +45,16 @@ export async function Pillars() {
                     href={href}
                     className="group glass-tile relative flex min-h-[19rem] flex-col justify-between overflow-hidden rounded-[2rem] p-8 sm:p-10"
                   >
+                    {/* A light travels the card's edge on hover: it marks
+                        which of the two doors the pointer is on. */}
+                    <span aria-hidden className="beam-ring" />
                     <span
                       aria-hidden
                       className={`animate-drift absolute -inset-1/4 -z-10 ${field}`}
                       style={{ ["--drift-delay" as string]: `${index * -7}s` }}
                     />
                     <span className="flex items-start justify-between gap-6">
-                      <span className="flex size-14 items-center justify-center rounded-2xl bg-[linear-gradient(150deg,#ffffff,color-mix(in_oklab,var(--primary)_16%,#ffffff))] shadow-[inset_0_1px_0_white,0_14px_28px_-14px_color-mix(in_oklab,var(--primary)_60%,transparent)]">
+                      <span className="flex size-14 items-center justify-center rounded-2xl bg-[linear-gradient(150deg,var(--surface),color-mix(in_oklab,var(--primary)_18%,var(--surface)))] shadow-[inset_0_1px_0_var(--surface),0_14px_28px_-14px_color-mix(in_oklab,var(--primary)_60%,transparent)]">
                         <Icon
                           aria-hidden
                           className="text-primary size-7"

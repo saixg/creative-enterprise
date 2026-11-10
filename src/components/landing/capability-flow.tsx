@@ -36,7 +36,7 @@ export async function CapabilityFlow() {
           key={key}
           className="glass-tile flex items-center gap-3 rounded-full py-3 ps-3 pe-6"
         >
-          <span className="flex size-10 items-center justify-center rounded-full bg-[linear-gradient(150deg,#ffffff,color-mix(in_oklab,var(--primary)_14%,#ffffff))]">
+          <span className="flex size-10 items-center justify-center rounded-full bg-[linear-gradient(150deg,var(--surface),color-mix(in_oklab,var(--primary)_16%,var(--surface)))]">
             <Icon
               aria-hidden
               className="text-primary size-5"
