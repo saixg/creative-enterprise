@@ -26,6 +26,12 @@ export function Logo({
         width={299}
         height={241}
         priority
+        // Served straight from /public, not through the image optimiser.
+        // The optimiser palettises this small RGBA mark, and the resulting
+        // palette PNG decodes with its red and green channels swapped, which
+        // turned the violet mark blue on screen. It is ~30KB, so optimising
+        // it buys nothing anyway.
+        unoptimized
         className="h-11 w-auto shrink-0 lg:h-14"
       />
 
